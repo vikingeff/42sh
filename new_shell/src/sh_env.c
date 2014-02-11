@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 22:59:48 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/11 16:33:32 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/11 20:54:26 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 static int		cmd_format(t_cmd *cmd, int *option);
 static t_var	*env_lst_copy(t_env *env);
-static void		env_modify(t_cmd *cmd, t_cmd *c_cmd, t_env *c_env);
-static void		cmd_clean(t_cmd *cmd);
+static void		ft_modify_env(char *str, t_env *c_env);
+static void		ft_put_env(t_cmd *c_cmd);
+static int	ft_get_i(t_cmd *cmd, int i, t_env *c_env, t_cmd *c_cmd);
 
 /*
 ** if no arguments, sh_env display the environnement variables
@@ -25,35 +26,49 @@ static void		cmd_clean(t_cmd *cmd);
 ** a temporary environnement set.
 */
 
-int				sh_env(t_cmd *cmd, t_env *env)
+int				sh_env(t_cmd *cmd, t_env *env, t_dir *dir)
 {
-	int		i;
-	/*int		option;
-	t_env	c_env;
-	t_cmd	c_cmd;
-*/
-	i = -1;
-	while (cmd->env[++i])
-		printf("%s\n", cmd->env[i]);
-	/*option = 0;
+	int			option;
+	t_env		c_env;
+	t_cmd		c_cmd;
+	int			i;
+
+	option = 0;
 	if (cmd_format(cmd, &option))
 		return (-1);
-	c_env.var = (option) ? NULL : env_lst_copy(env);
-	c_env.nb = (option) ? 0 : env->nb;
-	c_cmd.paths = cmd->paths;
-	env_modify(cmd, &c_cmd, &c_env);
-	cmd_clean(cmd);
-	c_cmd.split = cmd->split;
-	if (!option)
-		c_cmd.env = env_list_to_array(c_env.var, c_env.nb);
-	else
-		c_cmd.env = env_list_to_array(c_env.var, c_env.nb + 1);
-	if (c_cmd.split[0])
-		return (command_execute(&c_cmd, &c_env, NULL));
-	i = -1;
-	while (c_cmd.env[++i])
-		ft_putendl(c_cmd.env[i]);*/
+	c_env.var = NULL;
+	c_env.nb = 1;
+	if (option != 1)
+	{
+		c_env.var = env_lst_copy(env);
+		c_env.nb = env->nb;
+	}
+	i = option + 1;
+	i = ft_get_i(cmd, i, &c_env, &c_cmd);
+	if (i < ft_tablen(cmd->split))
+	{
+		c_cmd.split = cmd->split + i - 1;
+		return (command_execute(&c_cmd, &c_env, dir));
+	}
+	ft_put_env(&c_cmd);
 	return (0);
+}
+
+static int	ft_get_i(t_cmd *cmd, int i, t_env *c_env, t_cmd *c_cmd)
+{
+	int	count;
+
+	count = 0;
+	c_cmd->env = env_list_to_array(c_env->var, c_env->nb);
+	while (cmd->split[i] && ft_strchr(cmd->split[i], '='))
+	{
+		ft_modify_env(cmd->split[i++], c_env);
+		count++;
+	}
+	c_cmd->env = env_list_to_array(c_env->var, c_env->nb);
+	if (!count)
+		i = i + 1;
+	return (i);
 }
 
 /*
@@ -63,19 +78,12 @@ int				sh_env(t_cmd *cmd, t_env *env)
 
 static int		cmd_format(t_cmd *cmd, int *option)
 {
-	int			i;
-
-	i = 0;
-	while (cmd->split[i] && i < 2)
+	if (cmd->split[1] && cmd->split[1][0] == '-')
 	{
-		if (cmd->split[i][0] == '-')
-		{
-			if (cmd->split[i][1] == 'i')
-				*option = 1;
-			else
-				return (error(3, &cmd->split[1][1]));
-		}
-		i++;
+		if (cmd->split[1][1] == 'i')
+			*option = 1;
+		else
+			return (error(3, &cmd->split[1][1]));
 	}
 	return (0);
 }
@@ -104,67 +112,32 @@ static t_var	*env_lst_copy(t_env *env)
 	return (start);
 }
 
-/*
-** use the copy env list and change or add it with user's
-** arguments
-*/
-
-static void		env_modify(t_cmd *cmd, t_cmd *c_cmd, t_env *c_env)
+static void		ft_modify_env(char *str, t_env *c_env)
 {
-	int			i;
-	int			len;
+	t_cmd	cmd;
+	char	**tmp;
+	int		len;
 
-	i = 0;
-	while (cmd->split[++i])
-	{
-		len = 0;
-		while (cmd->split[i][len] && cmd->split[i][len] != '=')
-			len++;
-		if (len < ft_strlen(cmd->split[i]))
-		{
-			c_cmd->split = (char**)malloc(sizeof(char*) * 4);
-			c_cmd->split[0] = ft_strdup("setenv");
-			c_cmd->split[1] = ft_strsub(cmd->split[i], 0, len);
-			c_cmd->split[2] = ft_strsub(cmd->split[i], len + 1,
-							(ft_strlen(cmd->split[i]) - (len + 1)));
-			c_cmd->split[3] = NULL;
-			if (c_env->var)
-				sh_setenv(c_cmd, c_env);
-			else
-				env_list_create(c_cmd, c_env);
-		}
-	}
+	cmd.env =  env_list_to_array(c_env->var, c_env->nb);
+	len = ft_strlen(str) - (ft_strlen(ft_strchr(str, '=')));
+	cmd.split = (char**)malloc(sizeof(char*) * 4);
+	cmd.split[0] = ft_strdup("setenv");
+	cmd.split[1] = ft_strsub(str, 0, len);
+	cmd.split[2] = ft_strsub(str, len + 1, ft_strlen(str) - len - 1);
+	cmd.split[3] = NULL;
+	sh_setenv(&cmd, c_env);
+	array2d_free(cmd.split);
+	array2d_free(cmd.env);
 }
 
-/*
-** put in front of the split array all command for execve use
-*/
-
-static void		cmd_clean(t_cmd *cmd)
+static void		ft_put_env(t_cmd *c_cmd)
 {
-	int			i;
-	int			j;
-	int			index;
-	int			copy;
-	int			len;
+	int	i;
 
-	i = index = 0;
-	while (cmd->split[++i])
+	i = 0;
+	while (c_cmd->env[i])
 	{
-		j = -1;
-		copy = 1;
-		while (cmd->split[i][++j])
-			if ((cmd->split[1][0] == '-' && cmd->split[1][1] == 'i')
-				|| cmd->split[i][j] == '=')
-				copy = 0;
-		if (copy)
-		{
-			len = ft_strlen(cmd->split[i]);
-			free(cmd->split[index]);
-			cmd->split[index] = (char *)malloc(sizeof(char) * (len + 1));
-			cmd->split[index] = ft_strdup(cmd->split[i]);
-			index++;
-		}
+		ft_putendl(c_cmd->env[i]);
+		i++;
 	}
-	cmd->split[index] = NULL;
 }

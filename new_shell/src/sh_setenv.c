@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/09 17:53:36 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/11 15:41:19 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/11 20:55:36 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ int				sh_setenv(t_cmd *cmd, t_env *env)
 	env->nb++;
 	if (cmd->env)
 		array2d_free(cmd->env);
+	if (env->var == NULL)
+		env->var = temp;
 	cmd->env = env_list_to_array(env->var, env->nb);
 	return (0);
 }
@@ -65,7 +67,7 @@ static int		setenv_isvalid(t_cmd *cmd, t_env *env)
 	i = -1;
 	if (!cmd->split[1])
 	{
-		sh_env(cmd, env);
+		sh_env(cmd, env, NULL);
 		return (1);
 	}
 	while (cmd->split[1][++i])

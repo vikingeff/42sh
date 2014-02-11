@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_shell.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 20:53:59 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/07 13:40:33 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/02/11 18:43:18 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int			command_shell(t_cmd *cmd, t_env *env, t_dir *dir)
 	if (ft_strcmp(cmd->split[0], "exit") == 0)
 		sh_exit(cmd);
 	else if (ft_strcmp(cmd->split[0], "env") == 0)
-		sh_env(cmd, env);
+		sh_env(cmd, env, dir);
 	else if (ft_strcmp(cmd->split[0], "unsetenv") == 0)
 		sh_unsetenv(cmd, env);
 	else if (ft_strcmp(cmd->split[0], "setenv") == 0)

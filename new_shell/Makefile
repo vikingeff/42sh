@@ -35,6 +35,7 @@ SRC = 	main.c\
 		command_execute.c\
 		command_shell.c\
 		ft_strsplit_all.c\
+		ft_tablen.c\
 
 OBJ = $(SRC:.c=.o)
 

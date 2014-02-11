@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 14:44:57 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/11 15:10:00 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/11 19:11:04 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,10 @@ char		**array2d_copy(char **src);
 char		*env_get_value(char *name, t_env *env);
 void		prompt_display(t_dir *dir);
 int			get_next_line(const int fd, char **line);
+int			ft_tablen(char **tab);
 
 void		sh_exit(t_cmd *cmd);
-int			sh_env(t_cmd *cmd, t_env *env);
+int			sh_env(t_cmd *cmd, t_env *env, t_dir *dir);
 int			sh_unsetenv(t_cmd *cmd, t_env *env);
 int			sh_setenv(t_cmd *cmd, t_env *env);
 void		sh_cd(t_cmd *cmd, t_env *env, t_dir *dir);
