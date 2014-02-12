@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 19:35:16 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/11 15:06:29 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/12 15:00:26 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,26 @@
 
 static void		set_tild(int *home, char **pwd, t_dir *dir);
 static void		put_path(int *home, int *i, t_dir *dir, char **pwd);
+static void		put_prompt(t_dir *dir);
 
 /*
 ** display the user path from his home to his current directory
 */
 
 void			prompt_display(t_dir *dir)
+{
+	static t_dir	*dir_save;
+
+	if (dir == NULL)
+	{
+		put_prompt(dir_save);
+		return ;
+	}
+	dir_save = dir;
+	put_prompt(dir_save);
+}
+
+static void			put_prompt(t_dir *dir)
 {
 	char		**pwd;
 	int			i;

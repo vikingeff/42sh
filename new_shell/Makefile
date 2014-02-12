@@ -24,7 +24,6 @@ SRC = 	main.c\
 		env_list_to_array.c\
 		env_list_add.c\
 		env_get_value.c\
-		env_list_create.c\
 		str_join_chr.c\
 		prompt_display.c\
 		get_next_line.c\
