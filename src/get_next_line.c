@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/18 10:56:26 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/03 20:06:03 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/02/12 18:12:30 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <stdlib.h>
 #include "shell.h"
 
-#define BUFF_SIZE 32
+#define BUFF_SIZE 2
 
 static int		no_leak_exit(char *memory, int ret)
 {

@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/04 18:04:13 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/12 17:24:52 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/12 18:26:07 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,18 @@ void			sh_cd(t_cmd *cmd, t_env *env, t_dir *dir)
 		ft_putendl(env_get_value("OLDPWD", env));
 	}
 	else if (cmd->split[1][0] == '/')
-		change_dir(cmd->split[1], dir, cmd, env);
+	{
+		curpath = ft_strdup(cmd->split[1]);
+		change_dir(curpath, dir, cmd, env);
+		free(curpath);
+	}
 	else
 	{
 		modif = ft_strsplit(cmd->split[1], '/');
 		curpath = get_newpath(modif, dir, curpath);
 		change_dir(curpath, dir, cmd, env);
 		free(curpath);
+		array2d_free(modif);
 	}
 }
 
@@ -101,7 +106,7 @@ static char		*newpath_write(char *curpath, char *modif)
 	newpath = NULL;
 	if (modif[0] != '.')
 		newpath = str_join_chr(curpath, modif, '/');
-	else if (modif[1] == '.')
+	else if (modif[1] == '.' && ft_strcmp(curpath, "/"))
 	{
 		split = ft_strsplit(curpath, '/');
 		newpath = get_path(newpath, split);
@@ -117,11 +122,10 @@ static char		*newpath_write(char *curpath, char *modif)
 	return (newpath);
 }
 
-static char		*get_path(char *path, char **split)
+static char		*get_path(char *newpath, char **split)
 {
 	int			i;
 	char		*tmp;
-	char		*newpath;
 
 	i = 0;
 	tmp = NULL;

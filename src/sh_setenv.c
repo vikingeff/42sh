@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/09 17:53:36 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/11 20:55:36 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/12 18:25:58 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int				sh_setenv(t_cmd *cmd, t_env *env)
 	{
 		if (ft_strcmp(cmd->split[1], p_var->name) == 0)
 		{
+			free(p_var->value);
 			p_var->value = (cmd->split[2]) ?
 			ft_strdup(cmd->split[2]) : NULL;
 			if (cmd->env)

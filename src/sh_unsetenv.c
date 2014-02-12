@@ -6,13 +6,14 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/04 16:29:36 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/12 11:37:42 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/12 19:03:36 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-static t_var		*cell_delete(t_var *var, t_var **prev);
+static void			cell_delete(t_var *var, t_var *prev);
+static t_var		*cell_first_delete(t_var *p_var, t_var **prev);
 
 /*
 ** erase minishell env variables given as arguments
@@ -31,7 +32,10 @@ int				sh_unsetenv(t_cmd *cmd, t_env *env)
 	{
 		if (ft_strcmp(cmd->split[1], p_var->name) == 0)
 		{
-			p_var = cell_delete(p_var, &prev);
+			if (!prev)
+				p_var = cell_first_delete(p_var, &prev);
+			else
+				cell_delete(p_var, prev);
 			array2d_free(cmd->env);
 			env->nb--;
 			if (!p_var)
@@ -45,12 +49,18 @@ int				sh_unsetenv(t_cmd *cmd, t_env *env)
 	return (error(30, cmd->split[1]));
 }
 
-static t_var	*cell_delete(t_var *p_var, t_var **prev)
+static void		cell_delete(t_var *p_var, t_var *prev)
 {
-	if (*prev)
-		(*prev)->next = p_var->next;
-	else
-		*prev = p_var->next;
+	prev->next = p_var->next;
+	free(p_var->name);
+	free(p_var->value);
+	free(p_var);
+	p_var = NULL;
+}
+
+static t_var	*cell_first_delete(t_var *p_var, t_var **prev)
+{
+	*prev = p_var->next;
 	free(p_var->name);
 	free(p_var->value);
 	free(p_var);
