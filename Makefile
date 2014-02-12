@@ -35,6 +35,11 @@ SRC = 	main.c\
 		command_shell.c\
 		ft_strsplit_all.c\
 		ft_tablen.c\
+		ft_lstadd.c\
+		ft_modify_arg.c\
+		ft_parser_direct.c\
+		ft_lstnew.c\
+		ft_utility.c\
 
 OBJ = $(SRC:.c=.o)
 

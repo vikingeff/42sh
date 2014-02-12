@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 14:44:57 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/12 14:53:24 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/12 17:00:10 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,23 @@
 # include <signal.h>
 # include "../libft/libft.h"
 
+extern pid_t		process_id;
+
 typedef struct s_env	t_env;
 typedef struct s_dir	t_dir;
 typedef struct s_var	t_var;
 typedef struct s_cmd	t_cmd;
 typedef struct s_bar	t_bar;
+
+typedef struct		s_list
+{
+	char			*mot;
+	struct s_list	*next;
+	struct s_list	*prev;
+	struct s_list	*dir;
+	char			*valeure;
+	int				fd;
+}					t_list;
 
 struct		s_cmd
 {
@@ -41,7 +53,7 @@ struct		s_dir
 	char	*oldpwd;
 	char	*home;
 	char	*user;
-	char	*current;
+	//char	*current;
 };
 
 struct		s_var
@@ -90,5 +102,16 @@ int			command_execute(t_cmd *cmd, t_env *env, t_dir *dir);
 void		*uf_get_instance(void);
 
 char		**ft_strsplit_all(char const *s);
+
+/*
+** sh2
+*/
+
+t_list	*ft_add_arg(char *str, char *type, t_list *list);
+t_list	*ft_parser_direct(t_list *arg);
+t_list	*ft_lstadd_first(t_list *lst, t_list *new);
+char	*ft_modify_arg(t_list *arg, int index, int mode);
+t_list	*ft_lstnew(char *content);
+
 
 #endif /*LEM_H*/

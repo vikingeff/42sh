@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 14:46:47 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/12 15:12:28 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/12 16:25:46 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,41 @@ void		ft_signal(void)
 	signal(SIGINT, ft_get_signal);
 }
 
+t_list	*ft_parser(char *str)
+{
+	t_list	*arg;
+	int		index;
+	int		start;
+
+	index = 0;
+	start = 0;
+	arg = NULL;
+	while (str[index])
+	{
+		if (str[index] == ';')
+		{
+			arg = ft_add_arg(ft_strsub(str, start, index - start), ";", arg);
+			start = index + 1;
+		}
+		else if (str[index] == '|')
+		{
+			arg = ft_add_arg(ft_strsub(str, start, index - start), "|", arg);
+			start = index + 1;
+		}
+		index++;
+	}
+	arg = ft_add_arg(ft_strsub(str, start, index - start), ";", arg);
+	arg = ft_parser_direct(arg);
+	return (arg);
+}
+
 int		main(int ac, char **environ)
 {
 	t_env	env;
 	t_dir	dir;
 	t_cmd	cmd;
 	int		ret;
+	t_list	*arg;
 
 	env.raw = environ;
 	process_id = -2;
@@ -50,6 +79,7 @@ int		main(int ac, char **environ)
 		prompt_display(&dir);
 		if (command_get(&cmd) > 0)
 		{
+			//arg = ft_parser(cmd.raw);
 			command_parse(&cmd);
 			if (cmd.split[0])
 				if ((ret = command_execute(&cmd, &env, &dir)) == -1)

@@ -1,27 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   command_get.c                                      :+:      :+:    :+:   */
+/*   ft_lstadd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/02/03 20:03:30 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/12 16:37:09 by rda-cost         ###   ########.fr       */
+/*   Created: 2013/11/30 09:34:51 by rda               #+#    #+#             */
+/*   Updated: 2014/01/19 11:45:02 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int			command_get(t_cmd *cmd)
+void	ft_lstadd(t_list **alst, t_list *new)
 {
-	char	*line;
-	int		rtn;
+	t_list	*cur;
 
-	line = NULL;
-	if (cmd->raw)
-		free(cmd->raw);
-	if ((rtn = get_next_line(0, &line)) == -1)
-		return (error(16, NULL));
-	cmd->raw = line;
-	return (rtn);
+	if (!alst)
+		return ;
+	if (!(*alst))
+	{
+		*alst = new;
+		return ;
+	}
+	cur = new;
+	while (cur->next)
+		cur = cur->next;
+	cur->next = *alst;
+	*alst = new;
+}
+
+t_list	*ft_lstadd_first(t_list *lst, t_list *new)
+{
+	t_list	*save;
+
+	if (lst == NULL)
+		return (new);
+	save = lst;
+	while (lst->next)
+	lst = lst->next;
+	lst->next = new;
+	new->prev = lst;
+	return (save);
 }

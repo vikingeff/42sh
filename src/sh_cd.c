@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/04 18:04:13 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/11 18:22:52 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/12 17:24:52 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void			sh_cd(t_cmd *cmd, t_env *env, t_dir *dir)
 		modif = ft_strsplit(cmd->split[1], '/');
 		curpath = get_newpath(modif, dir, curpath);
 		change_dir(curpath, dir, cmd, env);
+		free(curpath);
 	}
 }
 
@@ -116,10 +117,11 @@ static char		*newpath_write(char *curpath, char *modif)
 	return (newpath);
 }
 
-static char		*get_path(char *newpath, char **split)
+static char		*get_path(char *path, char **split)
 {
 	int			i;
 	char		*tmp;
+	char		*newpath;
 
 	i = 0;
 	tmp = NULL;
