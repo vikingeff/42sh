@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 14:44:57 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/12 17:00:10 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/12 19:52:18 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int			command_execute(t_cmd *cmd, t_env *env, t_dir *dir);
 ** signal
 */
 
-void		*uf_get_instance(void);
+void		ft_signal(void);
 
 char		**ft_strsplit_all(char const *s);
 
@@ -113,5 +113,11 @@ t_list	*ft_lstadd_first(t_list *lst, t_list *new);
 char	*ft_modify_arg(t_list *arg, int index, int mode);
 t_list	*ft_lstnew(char *content);
 
+/*
+** free arg
+*/
+
+void	ft_free_arg(t_list *arg);
+t_list	*ft_free_one(t_list *list);
 
 #endif /*LEM_H*/

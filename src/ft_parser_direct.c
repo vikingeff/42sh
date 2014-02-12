@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/23 18:33:26 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/01/25 20:29:53 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/12 19:34:48 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static int	ft_return_of_the_wood(t_list *arg, int index, char *tmp)
 		arg->dir = ft_add_arg("<", result, arg->dir);
 	else
 		return (index + 1);
+	free(result);
 	return (0);
 }
 

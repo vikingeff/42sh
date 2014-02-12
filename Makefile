@@ -40,6 +40,8 @@ SRC = 	main.c\
 		ft_parser_direct.c\
 		ft_lstnew.c\
 		ft_utility.c\
+		ft_signal.c\
+		ft_free_arg.c\
 
 OBJ = $(SRC:.c=.o)
 

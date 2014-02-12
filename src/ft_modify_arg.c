@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/23 18:47:02 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/02/12 16:16:49 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/12 19:32:07 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_get_result(char *str)
 			return (ft_strsub(str, 0, index));
 		index++;
 	}
-	return (str);
+	return (ft_strdup(str));
 }
 
 char	*ft_modify_arg(t_list *arg, int index, int mode)
@@ -33,6 +33,7 @@ char	*ft_modify_arg(t_list *arg, int index, int mode)
 	char	*str;
 	char	*result;
 	char	*begin;
+	char	*clone;
 
 	str = arg->mot;
 	if (mode == 1)
@@ -50,7 +51,12 @@ char	*ft_modify_arg(t_list *arg, int index, int mode)
 		str++;
 	while (++index < (int)ft_strlen(result) - 1)
 		str++;
-	arg->mot = str_join_chr(begin, str, ' ');
+	clone = ft_strdup(str);
+	if (arg->mot)
+		free(arg->mot);
+	arg->mot = str_join_chr(begin, clone, ' ');
 	free(begin);
+	free(clone);
+	array2d_free(tmp);
 	return (result);
 }

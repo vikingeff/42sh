@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 14:46:47 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/12 16:25:46 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/12 20:00:37 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,22 @@
 
 pid_t		process_id;
 
-static void	ft_get_signal(int n)
+void	ft_print_arg(t_list *arg)
 {
-	if (n == SIGINT)
+	while (arg)
 	{
-		if (kill(process_id, SIGINT) == -1)
+		printf("commande = %s\n", arg->mot);
+		printf("synthaxe = %s\n", arg->valeure);
+		if (arg->dir)
+			printf("	redirection : \n");
+		while (arg->dir)
 		{
-			ft_putstr("\n");
-			prompt_display(NULL);
+			printf("	direction = %s\n", arg->dir->mot);
+			printf("	target = %s\n", arg->dir->valeure);
+			arg->dir = arg->dir->next;
 		}
+		arg = arg->next;
 	}
-}
-
-void		ft_signal(void)
-{
-	signal(SIGINT, ft_get_signal);
 }
 
 t_list	*ft_parser(char *str)
@@ -36,20 +37,21 @@ t_list	*ft_parser(char *str)
 	t_list	*arg;
 	int		index;
 	int		start;
+	char	*tmp;
+	char	buf[2];
 
+	buf[1] = 0;
 	index = 0;
 	start = 0;
 	arg = NULL;
 	while (str[index])
 	{
-		if (str[index] == ';')
+		if (str[index] == ';' || str[index] == '|')
 		{
-			arg = ft_add_arg(ft_strsub(str, start, index - start), ";", arg);
-			start = index + 1;
-		}
-		else if (str[index] == '|')
-		{
-			arg = ft_add_arg(ft_strsub(str, start, index - start), "|", arg);
+			buf[0] = str[index];
+			tmp = ft_strsub(str, start, index - start);
+			arg = ft_add_arg(tmp, buf, arg);
+			free(tmp);
 			start = index + 1;
 		}
 		index++;
@@ -67,6 +69,7 @@ int		main(int ac, char **environ)
 	int		ret;
 	t_list	*arg;
 
+	arg = NULL;
 	env.raw = environ;
 	process_id = -2;
 	ft_signal();
@@ -79,7 +82,10 @@ int		main(int ac, char **environ)
 		prompt_display(&dir);
 		if (command_get(&cmd) > 0)
 		{
-			//arg = ft_parser(cmd.raw);
+			if (arg)
+				ft_free_arg(arg);
+			arg = ft_parser(cmd.raw);
+			ft_print_arg(arg);
 			command_parse(&cmd);
 			if (cmd.split[0])
 				if ((ret = command_execute(&cmd, &env, &dir)) == -1)
