@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 22:59:48 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/11 20:54:26 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/12 12:02:40 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int		cmd_format(t_cmd *cmd, int *option);
 static t_var	*env_lst_copy(t_env *env);
 static void		ft_modify_env(char *str, t_env *c_env);
 static void		ft_put_env(t_cmd *c_cmd);
-static int	ft_get_i(t_cmd *cmd, int i, t_env *c_env, t_cmd *c_cmd);
+static int		ft_get_i(t_cmd *cmd, int i, t_env *c_env, t_cmd *c_cmd);
 
 /*
 ** if no arguments, sh_env display the environnement variables
@@ -31,6 +31,7 @@ int				sh_env(t_cmd *cmd, t_env *env, t_dir *dir)
 	int			option;
 	t_env		c_env;
 	t_cmd		c_cmd;
+	t_dir		c_dir;
 	int			i;
 
 	option = 0;
@@ -38,17 +39,19 @@ int				sh_env(t_cmd *cmd, t_env *env, t_dir *dir)
 		return (-1);
 	c_env.var = NULL;
 	c_env.nb = 1;
+	c_cmd.paths = NULL;
 	if (option != 1)
 	{
 		c_env.var = env_lst_copy(env);
 		c_env.nb = env->nb;
+		c_cmd.paths = cmd->paths;
 	}
 	i = option + 1;
 	i = ft_get_i(cmd, i, &c_env, &c_cmd);
 	if (i < ft_tablen(cmd->split))
 	{
-		c_cmd.split = cmd->split + i - 1;
-		return (command_execute(&c_cmd, &c_env, dir));
+		c_cmd.split = cmd->split + i;
+		return (command_execute(&c_cmd, &c_env, &c_dir));
 	}
 	ft_put_env(&c_cmd);
 	return (0);
@@ -56,18 +59,10 @@ int				sh_env(t_cmd *cmd, t_env *env, t_dir *dir)
 
 static int	ft_get_i(t_cmd *cmd, int i, t_env *c_env, t_cmd *c_cmd)
 {
-	int	count;
-
-	count = 0;
 	c_cmd->env = env_list_to_array(c_env->var, c_env->nb);
 	while (cmd->split[i] && ft_strchr(cmd->split[i], '='))
-	{
 		ft_modify_env(cmd->split[i++], c_env);
-		count++;
-	}
 	c_cmd->env = env_list_to_array(c_env->var, c_env->nb);
-	if (!count)
-		i = i + 1;
 	return (i);
 }
 
