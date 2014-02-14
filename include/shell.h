@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 14:44:57 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/14 15:07:50 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/14 16:13:24 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void		sh_cd(t_cmd *cmd, t_env *env, t_dir *dir);
 int			sh_echo(t_cmd *cmd, t_env *env, t_dir *dir);
 
 int			command_get(t_cmd *cmd);
-int			command_parse(t_cmd *cmd);
+int			command_parse(t_cmd *cmd, t_env *env);
 int			command_get_env(t_cmd *cmd, t_env *env, t_dir *dir);
 int			command_shell(t_cmd *cmd, t_env *env, t_dir *dir);
 int			command_execute(t_cmd *cmd, t_env *env, t_dir *dir);

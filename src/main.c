@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 14:46:47 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/14 14:36:58 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/14 17:51:12 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,55 @@ t_list	*ft_parser(char *str)
 	return (arg);
 }
 
+void	ft_delete_char(t_cmd *cmd, int index)
+{
+	char	*tmp1;
+	char	*tmp2;
+
+	tmp1 = ft_strsub(cmd->raw, 0, index);
+	tmp2 = ft_strsub(cmd->raw, index + 1, ft_strlen(cmd->raw) - (index + 1));
+	free(cmd->raw);
+	cmd->raw = ft_strjoin(tmp1, tmp2);
+	free(tmp1);
+	free(tmp2);
+}
+
+int		ft_inib(t_cmd *cmd)
+{
+	int	rule;
+	int	index;
+	int	inib;
+
+	rule = 0;
+	index = 0;
+	while (cmd->raw[index])
+	{
+		if (cmd->raw[index] == '\'' || cmd->raw[index] == '\"')
+		{
+			if (!rule)
+			{
+				rule = cmd->raw[index];
+				ft_delete_char(cmd, index);
+			}
+			if (rule == cmd->raw[index])
+			{
+				rule = 0;
+				ft_delete_char(cmd, index);
+			}
+		}
+		if (cmd->raw[index] == '\\' && !rule)
+		{
+			ft_delete_char(cmd, index);
+			cmd->raw[index] = - 1 * cmd->raw[index];
+		}
+		else if (rule)
+			cmd->raw[index] = - 1 * cmd->raw[index];
+		index++;
+	}
+	if (rule)
+		return (1);
+	return (0);
+}
 
 int		main(int ac, char **environ)
 {
@@ -103,6 +152,8 @@ int		main(int ac, char **environ)
 		prompt_display(&dir);
 		if (command_get(&cmd) > 0)
 		{
+			if (ft_inib(&cmd))
+				continue ;
 			if (arg)
 				ft_free_arg(arg);
 			arg = ft_parser(cmd.raw);

@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/04 18:04:13 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/12 18:26:07 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/14 20:07:09 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,21 @@ void			sh_cd(t_cmd *cmd, t_env *env, t_dir *dir)
 	char		**modif;
 
 	if (!cmd->split[1])
+	{
+		if (access(curpath, F_OK))
+			change_dir(curpath, dir, cmd, env);
+		else
+			error(33, curpath);
 		change_dir(dir->home, dir, cmd, env);
+	}
 	else if (cmd->split[1][0] == '~')
+	{
+		if (access(curpath, F_OK))
+			change_dir(curpath, dir, cmd, env);
+		else
+			error(33, curpath);
 		change_dir(dir->home, dir, cmd, env);
+	}
 	else if (cmd->split[1][0] == '-')
 	{
 		change_dir(env_get_value("OLDPWD", env), dir, cmd, env);
@@ -44,7 +56,14 @@ void			sh_cd(t_cmd *cmd, t_env *env, t_dir *dir)
 	else if (cmd->split[1][0] == '/')
 	{
 		curpath = ft_strdup(cmd->split[1]);
-		change_dir(curpath, dir, cmd, env);
+		printf("CURPATH %s\n", curpath);
+		if (ft_strcmp(curpath, "/") == 0 || access(curpath, F_OK))
+			change_dir(curpath, dir, cmd, env);
+		else
+		{
+			printf("FAIL /\n");
+			error(33, curpath);
+		}
 		free(curpath);
 	}
 	else
@@ -81,6 +100,8 @@ static char			*get_newpath(char **modif, t_dir *dir, char *curpath)
 
 static void		change_dir(char *n_dir, t_dir *dir, t_cmd *cmd, t_env *env)
 {
+	if (!n_dir)
+		return ;
 	array2d_free(cmd->split);
 	cmd->split = ft_strsplit_all("setenv OLDPWD random");
 	free(cmd->split[2]);
@@ -117,6 +138,7 @@ static char		*newpath_write(char *curpath, char *modif)
 	if (access(newpath, F_OK))
 	{
 		error(33, newpath);
+		free(newpath);
 		return (NULL);
 	}
 	return (newpath);
