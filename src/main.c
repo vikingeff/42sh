@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 14:46:47 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/14 12:10:06 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/14 14:36:58 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,27 @@ t_list	*ft_parser(char *str)
 	int		index;
 	int		start;
 	char	*tmp;
-	char	buf[2];
+	char	buf[3];
 
 	buf[1] = 0;
+	buf[2] = 0;
 	index = 0;
 	start = 0;
 	arg = NULL;
 	while (str[index])
 	{
-		if (str[index] == ';' || str[index] == '|')
+		if ((str[index] == '&' && str[index + 1] == '&') || (str[index] == '|' && str[index + 1] == '|'))
+		{
+			buf[0] = str[index];
+			buf[1] = str[index];
+			tmp = ft_strsub(str, start, index - start);
+			arg = ft_add_arg(tmp, buf, arg);
+			free(tmp);
+			buf[1] = 0;
+			start = index + 2;
+			index++;
+		}
+		else if (str[index] == ';' || str[index] == '|')
 		{
 			buf[0] = str[index];
 			tmp = ft_strsub(str, start, index - start);
@@ -95,8 +107,11 @@ int		main(int ac, char **environ)
 				ft_free_arg(arg);
 			arg = ft_parser(cmd.raw);
 			ft_print_arg(arg);
-			if (ft_launcher(arg, &cmd, &env, &dir))
+			if (ft_launcher(arg, &cmd, &env, &dir) == -1)
+			{
+				printf("ret\n");
 				return (0);
+			}
 		}
 		else
 			cmd.exit = 1;

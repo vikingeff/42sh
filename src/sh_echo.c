@@ -1,40 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_arg.c                                      :+:      :+:    :+:   */
+/*   sh_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/02/12 19:44:49 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/02/14 15:28:19 by rda-cost         ###   ########.fr       */
+/*   Created: 2014/02/14 14:58:57 by rda-cost          #+#    #+#             */
+/*   Updated: 2014/02/14 15:05:52 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-t_list	*ft_free_one(t_list *list)
+int		sh_echo(t_cmd *cmd, t_env *env, t_dir *dir)
 {
-	free(list->mot);
-	free(list->valeure);
-	if (list->next != NULL)
-	{
-		list = list->next;
-		free(list->prev);
-	}
-	else
-	{
-		free(list);
-		list = NULL;
-	}
-	return (list);
-}
+	int	index;
+	int	opt;
 
-void	ft_free_arg(t_list *arg)
-{
-	while (arg)
+	opt = 0;
+	if (ft_strcmp(cmd->split[index], "-n") == 0)
+		opt = 1;
+	index = 1 + opt;
+	while (cmd->split[index])
 	{
-		while (arg->dir)
-			arg->dir = ft_free_one(arg->dir);
-		arg = ft_free_one(arg);
+		ft_putstr(cmd->split[index]);
+		index++;
 	}
+	if (!opt)
+		ft_putstr("\n");
+	return (0);
 }

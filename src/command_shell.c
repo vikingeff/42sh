@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 20:53:59 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/12 11:37:47 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/14 15:05:41 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 
 int			command_shell(t_cmd *cmd, t_env *env, t_dir *dir)
 {
+	int	ret;
+
+	ret = 0;
 	if (ft_strcmp(cmd->split[0], "exit") == 0)
 		sh_exit(cmd);
 	else if (ft_strcmp(cmd->split[0], "env") == 0)
@@ -30,7 +33,7 @@ int			command_shell(t_cmd *cmd, t_env *env, t_dir *dir)
 		sh_setenv(cmd, env);
 	else if (ft_strcmp(cmd->split[0], "cd") == 0)
 		sh_cd(cmd, env, dir);
-	else
-		return (0);
-	return (1);
+	else if (ft_strcmp(cmd->split[0], "echo") == 0)
+		ret = sh_echo(cmd, env, dir);
+	return (ret);
 }

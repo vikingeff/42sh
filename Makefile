@@ -46,6 +46,7 @@ SRC = 	main.c\
 		ft_pipe.c\
 		ft_execute.c\
 		ft_close_count_pipe.c\
+		sh_echo.c\
 
 OBJ = $(SRC:.c=.o)
 
