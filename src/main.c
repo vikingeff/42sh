@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 14:46:47 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/12 20:00:37 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/14 12:10:06 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,24 @@ pid_t		process_id;
 
 void	ft_print_arg(t_list *arg)
 {
-	while (arg)
+	t_list	*dir;
+	t_list	*list;
+
+	list = arg;
+	while (list)
 	{
-		printf("commande = %s\n", arg->mot);
-		printf("synthaxe = %s\n", arg->valeure);
-		if (arg->dir)
+		printf("commande = %s\n", list->mot);
+		printf("synthaxe = %s\n", list->valeure);
+		dir = list->dir;
+		if (dir)
 			printf("	redirection : \n");
-		while (arg->dir)
+		while (dir)
 		{
-			printf("	direction = %s\n", arg->dir->mot);
-			printf("	target = %s\n", arg->dir->valeure);
-			arg->dir = arg->dir->next;
+			printf("	direction = %s\n", dir->mot);
+			printf("	target = %s\n", dir->valeure);
+			dir = dir->next;
 		}
-		arg = arg->next;
+		list = list->next;
 	}
 }
 
@@ -56,10 +61,14 @@ t_list	*ft_parser(char *str)
 		}
 		index++;
 	}
-	arg = ft_add_arg(ft_strsub(str, start, index - start), ";", arg);
+	tmp = ft_strsub(str, start, index - start);
+	arg = ft_add_arg(tmp, ";", arg);
+	if (tmp)
+		free(tmp);
 	arg = ft_parser_direct(arg);
 	return (arg);
 }
+
 
 int		main(int ac, char **environ)
 {
@@ -86,10 +95,8 @@ int		main(int ac, char **environ)
 				ft_free_arg(arg);
 			arg = ft_parser(cmd.raw);
 			ft_print_arg(arg);
-			command_parse(&cmd);
-			if (cmd.split[0])
-				if ((ret = command_execute(&cmd, &env, &dir)) == -1)
-					return (0);
+			if (ft_launcher(arg, &cmd, &env, &dir))
+				return (0);
 		}
 		else
 			cmd.exit = 1;

@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 20:48:30 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/12 14:53:41 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/14 11:49:14 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,17 @@ int				command_execute(t_cmd *cmd, t_env *env, t_dir *dir)
 	if (!command_get_env(cmd, env, dir))
 		if (command_shell(cmd, env, dir) == 0)
 			ret = process_fork(cmd);
+	return (ret);
+}
+
+int				command_execute_no_wait(t_cmd *cmd, t_env *env, t_dir *dir)
+{
+	int		ret;
+
+	ret = 0;
+	if (!command_get_env(cmd, env, dir))
+		if (command_shell(cmd, env, dir) == 0)
+			ret = command_execve(cmd);
 	return (ret);
 }
 

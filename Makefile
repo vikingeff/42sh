@@ -42,6 +42,10 @@ SRC = 	main.c\
 		ft_utility.c\
 		ft_signal.c\
 		ft_free_arg.c\
+		ft_open.c\
+		ft_pipe.c\
+		ft_execute.c\
+		ft_close_count_pipe.c\
 
 OBJ = $(SRC:.c=.o)
 

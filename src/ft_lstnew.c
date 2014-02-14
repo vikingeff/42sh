@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/11 15:21:51 by rda               #+#    #+#             */
-/*   Updated: 2014/01/19 10:57:10 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/14 11:45:30 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ t_list	*ft_lstnew(char *content)
 		newlist->mot = ft_strdup(content);
 		newlist->dir = NULL;
 		newlist->fd = 0;
+		newlist->error = 0;
+		newlist->pipenb = 0;
 	}
 	return (newlist);
 }

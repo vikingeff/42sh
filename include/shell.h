@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 14:44:57 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/12 19:52:18 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/14 12:18:42 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 # include <stdlib.h>
 # include <sys/wait.h>
 # include <signal.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
 # include "../libft/libft.h"
 
 extern pid_t		process_id;
@@ -36,6 +39,8 @@ typedef struct		s_list
 	struct s_list	*dir;
 	char			*valeure;
 	int				fd;
+	int				error;
+	int				pipenb;
 }					t_list;
 
 struct		s_cmd
@@ -94,6 +99,7 @@ int			command_parse(t_cmd *cmd);
 int			command_get_env(t_cmd *cmd, t_env *env, t_dir *dir);
 int			command_shell(t_cmd *cmd, t_env *env, t_dir *dir);
 int			command_execute(t_cmd *cmd, t_env *env, t_dir *dir);
+int			command_execute_no_wait(t_cmd *cmd, t_env *env, t_dir *dir);
 
 /*
 ** signal
@@ -112,6 +118,11 @@ t_list	*ft_parser_direct(t_list *arg);
 t_list	*ft_lstadd_first(t_list *lst, t_list *new);
 char	*ft_modify_arg(t_list *arg, int index, int mode);
 t_list	*ft_lstnew(char *content);
+int		ft_launcher (t_list *arg, t_cmd *cmd, t_env *env, t_dir *dir);
+int		ft_get_fd(t_list *dir);
+void	ft_dup2(int newfd, int oldfd);
+int		ft_execute_no_wait(t_list *arg, t_cmd *cmd, t_env *env, t_dir *dir);
+void	ft_close(int fd[2]);
 
 /*
 ** free arg
@@ -119,5 +130,13 @@ t_list	*ft_lstnew(char *content);
 
 void	ft_free_arg(t_list *arg);
 t_list	*ft_free_one(t_list *list);
+
+/*
+** pipe
+*/
+
+int			ft_count_pipe(t_list *arg);
+t_list		*ft_pipe(t_list *arg, t_dir *dir, t_env *env, t_cmd *cmd);
+void		ft_close_pipe(int *fdpipe, int pipenb);
 
 #endif /*LEM_H*/

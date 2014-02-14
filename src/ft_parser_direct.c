@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/23 18:33:26 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/02/12 19:34:48 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/14 10:50:17 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ t_list		*ft_parser_direct(t_list *arg)
 		if (test == 1)
 		{
 			ft_putstr("Ambiguous redirection\n");
-			return (NULL);
+			save->error = 1;
 		}
 		arg = arg->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/23 18:26:37 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/01/23 18:29:10 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/14 12:08:10 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,6 @@ void	ft_dup2(int newfd, int oldfd)
 		ft_putstr("Dup2 Error\n");
 		exit(0);
 	}
-}
-
-void	ft_wait(pid_t pid)
-{
-	int	status;
-	int	ret;
-
-	pid = 0;
-	ret = waitpid(-1, &status, 0);
-	if (ret < 0)
-		exit(status);
 }
 
 t_list	*ft_add_arg(char *str, char *type, t_list *list)
