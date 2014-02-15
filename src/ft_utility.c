@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/23 18:26:37 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/02/14 12:08:10 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/15 19:16:38 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,23 @@ void	ft_close(int fd[2])
 		close(fd[0]);
 	if (fd[1] != 1 && fd[1] != 0)
 		close(fd[1]);
+}
+
+char	**ft_tab_dup(char **tab)
+{
+	char	**newtab;
+	int		index;
+	int		size;
+
+	size = ft_tablen(tab);
+	index = 0;
+	if (!(newtab = (char**)malloc(sizeof(char*) * size)))
+		return (NULL);
+	while (index < size)
+	{
+		newtab[index] = ft_strdup(tab[index]);
+		index++;
+	}
+	newtab[index] = NULL;
+	return (newtab);
 }

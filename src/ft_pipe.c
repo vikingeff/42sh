@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/23 19:03:38 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/02/14 12:15:49 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/15 17:50:05 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,7 @@ t_list		*ft_pipe(t_list *arg, t_dir *dir, t_env *env, t_cmd *cmd)
 	ft_create_pipe(fdpipe, arg->pipenb);
 	while (count < pipenb * 2 + 2)
 	{
-		pid = fork();
-		if (pid == 0)
+		if ((pid = fork()) == 0)
 		{
 			fd[1] = ft_pipe1(fd, arg, fdpipe, count);
 			fd[0] = ft_pipe0(fd, arg, fdpipe, count);

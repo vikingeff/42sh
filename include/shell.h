@@ -6,14 +6,14 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 14:44:57 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/14 16:13:24 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/15 19:18:24 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_H
 # define LEM_H
 
-					#include <stdio.h> // TEMP
+					# include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <sys/wait.h>
@@ -58,7 +58,6 @@ struct		s_dir
 	char	*oldpwd;
 	char	*home;
 	char	*user;
-	//char	*current;
 };
 
 struct		s_var
@@ -91,8 +90,14 @@ int			ft_tablen(char **tab);
 void		sh_exit(t_cmd *cmd);
 int			sh_env(t_cmd *cmd, t_env *env, t_dir *dir);
 int			sh_unsetenv(t_cmd *cmd, t_env *env);
+void		init_copy_env(t_env *c_env, t_cmd *c_cmd, t_dir *c_dir);
+int			ft_put_env(t_cmd *c_cmd, t_env *c_env, t_dir *dir);
+void		ft_free_c_env(t_env *c_env, t_cmd *c_cmd, t_dir *dir);
 int			sh_setenv(t_cmd *cmd, t_env *env);
-void		sh_cd(t_cmd *cmd, t_env *env, t_dir *dir);
+int			sh_cd(t_cmd *cmd, t_env *env, t_dir *dir);
+char		*get_path(char *newpath, char **split);
+char		*newpath_write(char *curpath, char *modif);
+char		*get_newpath(char **modif, t_dir *dir, char *curpath);
 int			sh_echo(t_cmd *cmd, t_env *env, t_dir *dir);
 
 int			command_get(t_cmd *cmd);
@@ -101,6 +106,8 @@ int			command_get_env(t_cmd *cmd, t_env *env, t_dir *dir);
 int			command_shell(t_cmd *cmd, t_env *env, t_dir *dir);
 int			command_execute(t_cmd *cmd, t_env *env, t_dir *dir);
 int			command_execute_no_wait(t_cmd *cmd, t_env *env, t_dir *dir);
+int			command_execute_simple(t_list *arg,
+	t_cmd *cmd, t_env *env, t_dir *dir);
 
 /*
 ** signal
@@ -108,29 +115,36 @@ int			command_execute_no_wait(t_cmd *cmd, t_env *env, t_dir *dir);
 
 void		ft_signal(void);
 
+/*
+** utility
+*/
+
 char		**ft_strsplit_all(char const *s);
+char		**ft_tab_dup(char **tab);
 
 /*
 ** sh2
 */
 
-t_list	*ft_add_arg(char *str, char *type, t_list *list);
-t_list	*ft_parser_direct(t_list *arg);
-t_list	*ft_lstadd_first(t_list *lst, t_list *new);
-char	*ft_modify_arg(t_list *arg, int index, int mode);
-t_list	*ft_lstnew(char *content);
-int		ft_launcher (t_list *arg, t_cmd *cmd, t_env *env, t_dir *dir);
-int		ft_get_fd(t_list *dir);
-void	ft_dup2(int newfd, int oldfd);
-int		ft_execute_no_wait(t_list *arg, t_cmd *cmd, t_env *env, t_dir *dir);
-void	ft_close(int fd[2]);
+t_list		*ft_add_arg(char *str, char *type, t_list *list);
+t_list		*ft_parser(char *str);
+t_list		*ft_parser_direct(t_list *arg);
+t_list		*ft_lstadd_first(t_list *lst, t_list *new);
+char		*ft_modify_arg(t_list *arg, int index, int mode);
+t_list		*ft_lstnew(char *content);
+int			ft_launcher(t_list *arg, t_cmd *cmd, t_env *env, t_dir *dir);
+int			ft_get_fd(t_list *dir);
+void		ft_dup2(int newfd, int oldfd);
+int			ft_execute(t_list *arg, t_cmd *cmd, t_env *env, t_dir *dir);
+int			ft_execute_no_wait(t_list *arg, t_cmd *cmd, t_env *env, t_dir *dir);
+void		ft_close(int fd[2]);
 
 /*
 ** free arg
 */
 
-void	ft_free_arg(t_list *arg);
-t_list	*ft_free_one(t_list *list);
+void		ft_free_arg(t_list *arg);
+t_list		*ft_free_one(t_list *list);
 
 /*
 ** pipe
@@ -139,5 +153,12 @@ t_list	*ft_free_one(t_list *list);
 int			ft_count_pipe(t_list *arg);
 t_list		*ft_pipe(t_list *arg, t_dir *dir, t_env *env, t_cmd *cmd);
 void		ft_close_pipe(int *fdpipe, int pipenb);
+
+/*
+** BONUS : inib, local, var
+*/
+
+int			ft_inib_starter(t_cmd *cmd);
+void		ft_get_var(t_cmd *cmd, t_env *env);
 
 #endif /*LEM_H*/

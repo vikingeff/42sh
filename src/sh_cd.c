@@ -6,17 +6,13 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/04 18:04:13 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/14 20:07:09 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/15 18:25:22 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "shell.h"
 
-static void		change_dir(char *n_dir, t_dir *dir, t_cmd *cmd, t_env *env);
-static char		*newpath_write(char *curpath, char *modif);
-static char		*get_newpath(char **modif, t_dir *dir, char *curpath);
-static char		*get_path(char *newpath, char **split);
 /*
 ** change the current directory according to the given argument path and
 ** change the env variables PWD and OLDPWD according to it.
@@ -26,77 +22,6 @@ static char		*get_path(char *newpath, char **split);
 ** if starts with '/' : the new dir will be an absolute path.
 ** if starts with '..' : the new dir will be step back on the path branch
 */
-
-void			sh_cd(t_cmd *cmd, t_env *env, t_dir *dir)
-{
-	char		*curpath;
-	char		**modif;
-
-	if (!cmd->split[1])
-	{
-		if (access(curpath, F_OK))
-			change_dir(curpath, dir, cmd, env);
-		else
-			error(33, curpath);
-		change_dir(dir->home, dir, cmd, env);
-	}
-	else if (cmd->split[1][0] == '~')
-	{
-		if (access(curpath, F_OK))
-			change_dir(curpath, dir, cmd, env);
-		else
-			error(33, curpath);
-		change_dir(dir->home, dir, cmd, env);
-	}
-	else if (cmd->split[1][0] == '-')
-	{
-		change_dir(env_get_value("OLDPWD", env), dir, cmd, env);
-		ft_putendl(env_get_value("OLDPWD", env));
-	}
-	else if (cmd->split[1][0] == '/')
-	{
-		curpath = ft_strdup(cmd->split[1]);
-		printf("CURPATH %s\n", curpath);
-		if (ft_strcmp(curpath, "/") == 0 || access(curpath, F_OK))
-			change_dir(curpath, dir, cmd, env);
-		else
-		{
-			printf("FAIL /\n");
-			error(33, curpath);
-		}
-		free(curpath);
-	}
-	else
-	{
-		modif = ft_strsplit(cmd->split[1], '/');
-		curpath = get_newpath(modif, dir, curpath);
-		change_dir(curpath, dir, cmd, env);
-		free(curpath);
-		array2d_free(modif);
-	}
-}
-
-static char			*get_newpath(char **modif, t_dir *dir, char *curpath)
-{
-	char		*tmp;
-	int			i;
-
-	curpath = ft_strdup(dir->pwd);
-	i = -1;
-	tmp = NULL;
-	while (modif[++i])
-	{
-		if (curpath)
-		{
-			tmp = ft_strdup(curpath);
-			free(curpath);
-		}
-		curpath = newpath_write(tmp, modif[i]);
-		if (tmp)
-			free(tmp);
-	}
-	return (curpath);
-}
 
 static void		change_dir(char *n_dir, t_dir *dir, t_cmd *cmd, t_env *env)
 {
@@ -119,49 +44,76 @@ static void		change_dir(char *n_dir, t_dir *dir, t_cmd *cmd, t_env *env)
 	chdir(n_dir);
 }
 
-static char		*newpath_write(char *curpath, char *modif)
+static int		sh_cd_home(t_cmd *cmd, t_env *env, t_dir *dir)
 {
-	char		*newpath;
-	char		**split;
-
-	newpath = NULL;
-	if (modif[0] != '.')
-		newpath = str_join_chr(curpath, modif, '/');
-	else if (modif[1] == '.' && ft_strcmp(curpath, "/"))
-	{
-		split = ft_strsplit(curpath, '/');
-		newpath = get_path(newpath, split);
-		array2d_free(split);
-	}
+	if (access(dir->home, F_OK) == 0)
+		change_dir(dir->home, dir, cmd, env);
 	else
-		newpath = curpath;
-	if (access(newpath, F_OK))
 	{
-		error(33, newpath);
-		free(newpath);
-		return (NULL);
+		error(33, dir->home);
+		return (256);
 	}
-	return (newpath);
+	return (0);
 }
 
-static char		*get_path(char *newpath, char **split)
+static int		sh_cd_oldpwd(t_cmd *cmd, t_env *env, t_dir *dir)
 {
-	int			i;
-	char		*tmp;
-
-	i = 0;
-	tmp = NULL;
-	while (split[i + 1])
+	if (access(dir->oldpwd, F_OK) == 0)
 	{
-		if (newpath)
-		{
-			tmp = ft_strdup(newpath);
-			free(newpath);
-		}
-		newpath = str_join_chr(tmp, split[i], '/');
-		if (tmp)
-			free(tmp);
-		i++;
+		change_dir(dir->oldpwd, dir, cmd, env);
+		ft_putendl(dir->oldpwd);
 	}
-	return (newpath);
+	else
+	{
+		error(33, dir->oldpwd);
+		return (256);
+	}
+	return (0);
+}
+
+static int		sh_cd_absolute(t_cmd *cmd, t_env *env, t_dir *dir)
+{
+	char		*curpath;
+
+	curpath = ft_strdup(cmd->split[1]);
+	if (ft_strcmp(curpath, "/") == 0 || access(curpath, F_OK) == 0)
+	{
+		change_dir(curpath, dir, cmd, env);
+		free(curpath);
+	}
+	else
+	{
+		error(33, curpath);
+		free(curpath);
+		return (256);
+	}
+	return (0);
+}
+
+int				sh_cd(t_cmd *cmd, t_env *env, t_dir *dir)
+{
+	char		*curpath;
+	char		**modif;
+
+	if (!cmd->split[1] || cmd->split[1][0] == '~')
+		return (sh_cd_home(cmd, env, dir));
+	else if (cmd->split[1][0] == '-')
+		return (sh_cd_oldpwd(cmd, env, dir));
+	else if (cmd->split[1][0] == '/')
+		return (sh_cd_absolute(cmd, env, dir));
+	else
+	{
+		modif = ft_strsplit(cmd->split[1], '/');
+		if ((curpath = get_newpath(modif, dir, curpath)) == NULL)
+		{
+			error(33, curpath);
+			free(curpath);
+			return (256);
+		}
+		change_dir(curpath, dir, cmd, env);
+		if (curpath)
+			free(curpath);
+		array2d_free(modif);
+	}
+	return (0);
 }

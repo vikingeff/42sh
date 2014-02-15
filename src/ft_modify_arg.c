@@ -6,13 +6,13 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/23 18:47:02 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/02/12 19:32:07 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/15 17:45:17 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-char	*ft_get_result(char *str)
+static char	*ft_get_result(char *str)
 {
 	int	index;
 
@@ -27,13 +27,25 @@ char	*ft_get_result(char *str)
 	return (ft_strdup(str));
 }
 
-char	*ft_modify_arg(t_list *arg, int index, int mode)
+static void	ft_modify_word(t_list *arg, char *begin, char *str, char **tmp)
+{
+	char	*clone;
+
+	clone = ft_strdup(str);
+	if (arg->mot)
+		free(arg->mot);
+	arg->mot = str_join_chr(begin, clone, ' ');
+	free(begin);
+	free(clone);
+	array2d_free(tmp);
+}
+
+char		*ft_modify_arg(t_list *arg, int index, int mode)
 {
 	char	**tmp;
 	char	*str;
 	char	*result;
 	char	*begin;
-	char	*clone;
 
 	str = arg->mot;
 	if (mode == 1)
@@ -51,12 +63,6 @@ char	*ft_modify_arg(t_list *arg, int index, int mode)
 		str++;
 	while (++index < (int)ft_strlen(result) - 1)
 		str++;
-	clone = ft_strdup(str);
-	if (arg->mot)
-		free(arg->mot);
-	arg->mot = str_join_chr(begin, clone, ' ');
-	free(begin);
-	free(clone);
-	array2d_free(tmp);
+	ft_modify_word(arg, begin, str, tmp);
 	return (result);
 }

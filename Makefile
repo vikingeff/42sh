@@ -47,6 +47,12 @@ SRC = 	main.c\
 		ft_execute.c\
 		ft_close_count_pipe.c\
 		sh_echo.c\
+		ft_inib.c\
+		ft_parser.c\
+		sh_env_utility.c\
+		local_var.c\
+		command_execute_simple.c\
+		sh_cd_goto.c\
 
 OBJ = $(SRC:.c=.o)
 

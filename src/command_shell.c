@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 20:53:59 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/14 19:44:39 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/15 11:53:18 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,15 @@ int			command_shell(t_cmd *cmd, t_env *env, t_dir *dir)
 	if (ft_strcmp(cmd->split[0], "exit") == 0)
 		sh_exit(cmd);
 	else if (ft_strcmp(cmd->split[0], "env") == 0)
-		sh_env(cmd, env, dir);
+		ret = sh_env(cmd, env, dir);
 	else if (ft_strcmp(cmd->split[0], "unsetenv") == 0
 		|| ft_strcmp(cmd->split[0], "unset") == 0)
-		sh_unsetenv(cmd, env);
+		ret = sh_unsetenv(cmd, env);
 	else if (ft_strcmp(cmd->split[0], "setenv") == 0
 		|| ft_strcmp(cmd->split[0], "export") == 0)
-		sh_setenv(cmd, env);
+		ret = sh_setenv(cmd, env);
 	else if (ft_strcmp(cmd->split[0], "cd") == 0)
-		sh_cd(cmd, env, dir);
+		ret = sh_cd(cmd, env, dir);
 	else if (ft_strcmp(cmd->split[0], "echo") == 0)
 		ret = sh_echo(cmd, env, dir);
 	else

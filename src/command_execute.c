@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 20:48:30 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/14 19:45:48 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/15 16:50:35 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,8 @@ int				command_execute(t_cmd *cmd, t_env *env, t_dir *dir)
 
 	ret = 0;
 	if (!command_get_env(cmd, env, dir))
-		if (command_shell(cmd, env, dir) < 0)
-		{
-			printf("FAIL\n");
+		if ((ret = command_shell(cmd, env, dir)) < 0)
 			ret = process_fork(cmd);
-		}
 	return (ret);
 }
 
@@ -42,7 +39,7 @@ int				command_execute_no_wait(t_cmd *cmd, t_env *env, t_dir *dir)
 
 	ret = 0;
 	if (!command_get_env(cmd, env, dir))
-		if (command_shell(cmd, env, dir) == 0)
+		if ((ret = command_shell(cmd, env, dir)) < 0)
 			ret = command_execve(cmd);
 	return (ret);
 }
@@ -70,7 +67,8 @@ static int		command_execve(t_cmd *cmd)
 
 	i = 0;
 	path = ft_strdup(cmd->split[0]);
-	while (cmd->paths && cmd->paths[i] && execve(path, cmd->split, cmd->env) < 0)
+	while (cmd->paths && cmd->paths[i]
+		&& execve(path, cmd->split, cmd->env) < 0)
 	{
 		if (path)
 			free(path);
