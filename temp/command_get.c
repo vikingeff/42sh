@@ -6,14 +6,14 @@
 /*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 20:45:37 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/15 21:02:46 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/02/15 21:19:02 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
 static int		key_edition(int key[], t_cmd *cmd, t_char **start, t_char **list);
-static t_char	*char_add(t_char *list, int chr, t_char *start);
+static t_char	*char_add(t_char *list, int chr, t_char **start);
 static t_char	*char_del(t_char *list);
 static char		*list_to_str(t_char *list);
 
@@ -31,7 +31,7 @@ int				command_get(t_env *env, t_cmd *cmd)
 		read(0, env->key, 3);
 		if (!key_edition(env->key, cmd, &start, &list))
 		{
-			list = char_add(list, env->key[0], start);
+			list = char_add(list, env->key[0], &start);
 			ft_putchar(env->key[0]);
 		}
 	}
@@ -85,7 +85,7 @@ static int		key_edition(int key[], t_cmd *cmd, t_char **start, t_char **list)
 	}
 	else if (BCKSPC)
 	{
-		if ((*list))
+		if ((*list)->prev)
 		{
 			term_put("le");
 			term_put("dc");
@@ -98,7 +98,7 @@ static int		key_edition(int key[], t_cmd *cmd, t_char **start, t_char **list)
 	return (1);
 }
 
-static t_char	*char_add(t_char *list, int chr, t_char *start)
+static t_char	*char_add(t_char *list, int chr, t_char **start)
 {
 	t_char		*newchar;
 
@@ -107,7 +107,7 @@ static t_char	*char_add(t_char *list, int chr, t_char *start)
 		return (NULL);
 	newchar->c = chr;
 	newchar->next = NULL;
-	if (start)
+	if (*start)
 	{
 		newchar->next = list;
 		newchar->prev = NULL;
@@ -117,6 +117,7 @@ static t_char	*char_add(t_char *list, int chr, t_char *start)
 			list->prev->next = newchar;
 		}
 		list->prev = newchar;
+		*start = NULL;
 		return (list);
 	}
 	else if (list)
