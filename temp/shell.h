@@ -6,7 +6,7 @@
 /*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 18:32:14 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/16 16:24:43 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/02/16 17:54:42 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,12 @@ typedef struct s_env	t_env;
 # define DOWN key[0] == 4348699
 # define LEFT key[0] == 4479771
 # define RIGHT key[0] == 4414235
-# define DEL key[0] == 126
+# define DEL key[0] == 2117294875
 # define BCKSPC key[0] == 127
 # define ENTER key[0] == 10
 # define SPACE key[0] == 32
+# define JUMP_FIRST key[0] == 4741915 || key[0] == 1
+# define JUMP_LAST key[0] == 4610843 || key[0] == 5
 
 typedef struct termios t_term;
 typedef struct s_char t_char;
@@ -84,11 +86,19 @@ struct		s_env
 
 int		command_get(t_env *env, t_cmd *cmd);		/*to check*/
 
+/*
+** terminal
+*/
+
 int		term_canonical_mode(t_term *term, int val);
 int		term_ini(t_env *env);
 int		term_put(char *opt_id);
 int		term_set_attr(t_term *term);
 void	term_close(t_env *env);
+
+/*
+** line edition
+*/
 
 t_char	*edit_char_add(t_char *list, int chr, int *cursor_pos, t_cmd *cmd);
 t_char	*edit_char_del(t_char *list, t_cmd *cmd, int *cursor_pos);
@@ -98,5 +108,8 @@ void	k_left(int *cursor_pos, t_char **list);
 void	k_right(t_cmd *cmd, int *cursor_pos, t_char **list);
 void	k_bckspc(t_cmd *cmd, int *cursor_pos, t_char **list);
 void	k_enter(t_cmd *cmd);
+void	k_del(t_cmd *cmd, int *cursor_pos, t_char **list);
+void	k_jump_first(int *cursor_pos, t_char **list);
+void	k_jump_last(t_cmd *cmd, int *cursor_pos, t_char **list);
 
 # endif 

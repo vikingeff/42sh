@@ -6,13 +6,16 @@
 /*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/16 16:17:05 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/16 16:17:36 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/02/16 17:11:27 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-t_char	*edit_char_add(t_char *list, int chr, int *cursor_pos, t_cmd *cmd)
+static t_char	*to_front(t_char **nchr, t_char **lst, t_cmd *cmd, int *c_pos);
+static void		to_back(t_char **newchar, t_char **list);
+
+t_char			*edit_char_add(t_char *list, int chr, int *c_pos, t_cmd *cmd)
 {
 	t_char		*newchar;
 
@@ -21,35 +24,45 @@ t_char	*edit_char_add(t_char *list, int chr, int *cursor_pos, t_cmd *cmd)
 		return (NULL);
 	newchar->c = chr;
 	newchar->next = NULL;
-	if (*cursor_pos == 0)
+	if (*c_pos == 0)
 	{
 		newchar->next = list;
 		newchar->prev = NULL;
 		if (list)
-		{
-			if (list->prev)
-			{
-				newchar->prev = list->prev;
-				list->prev->next = newchar;
-			}
-			list->prev = newchar;
-			list = newchar;
-			cmd->len++;
-			*cursor_pos += 1;
-			return (list);
-		}
+			return (to_front(&newchar, &list, cmd, c_pos));
 	}
 	else
-	{
-		if (list->next)
-		{
-			newchar->next = list->next;
-			list->next->prev = newchar;
-		}
-		newchar->prev = list;
-		list->next = newchar;
-	}
+		to_back(&newchar, &list);
 	cmd->len++;
-	*cursor_pos += 1;
+	*c_pos += 1;
 	return (newchar);
+}
+
+/*
+** add a new char to the front of the existing list
+*/
+
+static t_char	*to_front(t_char **nchr, t_char **lst, t_cmd *cmd, int *c_pos)
+{
+	if ((*lst)->prev)
+	{
+		(*nchr)->prev = (*lst)->prev;
+		(*lst)->prev->next = *nchr;
+	}
+	(*lst)->prev = *nchr;
+	(*lst) = *nchr;
+	cmd->len++;
+	*c_pos += 1;
+	return ((*lst));
+}
+
+static void		to_back(t_char **newchar, t_char **list)
+{
+	if ((*list)->next)
+	{
+		(*newchar)->next = (*list)->next;
+		(*list)->next->prev = *newchar;
+	}
+	(*newchar)->prev = *list;
+	(*list)->next = *newchar;
 }

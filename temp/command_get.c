@@ -6,7 +6,7 @@
 /*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 20:45:37 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/16 16:25:15 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/02/16 17:54:32 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int				command_get(t_env *env, t_cmd *cmd)
 {
 	t_char		*list;
 	int			cursor_pos;
-	char		*temp;
 
 	cmd->cmd_end = 0;
 	cmd->len = 0;
@@ -58,9 +57,15 @@ static int		edit_key(int key[], t_cmd *cmd, int *cursor_pos, t_char **list)
 	else if (BCKSPC)
 		k_bckspc(cmd, cursor_pos, list);
 	else if (UP)
-		ft_putendl_fd("HISTORIC UP", 1);
+		ft_putendl_fd("\nHISTORIC UP\n", 1);
 	else if (DOWN)
-		ft_putendl_fd("HISTORIC DOWN", 1);
+		ft_putendl_fd("\nHISTORIC DOWN\n", 1);
+	else if (JUMP_FIRST)
+		k_jump_first(cursor_pos, list);
+	else if (JUMP_LAST)
+		k_jump_last(cmd, cursor_pos, list);
+	else if (DEL)
+		k_del(cmd, cursor_pos, list);
 	else
 		return (0);
 	return (1);

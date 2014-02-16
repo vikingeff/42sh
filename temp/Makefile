@@ -25,6 +25,9 @@ SRC = 	main.c\
 		key_LEFT.c\
 		key_RIGHT.c\
 		key_BCKSPC.c\
+		key_DEL.c\
+		key_JUMP_FIRST.c\
+		key_JUMP_LAST.c\
 		edit_char_add.c\
 		edit_char_del.c\
 
