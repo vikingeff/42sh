@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 11:58:45 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/02/15 17:41:07 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/16 14:55:13 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,11 @@ int		ft_execute(t_list *arg, t_cmd *cmd, t_env *env, t_dir *dir)
 	if (cmd->raw)
 		free(cmd->raw);
 	cmd->raw = ft_strdup(arg->mot);
-	command_parse(cmd, env);
+	if (command_parse(cmd, env, dir))
+	{
+		error(4, "`");
+		return (256);
+	}
 	if (cmd->split[0])
 		if ((ret = command_execute(cmd, env, dir)) == -1)
 			return (ret);
@@ -33,7 +37,11 @@ int		ft_execute_no_wait(t_list *arg, t_cmd *cmd, t_env *env, t_dir *dir)
 	if (cmd->raw)
 		free(cmd->raw);
 	cmd->raw = ft_strdup(arg->mot);
-	command_parse(cmd, env);
+	if (command_parse(cmd, env, dir))
+	{
+		error(4, "`");
+		return (256);
+	}
 	if (cmd->split[0])
 		if ((ret = command_execute_no_wait(cmd, env, dir)) == -1)
 			return (ret);

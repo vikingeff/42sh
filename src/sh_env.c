@@ -6,14 +6,13 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 22:59:48 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/15 19:17:13 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/16 14:52:52 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
 static int		cmd_format(t_cmd *cmd, int *option);
-static t_var	*env_lst_copy(t_env *env);
 static void		ft_modify_env(char *str, t_env *c_env);
 static int		ft_get_i(t_cmd *cmd, int i, t_env *c_env, t_cmd *c_cmd);
 
@@ -84,7 +83,7 @@ static int		cmd_format(t_cmd *cmd, int *option)
 ** make a copy of env list for further temporary modifcation
 */
 
-static t_var	*env_lst_copy(t_env *env)
+t_var	*env_lst_copy(t_env *env)
 {
 	t_var		*list;
 	t_var		*start;

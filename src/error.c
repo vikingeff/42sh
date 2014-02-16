@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/14 13:53:09 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/09 17:58:31 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/02/15 20:49:16 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,12 @@ static void		usage(int err, char *detail)
 		ft_putstr_fd("env : illegal option --", 2);
 		ft_putstr_fd(detail, 2);
 		ft_putstr_fd("\nenv [-i] [name=value ...] [utility [argument ...]]", 2);
+	}
+	else if (err == 4)
+	{
+		ft_putstr_fd("Unmatched ", 2);
+		ft_putstr_fd(detail, 2);
+		ft_putstr_fd(".", 2);
 	}
 }
 

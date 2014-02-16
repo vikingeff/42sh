@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 14:46:47 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/15 16:34:35 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/16 14:29:24 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,6 @@ void	ft_print_arg(t_list *arg)
 		list = list->next;
 	}
 }
-
-
-
-
 
 int		main(int ac, char **environ)
 {
@@ -74,5 +70,6 @@ int		main(int ac, char **environ)
 		else
 			cmd.exit = 1;
 	}
+	delete_temp_free(arg, &cmd, &env, &dir);
 	return (0);
 }

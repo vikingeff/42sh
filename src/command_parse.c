@@ -6,13 +6,62 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 20:56:08 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/15 16:55:13 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/16 18:40:08 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int				command_parse(t_cmd *cmd, t_env *env)
+void			ft_open_close()
+{
+	static int	fd;
+
+	if (fd)
+	{
+		close(fd);
+		fd = 0;
+		return ;
+	}
+	fd = open("/tmp/sh.backquote", O_RDWR | O_TRUNC | O_CREAT, 0666);
+	ft_dup2(fd, 1);
+}
+
+static int	ft_parse_backquote(t_cmd *cmd)
+{
+	int	index;
+	int	start;
+	int	count;
+
+	index = 0;
+	while (cmd->split[index])
+	{
+		start = 0;
+		count = 0;
+		while (cmd->split[index][count])
+		{
+			if (cmd->split[index][count] == '`')
+			{
+				if (start == 0)
+					start = 1;
+				else
+					start = 0;
+			}
+			count++;
+		}
+		index++;
+	}
+	return (start);
+}
+
+int			ft_backquote(t_cmd *cmd, t_env *env, t_dir *dir)
+{
+	if (ft_parse_backquote(cmd))
+		return (1);
+	execute_backquote(cmd, env, dir);
+	return (0);
+}
+
+int				command_parse(t_cmd *cmd, t_env *env, t_dir *dir)
 {
 	int	index;
 	int	count;
@@ -34,5 +83,5 @@ int				command_parse(t_cmd *cmd, t_env *env)
 		}
 		index++;
 	}
-	return (0);
+	return (ft_backquote(cmd, env, dir));
 }

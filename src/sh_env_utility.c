@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/15 16:39:00 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/02/15 16:48:28 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/16 18:12:23 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void			ft_free_c_env(t_env *c_env, t_cmd *c_cmd, t_dir *dir)
 	tmp = NULL;
 	array2d_free(c_cmd->env);
 	array2d_free(c_cmd->paths);
+	if (c_cmd->raw)
+		free(c_cmd->raw);
 	while (c_env->var)
 	{
 		tmp = c_env->var->next;
@@ -53,4 +55,7 @@ void			init_copy_env(t_env *c_env, t_cmd *c_cmd, t_dir *c_dir)
 	c_cmd->paths = NULL;
 	c_dir->home = NULL;
 	c_dir->user = NULL;
+	c_dir->oldpwd = NULL;
+	c_dir->pwd = NULL;
+	c_cmd->raw = NULL;
 }

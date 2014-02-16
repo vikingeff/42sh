@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   array2d_free.c                                     :+:      :+:    :+:   */
+/*   ft_delete_char.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/01/25 16:51:00 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/15 20:13:38 by rda-cost         ###   ########.fr       */
+/*   Created: 2014/02/16 18:45:04 by rda-cost          #+#    #+#             */
+/*   Updated: 2014/02/16 18:45:19 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-void		array2d_free(char **array)
+void		ft_delete_char(t_cmd *cmd, int index)
 {
-	int			i;
+	char	*tmp1;
+	char	*tmp2;
 
-	i = 0;
-	if (!array)
-		return ;
-	while (array[i])
-		free(array[i++]);
-	if (array)
-		free(array);
-	array = NULL;
+	tmp1 = ft_strsub(cmd->raw, 0, index);
+	tmp2 = ft_strsub(cmd->raw, index + 1, ft_strlen(cmd->raw) - (index + 1));
+	free(cmd->raw);
+	cmd->raw = ft_strjoin(tmp1, tmp2);
+	free(tmp1);
+	free(tmp2);
 }

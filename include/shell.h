@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 14:44:57 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/15 19:18:24 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/16 18:58:03 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ char		*get_newpath(char **modif, t_dir *dir, char *curpath);
 int			sh_echo(t_cmd *cmd, t_env *env, t_dir *dir);
 
 int			command_get(t_cmd *cmd);
-int			command_parse(t_cmd *cmd, t_env *env);
+int			command_parse(t_cmd *cmd, t_env *env, t_dir *dir);
 int			command_get_env(t_cmd *cmd, t_env *env, t_dir *dir);
 int			command_shell(t_cmd *cmd, t_env *env, t_dir *dir);
 int			command_execute(t_cmd *cmd, t_env *env, t_dir *dir);
@@ -126,6 +126,7 @@ char		**ft_tab_dup(char **tab);
 ** sh2
 */
 
+t_var		*env_lst_copy(t_env *env);
 t_list		*ft_add_arg(char *str, char *type, t_list *list);
 t_list		*ft_parser(char *str);
 t_list		*ft_parser_direct(t_list *arg);
@@ -145,6 +146,7 @@ void		ft_close(int fd[2]);
 
 void		ft_free_arg(t_list *arg);
 t_list		*ft_free_one(t_list *list);
+void		delete_temp_free(t_list *arg, t_cmd *cmd, t_env *env, t_dir *dir);
 
 /*
 ** pipe
@@ -155,10 +157,13 @@ t_list		*ft_pipe(t_list *arg, t_dir *dir, t_env *env, t_cmd *cmd);
 void		ft_close_pipe(int *fdpipe, int pipenb);
 
 /*
-** BONUS : inib, local, var
+** BONUS : inib, local var, backquote
 */
 
 int			ft_inib_starter(t_cmd *cmd);
 void		ft_get_var(t_cmd *cmd, t_env *env);
+void		ft_open_close(void);
+void		execute_backquote(t_cmd *cmd, t_env *env, t_dir *dir);
+void		ft_delete_char(t_cmd *cmd, int index);
 
 #endif /*LEM_H*/

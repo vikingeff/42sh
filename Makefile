@@ -53,6 +53,8 @@ SRC = 	main.c\
 		local_var.c\
 		command_execute_simple.c\
 		sh_cd_goto.c\
+		ft_execute_backquote.c\
+		ft_delete_char.c\
 
 OBJ = $(SRC:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/15 16:54:45 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/02/15 19:16:56 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/16 12:52:38 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void			ft_get_var(t_cmd *cmd, t_env *env)
 			if (cmd->split[index][count] == '$')
 			{
 				ft_find_var(cmd, env, index, count);
-				return ;
+				ft_get_var(cmd, env);
 			}
 			count++;
 		}

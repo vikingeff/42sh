@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 12:02:54 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/02/14 12:05:40 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/15 19:50:14 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static int		ft_fd_tmp(char *str)
 {
 	char	*line;
 	int		fd;
-	char	*tmp;
 
 	fd = open("/tmp/sh.heredoc", O_RDWR| O_TRUNC | O_CREAT, 0666);
 	ft_putstr("? ");
@@ -27,7 +26,7 @@ static int		ft_fd_tmp(char *str)
 		ft_putstr("? ");
 	}
 	close(fd);
-	fd = open(tmp, O_RDONLY);
+	fd = open("/tmp/sh.heredoc", O_RDONLY);
 	return (fd);
 }
 
@@ -48,7 +47,6 @@ static int		ft_open(char *str, int select)
 		ft_putstr("open error :");
 		ft_putstr(str);
 		ft_putstr("\n");
-		exit(0);
 	}
 	return (fd);
 }

@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/23 18:26:37 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/02/15 19:16:38 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/15 19:50:51 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,7 @@ void	ft_free_tab(char **tab)
 void	ft_dup2(int newfd, int oldfd)
 {
 	if (dup2(newfd, oldfd) == -1)
-	{
 		ft_putstr("Dup2 Error\n");
-		exit(0);
-	}
 }
 
 t_list	*ft_add_arg(char *str, char *type, t_list *list)
