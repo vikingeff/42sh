@@ -6,7 +6,7 @@
 /*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 18:32:14 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/16 17:54:42 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/02/16 18:34:10 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ typedef struct s_env	t_env;
 # define SPACE key[0] == 32
 # define JUMP_FIRST key[0] == 4741915 || key[0] == 1
 # define JUMP_LAST key[0] == 4610843 || key[0] == 5
+# define JUMP_WORD_NEXT key[0] == 73883020516123
+# define JUMP_WORD_PREV key[0] == 74982532143899
 
 typedef struct termios t_term;
 typedef struct s_char t_char;
@@ -78,10 +80,10 @@ struct		s_cmd
 	int		len;		/*to add*/
 };
 
-struct		s_env
+struct			s_env
 {
-	t_term	*term;		/*to add*/
-	int		key[1];		/*to add*/
+	t_term		*term;		/*to add*/
+	long		key[1];		/*to add*/
 };
 
 int		command_get(t_env *env, t_cmd *cmd);		/*to check*/
@@ -100,7 +102,7 @@ void	term_close(t_env *env);
 ** line edition
 */
 
-t_char	*edit_char_add(t_char *list, int chr, int *cursor_pos, t_cmd *cmd);
+t_char	*edit_char_add(t_char *list, long chr, int *cursor_pos, t_cmd *cmd);
 t_char	*edit_char_del(t_char *list, t_cmd *cmd, int *cursor_pos);
 
 void	k_esc(t_cmd *cmd);
@@ -111,5 +113,7 @@ void	k_enter(t_cmd *cmd);
 void	k_del(t_cmd *cmd, int *cursor_pos, t_char **list);
 void	k_jump_first(int *cursor_pos, t_char **list);
 void	k_jump_last(t_cmd *cmd, int *cursor_pos, t_char **list);
+void	k_jump_word_prev(int *cursor_pos, t_char **list);
+void	k_jump_word_next(t_cmd *cmd, int *cursor_pos, t_char **list);
 
 # endif 
