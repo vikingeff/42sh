@@ -6,99 +6,67 @@
 /*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 20:45:37 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/15 21:19:02 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/02/16 16:07:11 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-static int		key_edition(int key[], t_cmd *cmd, t_char **start, t_char **list);
-static t_char	*char_add(t_char *list, int chr, t_char **start);
-static t_char	*char_del(t_char *list);
-static char		*list_to_str(t_char *list);
+static int		key_edition(int key[], t_cmd *cmd, int *cursor_pos, t_char **list);
+static char		*list_to_str(t_char *list, t_cmd *cmd, int *cursor_pos);
 
 int				command_get(t_env *env, t_cmd *cmd)
 {
 	t_char		*list;
-	t_char		*start;
+	int			cursor_pos;
+	char		*temp;
 
 	cmd->cmd_end = 0;
+	cmd->len = 0;
 	list = NULL;
-	start = NULL;
+	cursor_pos = 0;
 	while (!cmd->cmd_end)
 	{
 		env->key[0] = 0;
-		read(0, env->key, 3);
-		if (!key_edition(env->key, cmd, &start, &list))
+		read(0, env->key, 10);
+		if (!key_edition(env->key, cmd, &cursor_pos, &list))
 		{
-			list = char_add(list, env->key[0], &start);
+			list = char_add(list, env->key[0], &cursor_pos, cmd);
 			ft_putchar(env->key[0]);
 		}
 	}
 	if (cmd->raw)
+	{
 		free(cmd->raw);
+		cmd->raw = NULL;
+	}
 	if (list)
-		cmd->raw = list_to_str(list);
+		cmd->raw = list_to_str(list, cmd, &cursor_pos);
 	return (0);
 }
 
-static int		key_edition(int key[], t_cmd *cmd, t_char **start, t_char **list)
+static int		key_edition(int key[], t_cmd *cmd, int *cursor_pos, t_char **list)
 {
-
 	if (ENTER)
-		cmd->cmd_end = 1;
+		k_enter(cmd);
 	else if (ESC)
-	{
-		cmd->cmd_end = 1;
-		cmd->exit = 1;
-	}
-	else if (UP)
-		ft_putendl_fd("UP", 1);
-	else if (DOWN)
-		ft_putendl_fd("DOWN", 1);
+		k_esc(cmd);
 	else if (LEFT)
-	{
-		if ((*list)->prev)
-		{
-			*list = (*list)->prev;
-			term_put("le");
-		}
-		else
-		{
-			if (!*start)
-				term_put("le");
-			*start = *list;
-		}
-	}
+		k_left(cursor_pos, list);
 	else if (RIGHT)
-	{
-		if (*start)
-		{
-			*start = NULL;
-			term_put("nd");
-		}
-		else if ((*list)->next)
-		{
-			*list = (*list)->next;
-			term_put("nd");
-		}
-	}
+		k_right(cmd, cursor_pos, list);
 	else if (BCKSPC)
-	{
-		if ((*list)->prev)
-		{
-			term_put("le");
-			term_put("dc");
-			*list = char_del(*list);
-		}
-	}
+		k_bckspc(cmd, cursor_pos, list);
+	else if (UP)
+		ft_putendl_fd("HISTORIC UP", 1);
+	else if (DOWN)
+		ft_putendl_fd("HISTORIC DOWN", 1);
 	else
 		return (0);
-
 	return (1);
 }
 
-static t_char	*char_add(t_char *list, int chr, t_char **start)
+t_char	*char_add(t_char *list, int chr, int *cursor_pos, t_cmd *cmd)
 {
 	t_char		*newchar;
 
@@ -107,20 +75,25 @@ static t_char	*char_add(t_char *list, int chr, t_char **start)
 		return (NULL);
 	newchar->c = chr;
 	newchar->next = NULL;
-	if (*start)
+	if (*cursor_pos == 0)
 	{
 		newchar->next = list;
 		newchar->prev = NULL;
-		if (list->prev)
+		if (list)
 		{
-			newchar->prev = list->prev;
-			list->prev->next = newchar;
+			if (list->prev)
+			{
+				newchar->prev = list->prev;
+				list->prev->next = newchar;
+			}
+			list->prev = newchar;
+			list = newchar;
+			cmd->len++;
+			*cursor_pos += 1;
+			return (list);
 		}
-		list->prev = newchar;
-		*start = NULL;
-		return (list);
 	}
-	else if (list)
+	else
 	{
 		if (list->next)
 		{
@@ -130,12 +103,12 @@ static t_char	*char_add(t_char *list, int chr, t_char **start)
 		newchar->prev = list;
 		list->next = newchar;
 	}
-	else
-		newchar->prev = NULL;
+	cmd->len++;
+	*cursor_pos += 1;
 	return (newchar);
 }
 
-static t_char	*char_del(t_char *list)
+t_char	*char_del(t_char *list, t_cmd *cmd, int *cursor_pos)
 {
 	t_char		*list_tmp;
 
@@ -163,10 +136,12 @@ static t_char	*char_del(t_char *list)
 			list->prev->next = NULL;
 	}
 	free (list);
+	cmd->len--;
+	*cursor_pos -= 1;
 	return (list_tmp);
 }
 
-static char		*list_to_str(t_char *list)
+static char		*list_to_str(t_char *list, t_cmd *cmd, int *cursor_pos)
 {
 	char		*str;
 	char		*temp;
@@ -187,9 +162,10 @@ static char		*list_to_str(t_char *list)
 		temp = ft_strdup(str);
 		list = list->next;
 	}
+	free(temp);
 	list = end;
 	while (list->prev)
-		list = char_del(list);
-	list = char_del(list);
+		list = char_del(list, cmd, cursor_pos);
+	list = char_del(list, cmd, cursor_pos);
 	return (str);
 }

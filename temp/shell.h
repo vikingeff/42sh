@@ -6,7 +6,7 @@
 /*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 18:32:14 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/15 19:29:11 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/02/16 16:08:43 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,13 @@ struct		s_cmd
 	char	*raw;
 	int		exit;
 	int		cmd_end;
+	int		len;
 };
 
 struct		s_env
 {
 	t_term	*term;
-	int		key[4];
+	int		key[1];
 };
 
 int		canonical_mode(t_term *term, int val);
@@ -87,5 +88,13 @@ int		term_put(char *opt_id);
 int		term_set_attr(t_term *term);
 int		command_get(t_env *env, t_cmd *cmd);
 void	term_close(void);
+t_char	*char_add(t_char *list, int chr, int *cursor_pos, t_cmd *cmd);
+t_char	*char_del(t_char *list, t_cmd *cmd, int *cursor_pos);
+
+void	k_esc(t_cmd *cmd);
+void	k_left(int *cursor_pos, t_char **list);
+void	k_right(t_cmd *cmd, int *cursor_pos, t_char **list);
+void	k_bckspc(t_cmd *cmd, int *cursor_pos, t_char **list);
+void	k_enter(t_cmd *cmd);
 
 # endif 

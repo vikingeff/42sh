@@ -20,7 +20,11 @@ SRC = 	main.c\
 		term_put.c\
 		term_set_attr.c\
 		term_close.c\
-		get_next_line.c
+		key_ESC.c\
+		key_ENTER.c\
+		key_LEFT.c\
+		key_RIGHT.c\
+		key_BCKSPC.c\
 
 LIBFT = libft/libft.a
 
