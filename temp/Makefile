@@ -16,7 +16,7 @@ SRC = 	main.c\
 		error.c\
 		command_get.c\
 		term_ini.c\
-		canonical_mode.c\
+		term_canonical_mode.c\
 		term_put.c\
 		term_set_attr.c\
 		term_close.c\
@@ -25,6 +25,8 @@ SRC = 	main.c\
 		key_LEFT.c\
 		key_RIGHT.c\
 		key_BCKSPC.c\
+		edit_char_add.c\
+		edit_char_del.c\
 
 LIBFT = libft/libft.a
 

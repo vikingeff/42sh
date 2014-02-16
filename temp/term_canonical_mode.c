@@ -6,14 +6,14 @@
 /*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 18:42:16 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/14 18:42:52 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/02/16 16:24:51 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
 /*turn on(1)/off(0) the terminal canonical mode*/
-int		canonical_mode(t_term *term, int val)
+int		term_canonical_mode(t_term *term, int val)
 {
 	if (val == 0)
 		term->c_lflag &= ~(ICANON | ECHO);

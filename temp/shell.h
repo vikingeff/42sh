@@ -6,7 +6,7 @@
 /*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 18:32:14 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/16 16:08:43 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/02/16 16:24:43 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,24 +72,26 @@ struct		s_cmd
 {
 	char	*raw;
 	int		exit;
-	int		cmd_end;
-	int		len;
+	int		cmd_end; 	/*to add*/
+	int		len;		/*to add*/
 };
 
 struct		s_env
 {
-	t_term	*term;
-	int		key[1];
+	t_term	*term;		/*to add*/
+	int		key[1];		/*to add*/
 };
 
-int		canonical_mode(t_term *term, int val);
+int		command_get(t_env *env, t_cmd *cmd);		/*to check*/
+
+int		term_canonical_mode(t_term *term, int val);
 int		term_ini(t_env *env);
 int		term_put(char *opt_id);
 int		term_set_attr(t_term *term);
-int		command_get(t_env *env, t_cmd *cmd);
-void	term_close(void);
-t_char	*char_add(t_char *list, int chr, int *cursor_pos, t_cmd *cmd);
-t_char	*char_del(t_char *list, t_cmd *cmd, int *cursor_pos);
+void	term_close(t_env *env);
+
+t_char	*edit_char_add(t_char *list, int chr, int *cursor_pos, t_cmd *cmd);
+t_char	*edit_char_del(t_char *list, t_cmd *cmd, int *cursor_pos);
 
 void	k_esc(t_cmd *cmd);
 void	k_left(int *cursor_pos, t_char **list);

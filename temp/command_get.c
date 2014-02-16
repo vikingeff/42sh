@@ -6,14 +6,14 @@
 /*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 20:45:37 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/16 16:07:11 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/02/16 16:25:15 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-static int		key_edition(int key[], t_cmd *cmd, int *cursor_pos, t_char **list);
-static char		*list_to_str(t_char *list, t_cmd *cmd, int *cursor_pos);
+static int		edit_key(int key[], t_cmd *cmd, int *cursor_pos, t_char **list);
+static char		*edit_list_to_str(t_char *list, t_cmd *cmd, int *cursor_pos);
 
 int				command_get(t_env *env, t_cmd *cmd)
 {
@@ -29,9 +29,9 @@ int				command_get(t_env *env, t_cmd *cmd)
 	{
 		env->key[0] = 0;
 		read(0, env->key, 10);
-		if (!key_edition(env->key, cmd, &cursor_pos, &list))
+		if (!edit_key(env->key, cmd, &cursor_pos, &list))
 		{
-			list = char_add(list, env->key[0], &cursor_pos, cmd);
+			list = edit_char_add(list, env->key[0], &cursor_pos, cmd);
 			ft_putchar(env->key[0]);
 		}
 	}
@@ -41,11 +41,11 @@ int				command_get(t_env *env, t_cmd *cmd)
 		cmd->raw = NULL;
 	}
 	if (list)
-		cmd->raw = list_to_str(list, cmd, &cursor_pos);
+		cmd->raw = edit_list_to_str(list, cmd, &cursor_pos);
 	return (0);
 }
 
-static int		key_edition(int key[], t_cmd *cmd, int *cursor_pos, t_char **list)
+static int		edit_key(int key[], t_cmd *cmd, int *cursor_pos, t_char **list)
 {
 	if (ENTER)
 		k_enter(cmd);
@@ -66,82 +66,7 @@ static int		key_edition(int key[], t_cmd *cmd, int *cursor_pos, t_char **list)
 	return (1);
 }
 
-t_char	*char_add(t_char *list, int chr, int *cursor_pos, t_cmd *cmd)
-{
-	t_char		*newchar;
-
-	newchar = NULL;
-	if (!(newchar = (t_char *)malloc(sizeof(t_char))))
-		return (NULL);
-	newchar->c = chr;
-	newchar->next = NULL;
-	if (*cursor_pos == 0)
-	{
-		newchar->next = list;
-		newchar->prev = NULL;
-		if (list)
-		{
-			if (list->prev)
-			{
-				newchar->prev = list->prev;
-				list->prev->next = newchar;
-			}
-			list->prev = newchar;
-			list = newchar;
-			cmd->len++;
-			*cursor_pos += 1;
-			return (list);
-		}
-	}
-	else
-	{
-		if (list->next)
-		{
-			newchar->next = list->next;
-			list->next->prev = newchar;
-		}
-		newchar->prev = list;
-		list->next = newchar;
-	}
-	cmd->len++;
-	*cursor_pos += 1;
-	return (newchar);
-}
-
-t_char	*char_del(t_char *list, t_cmd *cmd, int *cursor_pos)
-{
-	t_char		*list_tmp;
-
-	list_tmp = NULL;
-	if (list == NULL)
-		return (NULL);
-	if (list->next)
-	{
-		if (list->next->prev)
-		{
-			list->next->prev = list->prev;
-			list_tmp = list->next;
-		}
-		else
-			list->next->prev = NULL;
-	}
-	if (list->prev)
-	{
-		if (list->prev->next)
-		{
-			list->prev->next = list->next;
-			list_tmp = list->prev;
-		}
-		else
-			list->prev->next = NULL;
-	}
-	free (list);
-	cmd->len--;
-	*cursor_pos -= 1;
-	return (list_tmp);
-}
-
-static char		*list_to_str(t_char *list, t_cmd *cmd, int *cursor_pos)
+static char		*edit_list_to_str(t_char *list, t_cmd *cmd, int *cursor_pos)
 {
 	char		*str;
 	char		*temp;
@@ -165,7 +90,7 @@ static char		*list_to_str(t_char *list, t_cmd *cmd, int *cursor_pos)
 	free(temp);
 	list = end;
 	while (list->prev)
-		list = char_del(list, cmd, cursor_pos);
-	list = char_del(list, cmd, cursor_pos);
+		list = edit_char_del(list, cmd, cursor_pos);
+	list = edit_char_del(list, cmd, cursor_pos);
 	return (str);
 }

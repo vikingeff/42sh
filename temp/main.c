@@ -6,7 +6,7 @@
 /*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 18:31:28 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/16 14:24:24 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/02/16 16:21:07 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,17 @@ int		main(void)
 
 	cmd.raw = NULL;
 	cmd.exit = 0;	
-	env.term = (t_term *)malloc(sizeof(t_term));
-	if (term_ini(&env))
+	env.term = (t_term *)malloc(sizeof(t_term));		/*to add*/
+	if (term_ini(&env))									/*to add*/
 	{
 		while (!cmd.exit)
 		{
 			ft_putstr("prompt > ");
-			command_get(&env, &cmd);
+			command_get(&env, &cmd);					/*to change*/
 			ft_putchar('\n');
 			printf("command: %s\n", cmd.raw);
 		}
 	}
-	term_close();
+	term_close(&env);									/*to add*/
 	return (0);
 }
