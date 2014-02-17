@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 14:44:57 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/16 18:58:03 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/17 14:19:37 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ struct		s_cmd
 	char	**split;
 	char	**env;
 	char	**paths;
+	char	**alias;
 	int		exit;
 };
 
@@ -165,5 +166,6 @@ void		ft_get_var(t_cmd *cmd, t_env *env);
 void		ft_open_close(void);
 void		execute_backquote(t_cmd *cmd, t_env *env, t_dir *dir);
 void		ft_delete_char(t_cmd *cmd, int index);
+void		sh_cmd();
 
 #endif /*LEM_H*/

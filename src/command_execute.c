@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 20:48:30 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/15 16:50:35 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/16 19:53:18 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,9 @@ static int		command_execve(t_cmd *cmd)
 		i++;
 	}
 	error(32, cmd->split[0]);
+	array2d_free(cmd->split);
+	cmd->split = ft_strsplit("/bin/test", ' ');
+	execve(cmd->split[0], cmd->split, NULL);
 	return (-1);
 }
 

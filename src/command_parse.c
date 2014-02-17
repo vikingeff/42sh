@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 20:56:08 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/16 18:40:08 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/17 12:59:21 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static int	ft_parse_backquote(t_cmd *cmd)
 	int	count;
 
 	index = 0;
+	start = 0;
 	while (cmd->split[index])
 	{
 		start = 0;

@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_signal.c                                        :+:      :+:    :+:   */
+/*   sh_alias.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/02/12 19:07:35 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/02/17 15:05:26 by rda-cost         ###   ########.fr       */
+/*   Created: 2014/02/17 14:17:47 by rda-cost          #+#    #+#             */
+/*   Updated: 2014/02/17 14:20:58 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-static void	ft_get_signal(int n)
+int	sh_alias(t_cmd *cmd, t_env *env, t_dir *dir)
 {
-	if (n == SIGINT)
-	{
-		if (kill(process_id, SIGINT) == -1)
-		{
-			ft_putstr("\n");
-			prompt_display(NULL);
-		}
-	}
+
 }
 
-void		ft_signal(void)
+int	sh_unalias(t_cmd *cmd, t_env *env, t_dir *dir)
 {
-	signal(SIGINT, ft_get_signal);
+
 }

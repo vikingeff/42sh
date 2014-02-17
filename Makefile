@@ -55,6 +55,7 @@ SRC = 	main.c\
 		sh_cd_goto.c\
 		ft_execute_backquote.c\
 		ft_delete_char.c\
+		sh_cmd.c\
 
 OBJ = $(SRC:.c=.o)
 

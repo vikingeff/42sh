@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/15 16:39:00 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/02/16 18:12:23 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/17 14:51:38 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,5 @@ void			init_copy_env(t_env *c_env, t_cmd *c_cmd, t_dir *c_dir)
 	c_dir->oldpwd = NULL;
 	c_dir->pwd = NULL;
 	c_cmd->raw = NULL;
+	c_cmd->alias = NULL;
 }
