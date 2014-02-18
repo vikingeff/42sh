@@ -6,7 +6,7 @@
 /*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 18:32:14 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/16 18:34:10 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/02/18 21:45:38 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,23 @@ typedef struct s_env	t_env;
 
 typedef struct termios t_term;
 typedef struct s_char t_char;
+typedef struct s_cur	t_cur;
+
+struct		s_cur
+{
+	int		x;
+	int		y;
+	int		line_x;
+	int		nb_line;
+	int		term_len;
+	int		prompt_len;
+};
 
 struct		s_char
 {
 	char	c;
+	int		mirror;
+	int		nl;
 	t_char	*next;
 	t_char	*prev;
 };
@@ -76,14 +89,17 @@ struct		s_cmd
 {
 	char	*raw;
 	int		exit;
-	int		cmd_end; 	/*to add*/
-	int		len;		/*to add*/
+	int		cmd_end;
+	int		len;
 };
 
 struct			s_env
 {
-	t_term		*term;		/*to add*/
-	long		key[1];		/*to add*/
+	t_term		*term;
+	long		key[1];
+	int			term_len;
+	char		*prompt;
+	int			prompt_len;
 };
 
 int		command_get(t_env *env, t_cmd *cmd);		/*to check*/
@@ -102,18 +118,20 @@ void	term_close(t_env *env);
 ** line edition
 */
 
-t_char	*edit_char_add(t_char *list, long chr, int *cursor_pos, t_cmd *cmd);
-t_char	*edit_char_del(t_char *list, t_cmd *cmd, int *cursor_pos);
+t_char	*edit_char_add(t_char *list, long chr, t_cur *cursor, t_cmd *cmd);
+t_char	*edit_char_del(t_char *list, t_cmd *cmd, t_cur *cursor);
+void	edit_erase_display(t_cur *cursor);
+void	edit_line_display(t_char *list, t_cur *cursor, t_cmd *cmd, t_env *env);
 
 void	k_esc(t_cmd *cmd);
-void	k_left(int *cursor_pos, t_char **list);
-void	k_right(t_cmd *cmd, int *cursor_pos, t_char **list);
-void	k_bckspc(t_cmd *cmd, int *cursor_pos, t_char **list);
+void	k_left(t_cur *cursor, t_char **list);
+void	k_right(t_cmd *cmd, t_cur *cursor, t_char **list);
+void	k_bckspc(t_cmd *cmd, t_cur *cursor, t_char **list);
 void	k_enter(t_cmd *cmd);
-void	k_del(t_cmd *cmd, int *cursor_pos, t_char **list);
-void	k_jump_first(int *cursor_pos, t_char **list);
-void	k_jump_last(t_cmd *cmd, int *cursor_pos, t_char **list);
-void	k_jump_word_prev(int *cursor_pos, t_char **list);
-void	k_jump_word_next(t_cmd *cmd, int *cursor_pos, t_char **list);
+void	k_del(t_cmd *cmd, t_cur *cursor, t_char **list);
+void	k_jump_first(t_cur *cursor, t_char **list);
+void	k_jump_last(t_cmd *cmd, t_cur *cursor, t_char **list);
+void	k_jump_word_prev(t_cur *cursor, t_char **list);
+void	k_jump_word_next(t_cmd *cmd, t_cur *cursor, t_char **list);
 
 # endif 

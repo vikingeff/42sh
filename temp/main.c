@@ -6,7 +6,7 @@
 /*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 18:31:28 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/16 16:21:07 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/02/18 19:48:15 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int		main(void)
 {
 	t_env	env;
 	t_cmd	cmd;
+	char 	prompt[] = "0000000000000000000000000$>";
 
 	cmd.raw = NULL;
 	cmd.exit = 0;	
@@ -24,10 +25,14 @@ int		main(void)
 	{
 		while (!cmd.exit)
 		{
-			ft_putstr("prompt > ");
+			ft_putstr(prompt);
+			env.prompt_len = ft_strlen(prompt);			/*to add*/
+			env.prompt = ft_strdup(prompt);				/*to add*/
 			command_get(&env, &cmd);					/*to change*/
+			free(env.prompt);							/*to add*/
+			env.prompt = NULL;							/*to add*/
 			ft_putchar('\n');
-			printf("command: %s\n", cmd.raw);
+			printf("OUTPUT: %s\n", cmd.raw);
 		}
 	}
 	term_close(&env);									/*to add*/

@@ -29,6 +29,8 @@ SRC = 	main.c\
 		key_JUMP.c\
 		edit_char_add.c\
 		edit_char_del.c\
+		edit_erase_display.c\
+		edit_line_display.c\
 
 LIBFT = libft/libft.a
 

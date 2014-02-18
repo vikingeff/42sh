@@ -6,16 +6,16 @@
 /*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/16 16:17:05 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/16 18:30:15 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/02/18 22:28:12 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-static t_char	*to_front(t_char **nchr, t_char **lst, t_cmd *cmd, int *c_pos);
+static t_char	*to_front(t_char **nchr, t_char **lst, t_cmd *cmd, t_cur *cursor);
 static void		to_back(t_char **newchar, t_char **list);
 
-t_char			*edit_char_add(t_char *list, long chr, int *c_pos, t_cmd *cmd)
+t_char			*edit_char_add(t_char *list, long chr, t_cur *cursor, t_cmd *cmd)
 {
 	t_char		*newchar;
 
@@ -23,18 +23,20 @@ t_char			*edit_char_add(t_char *list, long chr, int *c_pos, t_cmd *cmd)
 	if (!(newchar = (t_char *)malloc(sizeof(t_char))))
 		return (NULL);
 	newchar->c = (int)chr;
+	newchar->mirror = 1;
+	newchar->nl = 0;
 	newchar->next = NULL;
-	if (*c_pos == 0)
+	if (cursor->x == 0)
 	{
 		newchar->next = list;
 		newchar->prev = NULL;
 		if (list)
-			return (to_front(&newchar, &list, cmd, c_pos));
+			return (to_front(&newchar, &list, cmd, cursor));
 	}
 	else
 		to_back(&newchar, &list);
 	cmd->len++;
-	*c_pos += 1;
+	cursor->x += 1;
 	return (newchar);
 }
 
@@ -42,7 +44,7 @@ t_char			*edit_char_add(t_char *list, long chr, int *c_pos, t_cmd *cmd)
 ** add a new char to the front of the existing list
 */
 
-static t_char	*to_front(t_char **nchr, t_char **lst, t_cmd *cmd, int *c_pos)
+static t_char	*to_front(t_char **nchr, t_char **lst, t_cmd *cmd, t_cur *cursor)
 {
 	if ((*lst)->prev)
 	{
@@ -52,16 +54,19 @@ static t_char	*to_front(t_char **nchr, t_char **lst, t_cmd *cmd, int *c_pos)
 	(*lst)->prev = *nchr;
 	(*lst) = *nchr;
 	cmd->len++;
-	*c_pos += 1;
+	cursor->x += 1;
 	return ((*lst));
 }
 
 static void		to_back(t_char **newchar, t_char **list)
 {
-	if ((*list)->next)
+	if (*list)
 	{
-		(*newchar)->next = (*list)->next;
-		(*list)->next->prev = *newchar;
+		if ((*list)->next)
+		{
+			(*newchar)->next = (*list)->next;
+			(*list)->next->prev = *newchar;
+		}
 	}
 	(*newchar)->prev = *list;
 	(*list)->next = *newchar;

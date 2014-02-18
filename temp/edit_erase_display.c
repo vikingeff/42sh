@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_LEFT.c                                         :+:      :+:    :+:   */
+/*   edit_erase_display.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/02/16 15:50:05 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/18 23:12:53 by cobrecht         ###   ########.fr       */
+/*   Created: 2014/02/18 14:00:26 by cobrecht          #+#    #+#             */
+/*   Updated: 2014/02/18 22:32:50 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-void		k_left(t_cur *cursor, t_char **list)
+/*
+** erase the command lines display
+*/
+
+void		edit_erase_display(t_cur *cursor)
 {
-	if (cursor->x > 1)
+	int		i;
+
+	i = 0;
+	term_put("rc");
+	term_put("dl");
+	if (cursor->line_x == 0)
+		term_put("up");
+	while (++i < cursor->nb_line && cursor->line_x != 0)
 	{
-		(*list)->mirror = 1;
-		if ((*list)->next)
-			(*list)->next->mirror = 0;
-		*list = (*list)->prev;
-		cursor->x -= 1;
-	}
-	else if (cursor->x == 1)
-	{
-		if ((*list)->next)
-			(*list)->next->mirror = 0;
-		(*list)->mirror = 1;
-		cursor->x -= 1;
+		term_put("up");
+		term_put("dl");
 	}
 }
