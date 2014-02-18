@@ -56,6 +56,9 @@ SRC = 	main.c\
 		ft_execute_backquote.c\
 		ft_delete_char.c\
 		sh_cmd.c\
+		sh_alias.c\
+		ft_get_alias.c\
+		sh_unalias.c\
 
 OBJ = $(SRC:.c=.o)
 

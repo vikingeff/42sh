@@ -6,13 +6,13 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 20:56:08 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/17 12:59:21 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/18 16:01:37 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-void			ft_open_close()
+void			ft_open_close(void)
 {
 	static int	fd;
 
@@ -54,7 +54,7 @@ static int	ft_parse_backquote(t_cmd *cmd)
 	return (start);
 }
 
-int			ft_backquote(t_cmd *cmd, t_env *env, t_dir *dir)
+static int	ft_backquote(t_cmd *cmd, t_env *env, t_dir *dir)
 {
 	if (ft_parse_backquote(cmd))
 		return (1);
@@ -62,7 +62,7 @@ int			ft_backquote(t_cmd *cmd, t_env *env, t_dir *dir)
 	return (0);
 }
 
-int				command_parse(t_cmd *cmd, t_env *env, t_dir *dir)
+int			command_parse(t_cmd *cmd, t_env *env, t_dir *dir)
 {
 	int	index;
 	int	count;

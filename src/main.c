@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 14:46:47 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/16 14:29:24 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/18 15:32:12 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int		main(int ac, char **environ)
 		{
 			if (ft_inib_starter(&cmd))
 				continue ;
+			ft_get_alias(&cmd);
 			if (arg)
 				ft_free_arg(arg);
 			arg = ft_parser(cmd.raw);

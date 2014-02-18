@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 14:44:57 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/17 14:19:37 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/18 16:00:53 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ struct		s_cmd
 	char	**split;
 	char	**env;
 	char	**paths;
-	char	**alias;
+	t_list	*alias;
 	int		exit;
 };
 
@@ -100,6 +100,8 @@ char		*get_path(char *newpath, char **split);
 char		*newpath_write(char *curpath, char *modif);
 char		*get_newpath(char **modif, t_dir *dir, char *curpath);
 int			sh_echo(t_cmd *cmd, t_env *env, t_dir *dir);
+int			sh_alias(t_cmd *cmd);
+int			sh_unalias(t_cmd *cmd);
 
 int			command_get(t_cmd *cmd);
 int			command_parse(t_cmd *cmd, t_env *env, t_dir *dir);
@@ -158,7 +160,7 @@ t_list		*ft_pipe(t_list *arg, t_dir *dir, t_env *env, t_cmd *cmd);
 void		ft_close_pipe(int *fdpipe, int pipenb);
 
 /*
-** BONUS : inib, local var, backquote
+** BONUS : inib, local var, backquote, alias
 */
 
 int			ft_inib_starter(t_cmd *cmd);
@@ -166,6 +168,8 @@ void		ft_get_var(t_cmd *cmd, t_env *env);
 void		ft_open_close(void);
 void		execute_backquote(t_cmd *cmd, t_env *env, t_dir *dir);
 void		ft_delete_char(t_cmd *cmd, int index);
-void		sh_cmd();
+void		sh_cmd(void);
+void		ft_get_alias(t_cmd *cmd);
+t_list		*ft_find_list(t_list *list, char *str);
 
 #endif /*LEM_H*/
