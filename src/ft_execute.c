@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 11:58:45 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/02/16 14:55:13 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/18 19:23:54 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int		ft_execute(t_list *arg, t_cmd *cmd, t_env *env, t_dir *dir)
 	if (command_parse(cmd, env, dir))
 	{
 		error(4, "`");
+		cmd->ret = 1;
 		return (256);
 	}
 	if (cmd->split[0])
@@ -40,6 +41,7 @@ int		ft_execute_no_wait(t_list *arg, t_cmd *cmd, t_env *env, t_dir *dir)
 	if (command_parse(cmd, env, dir))
 	{
 		error(4, "`");
+		cmd->ret = 1;
 		return (256);
 	}
 	if (cmd->split[0])
@@ -61,13 +63,10 @@ t_list	*ft_avoid_pipe(t_list *arg)
 
 int		ft_launcher(t_list *arg, t_cmd *cmd, t_env *env, t_dir *dir)
 {
-	int	ret;
-
-	ret = -1;
 	while (arg)
 	{
-		if (arg->prev && (ft_strcmp(arg->prev->valeure, "&&") == 0
-			|| ft_strcmp(arg->prev->valeure, "||") == 0) && ret)
+		if (arg->prev && ((ft_strcmp(arg->prev->valeure, "&&") == 0 && cmd->ret)
+			|| (ft_strcmp(arg->prev->valeure, "||") == 0 && !cmd->ret)))
 		{
 			arg = arg->next;
 			arg = ft_avoid_pipe(arg);
@@ -77,13 +76,12 @@ int		ft_launcher(t_list *arg, t_cmd *cmd, t_env *env, t_dir *dir)
 		{
 			arg->pipenb = ft_count_pipe(arg);
 			arg = ft_pipe(arg, dir, env, cmd);
-			ret = 0;
 		}
 		else
 		{
-			ret = command_execute_simple(arg, cmd, env, dir);
+			command_execute_simple(arg, cmd, env, dir);
 			arg = arg->next;
 		}
 	}
-	return (ret);
+	return (0);
 }

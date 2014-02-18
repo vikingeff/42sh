@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/15 16:18:03 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/02/16 18:44:35 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/18 17:50:00 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ int				ft_inib_starter(t_cmd *cmd)
 	{
 		buf[0] = rule;
 		error(4, buf);
+		cmd->ret = 1;
 		return (rule);
 	}
 	rule = 0;
@@ -98,6 +99,7 @@ int				ft_inib_starter(t_cmd *cmd)
 	if (rule)
 	{
 		buf[0] = rule;
+		cmd->ret = 1;
 		error(4, buf);
 	}
 	return (rule);

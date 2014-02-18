@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/04 18:04:13 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/15 18:25:22 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/18 19:13:16 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,14 @@ static int		sh_cd_home(t_cmd *cmd, t_env *env, t_dir *dir)
 
 static int		sh_cd_oldpwd(t_cmd *cmd, t_env *env, t_dir *dir)
 {
+	char	*str;
+
 	if (access(dir->oldpwd, F_OK) == 0)
 	{
-		change_dir(dir->oldpwd, dir, cmd, env);
-		ft_putendl(dir->oldpwd);
+		str = ft_strdup(dir->oldpwd);
+		change_dir(str, dir, cmd, env);
+		ft_putendl(str);
+		free(str);
 	}
 	else
 	{
@@ -103,13 +107,10 @@ int				sh_cd(t_cmd *cmd, t_env *env, t_dir *dir)
 		return (sh_cd_absolute(cmd, env, dir));
 	else
 	{
+		printf("enter\n");
 		modif = ft_strsplit(cmd->split[1], '/');
 		if ((curpath = get_newpath(modif, dir, curpath)) == NULL)
-		{
-			error(33, curpath);
-			free(curpath);
 			return (256);
-		}
 		change_dir(curpath, dir, cmd, env);
 		if (curpath)
 			free(curpath);

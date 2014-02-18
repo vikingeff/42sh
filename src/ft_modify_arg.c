@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/23 18:47:02 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/02/15 17:45:17 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/18 18:23:33 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,9 @@ char		*ft_modify_arg(t_list *arg, int index, int mode)
 	while (index-- != -1)
 		str++;
 	tmp = ft_strsplit_all(str);
-	if (tmp[0][1] != '\0')
+	if (!tmp[0])
+		result = ft_strdup("\0");
+	else if (tmp[0][1] != '\0')
 		result = ft_get_result(tmp[0]);
 	else
 		result = ft_get_result(tmp[1]);

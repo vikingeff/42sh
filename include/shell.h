@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 14:44:57 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/18 16:00:53 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/18 17:39:52 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ struct		s_cmd
 	char	**env;
 	char	**paths;
 	t_list	*alias;
+	int		ret;
 	int		exit;
 };
 

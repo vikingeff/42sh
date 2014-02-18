@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/15 18:18:11 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/02/15 18:19:56 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/18 19:18:16 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,11 @@ char		*get_newpath(char **modif, t_dir *dir, char *curpath)
 			tmp = ft_strdup(curpath);
 			free(curpath);
 		}
-		curpath = newpath_write(tmp, modif[i]);
+		if (!(curpath = newpath_write(tmp, modif[i])))
+			return (NULL);
 		if (tmp)
 			free(tmp);
 	}
-	if (!curpath)
-		curpath = ft_strdup("/");
 	return (curpath);
 }
 
@@ -42,7 +41,8 @@ char		*newpath_write(char *curpath, char *modif)
 	char		**split;
 
 	newpath = NULL;
-	if (modif[0] != '.')
+	if (modif[0] != '.' || (ft_strlen(modif) > 3 && modif[0] == '.'
+		&& modif[1] == '.' && modif[2] == '.'))
 		newpath = str_join_chr(curpath, modif, '/');
 	else if (modif[1] == '.' && ft_strcmp(curpath, "/"))
 	{

@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 20:53:59 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/17 19:42:05 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/18 18:54:13 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int			command_shell(t_cmd *cmd, t_env *env, t_dir *dir)
 	else if (ft_strcmp(cmd->split[0], "unalias") == 0)
 		ret = sh_unalias(cmd);
 	else
-		ret = -1;
+		return (-1);
+	cmd->ret = ret;
 	return (ret);
 }

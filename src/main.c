@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 14:46:47 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/18 15:32:12 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/18 18:29:14 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,10 @@ int		main(int ac, char **environ)
 			arg = ft_parser(cmd.raw);
 			ft_print_arg(arg);
 			if (ft_launcher(arg, &cmd, &env, &dir) == -1)
+			{
+				printf("TROL\n");
 				return (0);
+			}
 		}
 		else
 			cmd.exit = 1;

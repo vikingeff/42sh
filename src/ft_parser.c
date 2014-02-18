@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/15 16:34:51 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/02/15 17:48:30 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/18 18:26:19 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,34 @@ static t_list	*ft_while_parser(char *str, int index, int start, t_list *arg)
 	return (arg);
 }
 
+int				ft_parse_arg(t_list *arg)
+{
+	t_list	*test;
+	t_list	*dir;
+
+	test = arg;
+	while (test)
+	{
+		if (!test->mot || test->mot[0] == 0)
+		{
+			error(5, NULL);
+			return (1);
+		}
+		dir = test->dir;
+		while (dir)
+		{
+			if (!dir->valeure || dir->valeure[0] == 0)
+			{
+				error(6, NULL);
+				return (1);
+			}
+			dir = dir->next;
+		}
+		test = test->next;
+	}
+	return (0);
+}
+
 t_list			*ft_parser(char *str)
 {
 	t_list	*arg;
@@ -85,5 +113,10 @@ t_list			*ft_parser(char *str)
 	start = 0;
 	arg = NULL;
 	arg = ft_while_parser(str, index, start, arg);
+	if (ft_parse_arg(arg))
+	{
+		ft_free_arg(arg);
+		return (NULL);
+	}
 	return (arg);
 }

@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/14 13:53:09 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/15 20:49:16 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/18 18:01:53 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,10 @@ static void		usage(int err, char *detail)
 		ft_putstr_fd(detail, 2);
 		ft_putstr_fd(".", 2);
 	}
+	else if (err == 5)
+		ft_putstr_fd("Invalid null command.", 2);
+	else if (err == 6)
+		ft_putstr_fd("Missing name for redirect.", 2);
 }
 
 /*
