@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_get.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 20:45:37 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/19 15:18:59 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/19 16:29:09 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int				command_get(t_env *env, t_cmd *cmd)
 	t_cur		cursor;
 
 	edit_ini(&cursor, env, cmd, &list);
-	ft_putstr("\033[36m");
 	edit_line_display(list, &cursor, cmd, env);
 	while (!cmd->cmd_end)
 	{
@@ -34,7 +33,6 @@ int				command_get(t_env *env, t_cmd *cmd)
 			list = edit_char_add(list, env->key[0], &cursor, cmd);
 		if (list && cursor.x > 0)
 			list->mirror = 0;
-		ft_putstr("\033[36m");
 		edit_line_display(list, &cursor, cmd, env);
 	}
 	if (cmd->raw)
@@ -42,6 +40,8 @@ int				command_get(t_env *env, t_cmd *cmd)
 		free(cmd->raw);
 		cmd->raw = NULL;
 	}
+	printf("\nline_x: %d | nb_line: %d\nprompt_size: %d | term size: %d\n", cursor.line_x, cursor.nb_line, env->prompt_len, cursor.term_len);  //TEMP
+	printf("cursor x: %d |cursor y: %d | cmd->len: %d\n", cursor.x, cursor.y, cmd->len);
 	if (list)
 		cmd->raw = edit_list_to_str(list, cmd, &cursor);
 	free(env->prompt);
@@ -75,7 +75,8 @@ static void		edit_update(t_env *env, t_cur *cursor, t_cmd *cmd, t_char *list)
 	env->term_len = tgetnum("co");
 	cursor->term_len = env->term_len;
 	cursor->line_x = (cursor->x + cursor->prompt_len) % cursor->term_len;
-	cursor->y = ((cursor->x + cursor->prompt_len) / cursor->term_len) + 1;
+	if ((cursor->prompt_len + cmd->len) % cursor->term_len != cursor->term_len--)
+		cursor->y = ((cursor->x + cursor->prompt_len) / cursor->term_len) + 1;
 	cursor->nb_line = ((cursor->prompt_len + cmd->len) / (cursor->term_len)) + 1;
 }
 

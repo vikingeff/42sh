@@ -6,7 +6,7 @@
 /*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/16 16:17:05 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/19 07:36:03 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/02/19 16:28:24 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,6 @@ static void		to_back(t_char **newchar, t_char **list, t_cmd *cmd, t_cur *cursor)
 	}
 	(*newchar)->prev = *list;
 	(*list)->next = *newchar;
-	if (cursor->x != cmd->len && (cursor->prompt_len + cmd->len) % cursor->term_len == 0)
+	if ((cursor->prompt_len + cmd->len) % cursor->term_len == cursor->term_len--)
 		cursor->nb_line -= 1;
 }
