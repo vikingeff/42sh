@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tablen.c                                        :+:      :+:    :+:   */
+/*   term_close.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/02/11 19:10:20 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/02/19 14:35:43 by rda-cost         ###   ########.fr       */
+/*   Created: 2014/02/15 13:33:16 by cobrecht          #+#    #+#             */
+/*   Updated: 2014/02/19 07:42:15 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int		ft_tablen(char **table)
+void			term_close(t_env *env)
 {
-	int	i;
-
-	i = 0;
-	if (!table)
-		return (i);
-	while (table[i])
-		i++;
-	return (i);
+	term_put("ei");
+	term_put("ve");
+	free(env->term);
+	term_canonical_mode(env->term, 1);
 }

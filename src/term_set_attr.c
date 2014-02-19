@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tablen.c                                        :+:      :+:    :+:   */
+/*   term_set_attr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/02/11 19:10:20 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/02/19 14:35:43 by rda-cost         ###   ########.fr       */
+/*   Created: 2014/02/14 18:44:48 by cobrecht          #+#    #+#             */
+/*   Updated: 2014/02/19 14:40:10 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int		ft_tablen(char **table)
+/*apply the new set of attributs in the terminal*/
+int		term_set_attr(t_term *term)
 {
-	int	i;
-
-	i = 0;
-	if (!table)
-		return (i);
-	while (table[i])
-		i++;
-	return (i);
+	if (tcsetattr(0, TCSADRAIN, term) == -1)
+		return (term_error(3));
+	return (0);
 }

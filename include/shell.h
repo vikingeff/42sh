@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 14:44:57 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/18 17:39:52 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/19 14:38:09 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,28 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include "../libft/libft.h"
+# include <termios.h>
+# include <signal.h>
+# include <curses.h>
+# include <term.h>
+# include <fcntl.h>
+
+# define ESC key[0] == 27 || key[0] == 3
+# define UP key[0] == 4283163
+# define DOWN key[0] == 4348699
+# define LEFT key[0] == 4479771
+# define RIGHT key[0] == 4414235
+# define DEL key[0] == 2117294875
+# define BCKSPC key[0] == 127
+# define ENTER key[0] == 10 || key[0] == 4
+# define SPACE key[0] == 32
+# define JUMP_FIRST key[0] == 4741915 || key[0] == 1
+# define JUMP_LAST key[0] == 4610843 || key[0] == 5
+# define JUMP_WORD_NEXT key[0] == 73883020516123
+# define JUMP_WORD_PREV key[0] == 74982532143899
+# define JUMP_UP key[0] == 71683997260571
+# define JUMP_DOWN key[0] == 72783508888347
+
 
 extern pid_t		process_id;
 
@@ -30,6 +52,33 @@ typedef struct s_dir	t_dir;
 typedef struct s_var	t_var;
 typedef struct s_cmd	t_cmd;
 typedef struct s_bar	t_bar;
+
+/*
+** term
+*/
+
+typedef struct termios t_term;
+typedef struct s_char t_char;
+typedef struct s_cur	t_cur;
+
+struct		s_cur
+{
+	int		x;
+	int		y;
+	int		line_x;
+	int		nb_line;
+	int		term_len;
+	int		prompt_len;
+};
+
+struct		s_char
+{
+	char	c;
+	int		mirror;
+	int		nl;
+	t_char	*next;
+	t_char	*prev;
+};
 
 typedef struct		s_list
 {
@@ -51,6 +100,8 @@ struct		s_cmd
 	char	**paths;
 	t_list	*alias;
 	int		ret;
+	int		cmd_end;
+	int		len;
 	int		exit;
 };
 
@@ -71,12 +122,18 @@ struct		s_var
 
 struct		s_env
 {
-	char	**raw;
-	int		nb;
-	t_var	*var;
+	char		**raw;
+	int			nb;
+	t_var		*var;
+	t_term		*term;
+	long		key[1];
+	int			term_len;
+	char		*prompt;
+	int			prompt_len;
 };
 
 int			error(int err, char *detail);
+int			term_error(int err);
 int			shell_ini(t_cmd *cmd, t_dir *dir, t_env *env);
 t_var		*env_array_to_list(t_env *env);
 char		**env_list_to_array(t_var *var, int size);
@@ -85,9 +142,9 @@ char		*str_join_chr(char const *s1, char const *s2, char c);
 void		array2d_free(char **array);
 char		**array2d_copy(char **src);
 char		*env_get_value(char *name, t_env *env);
-void		prompt_display(t_dir *dir);
+char		*prompt_display(t_dir *dir);
 int			get_next_line(const int fd, char **line);
-int			ft_tablen(char **tab);
+int			ft_tablen(char **table);
 
 void		sh_exit(t_cmd *cmd);
 int			sh_env(t_cmd *cmd, t_env *env, t_dir *dir);
@@ -104,7 +161,7 @@ int			sh_echo(t_cmd *cmd, t_env *env, t_dir *dir);
 int			sh_alias(t_cmd *cmd);
 int			sh_unalias(t_cmd *cmd);
 
-int			command_get(t_cmd *cmd);
+int			command_get(t_env *env, t_cmd *cmd);
 int			command_parse(t_cmd *cmd, t_env *env, t_dir *dir);
 int			command_get_env(t_cmd *cmd, t_env *env, t_dir *dir);
 int			command_shell(t_cmd *cmd, t_env *env, t_dir *dir);
@@ -112,6 +169,40 @@ int			command_execute(t_cmd *cmd, t_env *env, t_dir *dir);
 int			command_execute_no_wait(t_cmd *cmd, t_env *env, t_dir *dir);
 int			command_execute_simple(t_list *arg,
 	t_cmd *cmd, t_env *env, t_dir *dir);
+
+
+/*
+** terminal
+*/
+
+int		term_canonical_mode(t_term *term, int val);
+int		term_ini(t_env *env);
+int		term_put(char *opt_id);
+int		term_set_attr(t_term *term);
+void	term_close(t_env *env);
+
+/*
+** line edition
+*/
+
+t_char	*edit_char_add(t_char *list, long chr, t_cur *cursor, t_cmd *cmd);
+t_char	*edit_char_del(t_char *list, t_cmd *cmd, t_cur *cursor);
+void	edit_erase_display(t_cur *cursor);
+void	edit_line_display(t_char *list, t_cur *cursor, t_cmd *cmd, t_env *env);
+
+void	k_esc(t_cmd *cmd);
+void	k_left(t_cur *cursor, t_char **list);
+void	k_right(t_cmd *cmd, t_cur *cursor, t_char **list);
+void	k_bckspc(t_cmd *cmd, t_cur *cursor, t_char **list);
+void	k_enter(t_cmd *cmd);
+void	k_del(t_cmd *cmd, t_cur *cursor, t_char **list);
+void	k_jump_first(t_cur *cursor, t_char **list);
+void	k_jump_last(t_cmd *cmd, t_cur *cursor, t_char **list);
+void	k_jump_word_prev(t_cur *cursor, t_char **list);
+void	k_jump_word_next(t_cmd *cmd, t_cur *cursor, t_char **list);
+void	k_jump_up(t_char **list, t_cur *cursor, t_cmd *cmd);
+void	k_jump_down(t_char **list, t_cur *cursor, t_cmd *cmd);
+
 
 /*
 ** signal
@@ -124,7 +215,7 @@ void		ft_signal(void);
 */
 
 char		**ft_strsplit_all(char const *s);
-char		**ft_tab_dup(char **tab);
+char		**ft_tab_dup(char **table);
 
 /*
 ** sh2

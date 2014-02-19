@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tablen.c                                        :+:      :+:    :+:   */
+/*   key_DEL.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/02/11 19:10:20 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/02/19 14:35:43 by rda-cost         ###   ########.fr       */
+/*   Created: 2014/02/16 17:38:10 by cobrecht          #+#    #+#             */
+/*   Updated: 2014/02/18 23:21:14 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int		ft_tablen(char **table)
+void		k_del(t_cmd *cmd, t_cur *cursor, t_char **list)
 {
-	int	i;
-
-	i = 0;
-	if (!table)
-		return (i);
-	while (table[i])
-		i++;
-	return (i);
+	if (cmd->len > 0 && cursor->x < cmd->len)
+	{
+		k_right(cmd, cursor, list);
+		k_bckspc(cmd, cursor, list);
+	}
 }

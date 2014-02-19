@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 16:04:28 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/18 17:40:13 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/19 14:03:08 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ int		shell_ini(t_cmd *cmd, t_dir *dir, t_env *env)
 	cmd->raw = NULL;
 	cmd->alias = NULL;
 	cmd->ret = 0;
+	env->term = (t_term *)malloc(sizeof(t_term));
+	if (term_ini(env))
+		return (-1);
 	if (!(cmd->paths = ft_strsplit(env_get_value("PATH", env), ':')))
 		return (-1);
 	if (!(dir->pwd = ft_strdup(getcwd(buff, 2048)))

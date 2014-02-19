@@ -6,23 +6,23 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/23 18:26:37 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/02/15 19:50:51 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/19 14:36:46 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-void	ft_free_tab(char **tab)
+void	ft_free_tab(char **table)
 {
 	int	index;
 
 	index = 0;
-	while (tab[index])
+	while (table[index])
 	{
-		free(tab[index]);
+		free(table[index]);
 		index++;
 	}
-	free(tab);
+	free(table);
 }
 
 void	ft_dup2(int newfd, int oldfd)
@@ -52,19 +52,19 @@ void	ft_close(int fd[2])
 		close(fd[1]);
 }
 
-char	**ft_tab_dup(char **tab)
+char	**ft_tab_dup(char **table)
 {
 	char	**newtab;
 	int		index;
 	int		size;
 
-	size = ft_tablen(tab);
+	size = ft_tablen(table);
 	index = 0;
 	if (!(newtab = (char**)malloc(sizeof(char*) * size)))
 		return (NULL);
 	while (index < size)
 	{
-		newtab[index] = ft_strdup(tab[index]);
+		newtab[index] = ft_strdup(table[index]);
 		index++;
 	}
 	newtab[index] = NULL;

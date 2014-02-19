@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tablen.c                                        :+:      :+:    :+:   */
+/*   key_ENTER.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/02/11 19:10:20 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/02/19 14:35:43 by rda-cost         ###   ########.fr       */
+/*   Created: 2014/02/16 16:01:25 by cobrecht          #+#    #+#             */
+/*   Updated: 2014/02/19 09:06:27 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int		ft_tablen(char **table)
+void		k_enter(t_cmd *cmd)
 {
-	int	i;
-
-	i = 0;
-	if (!table)
-		return (i);
-	while (table[i])
-		i++;
-	return (i);
+	cmd->cmd_end = 1;
 }

@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 14:46:47 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/18 18:29:14 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/19 15:15:55 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_print_arg(t_list *arg)
 	list = arg;
 	while (list)
 	{
-		printf("commande = %s\n", list->mot);
+		printf("\ncommande = %s\n", list->mot);
 		printf("synthaxe = %s\n", list->valeure);
 		dir = list->dir;
 		if (dir)
@@ -55,8 +55,9 @@ int		main(int ac, char **environ)
 		return (-1);
 	while (!cmd.exit)
 	{
-		prompt_display(&dir);
-		if (command_get(&cmd) > 0)
+		env.prompt = prompt_display(&dir);
+		env.prompt_len = ft_strlen(env.prompt);
+		if (command_get(&env, &cmd))
 		{
 			if (ft_inib_starter(&cmd))
 				continue ;
@@ -66,14 +67,12 @@ int		main(int ac, char **environ)
 			arg = ft_parser(cmd.raw);
 			ft_print_arg(arg);
 			if (ft_launcher(arg, &cmd, &env, &dir) == -1)
-			{
-				printf("TROL\n");
 				return (0);
-			}
 		}
 		else
 			cmd.exit = 1;
 	}
+	term_close(&env);
 	delete_temp_free(arg, &cmd, &env, &dir);
 	return (0);
 }

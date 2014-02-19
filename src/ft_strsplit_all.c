@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/21 13:00:11 by rda               #+#    #+#             */
-/*   Updated: 2014/02/11 16:10:46 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/19 14:34:53 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,14 @@ char			**ft_strsplit_all(char const *s)
 	size_t		j;
 	size_t		words;
 	size_t		len;
-	char		**tab;
+	char		**table;
 
 	if (!s)
 		return (NULL);
 	words = count_words(s);
-	if ((tab = (char **)malloc(sizeof(char *) * (words + 1))) == NULL)
+	if ((table = (char **)malloc(sizeof(char *) * (words + 1))) == NULL)
 		return (NULL);
-	tab[words] = 0;
+	table[words] = 0;
 	i = 0;
 	j = 0;
 	while (i < words)
@@ -82,9 +82,9 @@ char			**ft_strsplit_all(char const *s)
 		while (s[j] && (s[j] == ' ' || s[j] == '\t' || s[j] == '\v'))
 			j++;
 		len = word_len(s + j);
-		tab[i] = ft_strndup(s + j, len);
+		table[i] = ft_strndup(s + j, len);
 		i++;
 		j += len;
 	}
-	return (tab);
+	return (table);
 }

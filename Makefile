@@ -27,7 +27,6 @@ SRC = 	main.c\
 		str_join_chr.c\
 		prompt_display.c\
 		get_next_line.c\
-		command_get.c\
 		command_parse.c\
 		command_get_env.c\
 		array2d_free.c\
@@ -59,6 +58,24 @@ SRC = 	main.c\
 		sh_alias.c\
 		ft_get_alias.c\
 		sh_unalias.c\
+		command_get.c\
+		term_ini.c\
+		term_canonical_mode.c\
+		term_put.c\
+		term_set_attr.c\
+		term_close.c\
+		key_ESC.c\
+		key_ENTER.c\
+		key_LEFT.c\
+		key_RIGHT.c\
+		key_BCKSPC.c\
+		key_DEL.c\
+		key_JUMP.c\
+		key_JUMP_LINE.c\
+		edit_char_add.c\
+		edit_char_del.c\
+		edit_erase_display.c\
+		edit_line_display.c\
 
 OBJ = $(SRC:.c=.o)
 
@@ -69,7 +86,7 @@ LIBFT = libft/libft.a
 all: $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT)
-	@cc $(FLAG) $(OBJ) $(LIBFT) -o $(NAME) -g
+	@cc $(FLAG) $(OBJ) $(LIBFT) -L /usr/lib -ltermcap -o $(NAME) -g
 	@echo "compilation done."
 
 $(LIBFT):
