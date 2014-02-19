@@ -6,7 +6,7 @@
 /*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 18:32:14 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/19 09:26:13 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/02/19 10:26:01 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,6 @@ typedef struct s_env	t_env;
 
 
 
-
-
-
 /* to add */
 
 # include <termios.h>
@@ -48,14 +45,14 @@ typedef struct s_env	t_env;
 # include <term.h>
 # include <fcntl.h>
 
-# define ESC key[0] == 27
+# define ESC key[0] == 27 || key[0] == 3
 # define UP key[0] == 4283163
 # define DOWN key[0] == 4348699
 # define LEFT key[0] == 4479771
 # define RIGHT key[0] == 4414235
 # define DEL key[0] == 2117294875
 # define BCKSPC key[0] == 127
-# define ENTER key[0] == 10
+# define ENTER key[0] == 10 || key[0] == 4
 # define SPACE key[0] == 32
 # define JUMP_FIRST key[0] == 4741915 || key[0] == 1
 # define JUMP_LAST key[0] == 4610843 || key[0] == 5
