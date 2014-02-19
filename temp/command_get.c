@@ -6,7 +6,7 @@
 /*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 20:45:37 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/19 01:15:58 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/02/19 08:02:38 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,6 @@ int				command_get(t_env *env, t_cmd *cmd)
 
 static void		edit_ini(t_cur *cursor, t_env *env, t_cmd *cmd, t_char **list)
 {
-	int		i;
-
-	i = -1;
 	cursor->x = 0;
 	cursor->line_x = 0;
 	cursor->y = 1;
@@ -63,12 +60,6 @@ static void		edit_ini(t_cur *cursor, t_env *env, t_cmd *cmd, t_char **list)
 	cmd->cmd_end = 0;
 	cmd->len = 0;
 	*list = NULL;
-	while (++i < cursor->prompt_len)
-		term_put("le");
-	term_put("sc");
-	i = -1;
-	while (++i < cursor->prompt_len)
-		term_put("nd");
 }
 
 static void		edit_update(t_env *env, t_cur *cursor, t_cmd *cmd, t_char *list)

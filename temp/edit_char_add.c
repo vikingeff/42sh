@@ -6,14 +6,14 @@
 /*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/16 16:17:05 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/18 22:28:12 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/02/19 07:36:03 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
 static t_char	*to_front(t_char **nchr, t_char **lst, t_cmd *cmd, t_cur *cursor);
-static void		to_back(t_char **newchar, t_char **list);
+static void		to_back(t_char **newchar, t_char **list, t_cmd *cmd, t_cur *cursor);
 
 t_char			*edit_char_add(t_char *list, long chr, t_cur *cursor, t_cmd *cmd)
 {
@@ -34,7 +34,7 @@ t_char			*edit_char_add(t_char *list, long chr, t_cur *cursor, t_cmd *cmd)
 			return (to_front(&newchar, &list, cmd, cursor));
 	}
 	else
-		to_back(&newchar, &list);
+		to_back(&newchar, &list, cmd, cursor);
 	cmd->len++;
 	cursor->x += 1;
 	return (newchar);
@@ -58,7 +58,7 @@ static t_char	*to_front(t_char **nchr, t_char **lst, t_cmd *cmd, t_cur *cursor)
 	return ((*lst));
 }
 
-static void		to_back(t_char **newchar, t_char **list)
+static void		to_back(t_char **newchar, t_char **list, t_cmd *cmd, t_cur *cursor)
 {
 	if (*list)
 	{
@@ -70,4 +70,6 @@ static void		to_back(t_char **newchar, t_char **list)
 	}
 	(*newchar)->prev = *list;
 	(*list)->next = *newchar;
+	if (cursor->x != cmd->len && (cursor->prompt_len + cmd->len) % cursor->term_len == 0)
+		cursor->nb_line -= 1;
 }

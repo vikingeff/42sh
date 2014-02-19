@@ -6,7 +6,7 @@
 /*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 18:31:28 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/18 19:48:15 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/02/19 07:38:49 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		main(void)
 {
 	t_env	env;
 	t_cmd	cmd;
-	char 	prompt[] = "0000000000000000000000000$>";
+	char 	prompt[] = "$>";
 
 	cmd.raw = NULL;
 	cmd.exit = 0;	
