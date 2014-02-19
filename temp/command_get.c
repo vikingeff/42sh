@@ -6,7 +6,7 @@
 /*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 20:45:37 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/18 22:53:14 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/02/19 01:15:58 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@ int				command_get(t_env *env, t_cmd *cmd)
 	ft_putstr("\033[7m \033[m");
 	while (!cmd->cmd_end)
 	{
-		edit_update(env, &cursor, cmd, list);
+		env->key[0] = 0;
 		read(0, env->key, 10);
+		edit_update(env, &cursor, cmd, list);
 		if (!is_edit_key(env->key, cmd, &cursor, &list))
 			list = edit_char_add(list, env->key[0], &cursor, cmd);
 		if (list && cursor.x > 0)
@@ -78,11 +79,10 @@ static void		edit_update(t_env *env, t_cur *cursor, t_cmd *cmd, t_char *list)
 	tgetent(NULL, n_term);
 	tcgetattr(0, env->term);
 	env->term_len = tgetnum("co");
-	env->key[0] = 0;
 	cursor->term_len = env->term_len;
 	cursor->line_x = (cursor->x + cursor->prompt_len) % cursor->term_len;
 	cursor->y = ((cursor->x + cursor->prompt_len) / cursor->term_len) + 1;
-	cursor->nb_line = ((cursor->prompt_len + cmd->len) / cursor->term_len) + 1;
+	cursor->nb_line = ((cursor->prompt_len + cmd->len) / (cursor->term_len)) + 1;
 }
 
 static int		is_edit_key(long key[], t_cmd *cmd, t_cur *cursor, t_char **list)
@@ -112,7 +112,10 @@ static int		is_edit_key(long key[], t_cmd *cmd, t_cur *cursor, t_char **list)
 	else if (JUMP_WORD_PREV)
 		k_jump_word_prev(cursor, list);
 	else if (key[0] == 26)
-		term_put("do");
+	{
+		term_put("dl");
+		sleep(1);
+	}
 	else if (key[0] == 25)
 		term_put("ve");
 	else if (key[0] == 24)

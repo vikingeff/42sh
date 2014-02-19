@@ -6,7 +6,7 @@
 /*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/18 14:00:26 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/18 22:32:50 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/02/19 01:16:31 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,13 @@
 void		edit_erase_display(t_cur *cursor)
 {
 	int		i;
+	int		j;
 
 	i = 0;
 	term_put("rc");
-	term_put("dl");
-	if (cursor->line_x == 0)
+	while (++i < cursor->nb_line)
 		term_put("up");
-	while (++i < cursor->nb_line && cursor->line_x != 0)
-	{
-		term_put("up");
+	i = -1;
+	while (++i < cursor->nb_line)
 		term_put("dl");
-	}
 }
