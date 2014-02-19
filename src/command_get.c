@@ -6,7 +6,7 @@
 /*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 20:45:37 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/19 16:29:09 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/02/19 16:36:58 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,7 @@ static void		edit_update(t_env *env, t_cur *cursor, t_cmd *cmd, t_char *list)
 	env->term_len = tgetnum("co");
 	cursor->term_len = env->term_len;
 	cursor->line_x = (cursor->x + cursor->prompt_len) % cursor->term_len;
-	if ((cursor->prompt_len + cmd->len) % cursor->term_len != cursor->term_len--)
-		cursor->y = ((cursor->x + cursor->prompt_len) / cursor->term_len) + 1;
+	cursor->y = ((cursor->x + cursor->prompt_len) / cursor->term_len) + 1;
 	cursor->nb_line = ((cursor->prompt_len + cmd->len) / (cursor->term_len)) + 1;
 }
 
