@@ -6,7 +6,7 @@
 /*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/16 15:58:46 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/19 16:05:26 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/02/19 16:38:32 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void		k_bckspc(t_cmd *cmd, t_cur *cursor, t_char **list)
 {
-	if (cursor->x != cmd->len && (cursor->prompt_len + cmd->len) % cursor->term_len == cursor->term_len - 1)
+	if (cursor->x != cmd->len && (cursor->prompt_len + cmd->len + 1) % cursor->term_len == 0)
 		cursor->nb_line -= 1;
 	if (cursor->x > 1)
 	{
