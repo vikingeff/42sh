@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/12 19:44:49 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/02/15 20:19:49 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/19 16:54:46 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ static void	ft_free_all(t_cmd *cmd, t_env *env, t_dir *dir)
 {
 	t_var	*tmp;
 
-	array2d_free(cmd->split);
+	if (cmd->split)
+		array2d_free(cmd->split);
 	array2d_free(cmd->env);
 	array2d_free(cmd->paths);
 	free(dir->pwd);

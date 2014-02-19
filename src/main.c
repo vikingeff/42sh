@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 14:46:47 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/19 15:15:55 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/19 16:52:46 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,12 @@ int		main(int ac, char **environ)
 		env.prompt = prompt_display(&dir);
 		env.prompt_len = ft_strlen(env.prompt);
 		if (command_get(&env, &cmd))
-		{
+		{	
+			if (!cmd.raw)
+			{
+				ft_putstr("\n");
+				continue ;
+			}
 			if (ft_inib_starter(&cmd))
 				continue ;
 			ft_get_alias(&cmd);

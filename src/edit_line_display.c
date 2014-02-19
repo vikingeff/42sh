@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   edit_line_display.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/17 17:57:50 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/19 15:52:29 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/02/19 16:46:35 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	edit_line_display(t_char *list, t_cur *cursor, t_cmd *cmd, t_env *env)
 	int		cursor_diff;
 	t_char	*start;
 
-	ft_putstr("\033[1;34mm");
+	ft_putstr("\033[1;34m");
 	edit_erase_display(cursor);
 	ft_putstr(env->prompt);
 	ft_putstr("\033[m");

@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 20:56:08 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/18 16:01:37 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/19 16:23:17 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,10 @@ int			command_parse(t_cmd *cmd, t_env *env, t_dir *dir)
 
 	index = 0;
 	if (cmd->split)
+	{
+		printf("split %s\n", cmd->split[0]);
 		array2d_free(cmd->split);
+	}
 	if (!(cmd->split = ft_strsplit_all(cmd->raw)))
 		return (-1);
 	ft_get_var(cmd, env);
