@@ -6,7 +6,7 @@
 /*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 20:45:37 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/19 08:02:38 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/02/19 09:36:03 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ static void		edit_ini(t_cur *cursor, t_env *env, t_cmd *cmd, t_char **list);
 static void		edit_update(t_env *env, t_cur *cursor, t_cmd *cmd, t_char *list);
 static int		is_edit_key(long key[], t_cmd *cmd, t_cur *cursor, t_char **list);
 static char		*edit_list_to_str(t_char *list, t_cmd *cmd, t_cur *cursor);
-void			edit_mirror(t_cur *cursor, t_char *list);
-void			edit_newline(t_cur *cursor, t_char *list, t_cmd *cmd);
 
 int				command_get(t_env *env, t_cmd *cmd)
 {
@@ -42,7 +40,7 @@ int				command_get(t_env *env, t_cmd *cmd)
 		free(cmd->raw);
 		cmd->raw = NULL;
 	}
-	printf("\nline_x: %d | nb_line: %d\nprompt_size: %d | term size: %d\n", cursor.line_x, cursor.nb_line, env->prompt_len, cursor.term_len);  //TEMP
+		printf("\nline_x: %d | nb_line: %d\nprompt_size: %d | term size: %d\n", cursor.line_x, cursor.nb_line, env->prompt_len, cursor.term_len);  //TEMP
 	printf("cursor x: %d |cursor y: %d | cmd->len: %d\n", cursor.x, cursor.y, cmd->len);
 	if (list)
 		cmd->raw = edit_list_to_str(list, cmd, &cursor);
@@ -66,7 +64,7 @@ static void		edit_update(t_env *env, t_cur *cursor, t_cmd *cmd, t_char *list)
 {
 	char	*n_term;
 
-	n_term = getenv("TERM");
+	n_term = getenv("TERM"); //to change
 	tgetent(NULL, n_term);
 	tcgetattr(0, env->term);
 	env->term_len = tgetnum("co");
@@ -104,13 +102,13 @@ static int		is_edit_key(long key[], t_cmd *cmd, t_cur *cursor, t_char **list)
 		k_jump_word_prev(cursor, list);
 	else if (key[0] == 26)
 	{
-		term_put("dl");
+		term_put("cv");
 		sleep(1);
 	}
-	else if (key[0] == 25)
-		term_put("ve");
-	else if (key[0] == 24)
-		term_put("vi");
+	else if (JUMP_UP)
+		k_jump_up(list, cursor, cmd);
+	else if (JUMP_DOWN)
+		k_jump_down(list, cursor, cmd);
 	else
 		return (0);
 	return (1);
@@ -122,8 +120,7 @@ static char		*edit_list_to_str(t_char *list, t_cmd *cmd, t_cur *cursor)
 	char		*temp;
 	t_char		*end;
 
-	temp = NULL;
-	str = NULL;
+	str = temp = NULL;
 	end = list;
 	while (list->prev)
 		list = list->prev;

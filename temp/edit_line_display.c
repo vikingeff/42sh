@@ -6,7 +6,7 @@
 /*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/17 17:57:50 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/18 23:35:22 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/02/19 09:06:26 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	edit_line_display(t_char *list, t_cur *cursor, t_cmd *cmd, t_env *env)
 		list = list->prev;
 	while (list)
 	{
-		if (list->mirror == 1)
+		if (list->mirror == 1 && !cmd->cmd_end)
 			term_put("mr");
 		ft_putchar(list->c);
 		term_put("me");

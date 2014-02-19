@@ -6,7 +6,7 @@
 /*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 18:32:14 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/18 21:45:38 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/02/19 09:26:13 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ typedef struct s_env	t_env;
 # define JUMP_LAST key[0] == 4610843 || key[0] == 5
 # define JUMP_WORD_NEXT key[0] == 73883020516123
 # define JUMP_WORD_PREV key[0] == 74982532143899
+# define JUMP_UP key[0] == 71683997260571
+# define JUMP_DOWN key[0] == 72783508888347
 
 typedef struct termios t_term;
 typedef struct s_char t_char;
@@ -133,5 +135,7 @@ void	k_jump_first(t_cur *cursor, t_char **list);
 void	k_jump_last(t_cmd *cmd, t_cur *cursor, t_char **list);
 void	k_jump_word_prev(t_cur *cursor, t_char **list);
 void	k_jump_word_next(t_cmd *cmd, t_cur *cursor, t_char **list);
+void	k_jump_up(t_char **list, t_cur *cursor, t_cmd *cmd);
+void	k_jump_down(t_char **list, t_cur *cursor, t_cmd *cmd);
 
 # endif 

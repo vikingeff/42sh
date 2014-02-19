@@ -6,7 +6,7 @@
 /*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 18:37:37 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/19 07:42:24 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/02/19 08:05:58 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		term_ini(t_env *env)
 {
 	char	*n_term;
 
-	if ((n_term = getenv("TERM")) == NULL)
+	if ((n_term = getenv("TERM")) == NULL) //to change
 		return (error(0));
 	if (tgetent(NULL, n_term) == -1)
 		return (error(1));
