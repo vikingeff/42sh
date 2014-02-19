@@ -1,0 +1,209 @@
+.Dd $Mdocdate$
+.Dt 42SH 1
+.Os
+
+
+
+.Sh NAME
+.Nm 42sh
+.Nd C shell based on CSH
+
+
+
+
+.Sh SYNOPSIS
+.Nm ./42sh
+
+
+
+
+.Sh DESCRIPTION
+
+.Nm 
+is an enhanced but completely compatible version of the Berkeley
+UNIX C shell, 
+.Pa csh(1).
+
+It is a command language interpreter usable as an interactive login shell.
+.Pp
+
+It includes a command-line editor (see \fBThe command-line editor\fR),
+a word completion (see \fBCompletion and listing\fR),
+a management of commands susbtitution (backquotes) (see \fBCommands susbtitution\fR),
+a management of local variables (see \fBLocal variables\fR),
+a history of command (see \fBHistory of command\fR),
+job control (see \fBJobs\fR)
+and a C-like syntax.
+.Pp
+
+$1 - $9       these variables are the positional parameters.
+
+$0            the name of the command currently being executed.
+
+$#            the number of positional arguments given to this
+              invocation of the shell.
+
+$?            the exit status of the last command executed is
+              given as a decimal string.  When a command
+              completes successfully, it returns the exit status
+              of 0 (zero), otherwise it returns a non-zero exit
+              status.
+
+$$            the process number of this shell - useful for
+              including in filenames, to make them unique.
+
+$!            the process id of the last command run in
+              the background.
+
+$-            the current options supplied to this invocation
+              of the shell.
+
+$*            a string containing all the arguments to the
+              shell, starting at $1.
+
+$@            same as above, except when quoted.
+
+
+.Sh THE COMMAND-LINE EDITOR
+.Nm
+commands are build to be easy to use:
+.It Fl p
+down
+\fIdown-history\fR
+
+.It Fl p
+up
+\fIup-history\fR
+
+.It Fl p
+left
+\fIbackward-char\fR
+
+.It Fl p
+right
+\fIforward-char\fR
+
+.It Fl p
+delete
+\fIdelete backward-char\fR
+
+.It Fl p
+tab
+\fIcommand-line completion\fR
+
+.PD
+
+.Sh COMPLETION AND LISTING
+
+.PD
+
+.Sh COMMANDS SUBSTITUTION
+
+.PD
+
+.Sh LOCAL VARIABLES
+
+.PD
+
+.Sh HISTORY OF COMMAND
+
+.PD
+
+.Sh JOBS
+
+.PD
+
+.Sh FILES
+.Bl -tag -width includes/shell.h -compact
+.It Pa includes/shell.h
+.It Pa src/*.c
+.El
+
+
+.Sh SEE ALSO
+.Xr csh 1 ,
+.Xr sh 1 ,
+
+
+
+
+.Sh STANDARDS
+The
+.Nm
+is able to troll his user. It can be launch only in 42's School.
+.Pp
+
+
+
+
+.Sh HISTORY
+The
+.Nm
+was created by cobrecht, tibernar, rmasse and rda-cost in order to honor the Heart of Code.
+
+
+
+
+
+.Sh BUGS
+.Nm
+let cd beetween backquotes change the actual dir, instead of having the same behavior than the others shell.
+
+
+
+.Nm
+is able to support a few option :
+.Ar utility .
+After the
+.Ar utility
+finishes,
+.Nm
+writes the total time elapsed,
+the time consumed by system overhead,
+and the time used to execute
+.Ar utility
+to the standard error stream.
+Times are reported in seconds.
+.Pp
+The options are as follows:
+.Bl -tag -width Ds
+.It Fl l
+The contents of the
+.Em rusage
+structure are printed.
+.It Fl p
+The output is formatted as specified by
+.St -p1003.2-92 .
+.El
+.Pp
+The
+.Nm
+utility exists as a built-in to most shells,
+although they may be syntactically different.
+The utility described here is available as
+.Pa /usr/bin/time .
+.Pp
+The
+.Nm
+utility shall exit with one of the following values:
+.Pp
+.Bl -tag -width indent -compact
+.It 1\-125
+An error occurred in the
+.Nm
+utility.
+.It 126
+The
+.Ar utility
+was found but could not be invoked.
+.It 127
+The
+.Ar utility
+could not be found.
+.El
+.Pp
+Otherwise, the exit status of
+.Nm
+shall be that of
+.Ar utility .
+
