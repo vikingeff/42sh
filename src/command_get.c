@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_get.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 20:45:37 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/19 16:49:44 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/21 16:34:22 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,6 @@ int				command_get(t_env *env, t_cmd *cmd)
 			list->mirror = 0;
 		edit_line_display(list, &cursor, cmd, env);
 	}
-	if (cmd->raw)
-	{
-		free(cmd->raw);
-		cmd->raw = NULL;
-	}
 	if (list)
 		cmd->raw = edit_list_to_str(list, cmd, &cursor);
 	free(env->prompt);
@@ -49,6 +44,11 @@ int				command_get(t_env *env, t_cmd *cmd)
 
 static void		edit_ini(t_cur *cursor, t_env *env, t_cmd *cmd, t_char **list)
 {
+	if (cmd->raw)
+	{
+		free(cmd->raw);
+		cmd->raw = NULL;
+	}
 	cursor->x = 0;
 	cursor->line_x = 0;
 	cursor->y = 1;
