@@ -6,7 +6,7 @@
 /*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/14 13:53:09 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/21 16:43:45 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/02/21 19:25:05 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,8 @@ int		term_error(int err)
 		ft_putendl_fd("tcgetattr() failed: can't set up termios struct", 2);
 	else if (err == 3)
 		ft_putendl_fd("tcsetattr() failed: can't apply new term attr", 2);
+	else if (err == 4)
+		ft_putendl_fd("Can't make a copy of termios", 2);
 	ft_putstr_fd("\033[m", 2);
 	return (-1);
 }

@@ -63,6 +63,8 @@ SRC = 	main.c\
 		term_canonical_mode.c\
 		term_put.c\
 		term_set_attr.c\
+		term_edit_set.c\
+		term_std_set.c\
 		term_close.c\
 		key_ESC.c\
 		key_ENTER.c\

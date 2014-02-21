@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   term_close.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/15 13:33:16 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/19 15:27:53 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/22 00:49:32 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@ void			term_close(t_env *env)
 {
 	term_put("ei");
 	term_put("ve");
+	term_canonical_mode(env, 1);
 	free(env->term);
-	term_canonical_mode(env->term, 1);
 }

@@ -6,7 +6,7 @@
 /*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 20:45:37 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/21 16:34:22 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/02/22 00:55:00 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int				command_get(t_env *env, t_cmd *cmd)
 	}
 	if (list)
 		cmd->raw = edit_list_to_str(list, cmd, &cursor);
+	else
+		ft_putstr("\n");
 	free(env->prompt);
 	env->prompt = NULL;
 	return (1);
@@ -105,6 +107,10 @@ static int		is_edit_key(long key[], t_cmd *cmd, t_cur *cursor, t_char **list)
 		k_jump_up(list, cursor, cmd);
 	else if (JUMP_DOWN)
 		k_jump_down(list, cursor, cmd);
+	else if (key[0] == 26)
+	{
+		printf("TEST\n");
+	}
 	else
 		return (0);
 	return (1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 14:46:47 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/19 16:52:46 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/22 00:53:38 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,12 @@ int		main(int ac, char **environ)
 	{
 		env.prompt = prompt_display(&dir);
 		env.prompt_len = ft_strlen(env.prompt);
+		term_edit_set(&env);
 		if (command_get(&env, &cmd))
-		{	
+		{
+			term_std_set(&env);
 			if (!cmd.raw)
-			{
-				ft_putstr("\n");
 				continue ;
-			}
 			if (ft_inib_starter(&cmd))
 				continue ;
 			ft_get_alias(&cmd);

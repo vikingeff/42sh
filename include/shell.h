@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 14:44:57 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/19 14:38:09 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/22 00:48:48 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,14 +122,15 @@ struct		s_var
 
 struct		s_env
 {
-	char		**raw;
-	int			nb;
-	t_var		*var;
-	t_term		*term;
-	long		key[1];
-	int			term_len;
-	char		*prompt;
-	int			prompt_len;
+	char			**raw;
+	int				nb;
+	t_var			*var;
+	t_term			*term;
+	unsigned long	canon_save;
+	long			key[1];
+	int				term_len;
+	char			*prompt;
+	int				prompt_len;
 };
 
 int			error(int err, char *detail);
@@ -175,10 +176,12 @@ int			command_execute_simple(t_list *arg,
 ** terminal
 */
 
-int		term_canonical_mode(t_term *term, int val);
+int		term_canonical_mode(t_env *env, int mode);
 int		term_ini(t_env *env);
 int		term_put(char *opt_id);
 int		term_set_attr(t_term *term);
+void	term_edit_set(t_env *env);
+void	term_std_set(t_env *env);
 void	term_close(t_env *env);
 
 /*

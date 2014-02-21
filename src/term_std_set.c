@@ -1,30 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_signal.c                                        :+:      :+:    :+:   */
+/*   term_std_set.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/02/12 19:07:35 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/02/21 18:50:28 by cobrecht         ###   ########.fr       */
+/*   Created: 2014/02/21 23:57:02 by cobrecht          #+#    #+#             */
+/*   Updated: 2014/02/22 00:39:54 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-static void	ft_get_signal(int n)
+void	term_std_set(t_env *env)
 {
-	if (n == SIGINT)
-	{
-		if (kill(process_id, SIGINT) == -1)
-		{
-			ft_putstr("\n");
-			prompt_display(NULL);
-		}
-	}
-}
-
-void		ft_signal(void)
-{
-	signal(SIGINT, ft_get_signal);
+	term_put("ei");
+	term_put("ve");
+	term_canonical_mode(env, 1);
 }

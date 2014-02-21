@@ -1,30 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_signal.c                                        :+:      :+:    :+:   */
+/*   term_edit_set.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/02/12 19:07:35 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/02/21 18:50:28 by cobrecht         ###   ########.fr       */
+/*   Created: 2014/02/22 00:47:42 by cobrecht          #+#    #+#             */
+/*   Updated: 2014/02/22 00:50:19 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-static void	ft_get_signal(int n)
+void	term_edit_set(t_env *env)
 {
-	if (n == SIGINT)
-	{
-		if (kill(process_id, SIGINT) == -1)
-		{
-			ft_putstr("\n");
-			prompt_display(NULL);
-		}
-	}
-}
-
-void		ft_signal(void)
-{
-	signal(SIGINT, ft_get_signal);
+	env->term_len = tgetnum("co");
+	term_put("vi");
+	term_put("im");
+	term_canonical_mode(env, 0);
 }
