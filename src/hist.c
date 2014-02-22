@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list.c                                             :+:      :+:    :+:   */
+/*   hist.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmasse <rmasse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/03 10:16:45 by rmasse            #+#    #+#             */
-/*   Updated: 2014/02/22 10:55:14 by rmasse           ###   ########.fr       */
+/*   Updated: 2014/02/22 14:17:18 by rmasse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,17 @@
 void			print_hist(t_cmd *cmd)
 {
 	t_hist 		*save;
+	int			nb;
 
 	save = cmd->hist;
-	while (save->prev)
+	nb = hist_is_valid(cmd);
+	if (!save || nb <= 0)
+		return ;
+	while (save->prev && nb > 1)
+	{
 		save = save->prev;
+		nb--;
+	}
 	while (save)
 	{
 		space_padding(save->index);
