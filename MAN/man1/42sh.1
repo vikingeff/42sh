@@ -1,22 +1,10 @@
 .Dd $Mdocdate$
 .Dt 42SH 1
-.Os
-
-
-
 .Sh NAME
 .Nm 42sh
 .Nd C shell based on CSH
-
-
-
-
 .Sh SYNOPSIS
 .Nm ./42sh
-
-
-
-
 .Sh DESCRIPTION
 
 .Nm 
@@ -35,175 +23,105 @@ a history of command (see \fBHistory of command\fR),
 job control (see \fBJobs\fR)
 and a C-like syntax.
 .Pp
-
-$1 - $9       these variables are the positional parameters.
-
-$0            the name of the command currently being executed.
-
-$#            the number of positional arguments given to this
-              invocation of the shell.
-
-$?            the exit status of the last command executed is
-              given as a decimal string.  When a command
-              completes successfully, it returns the exit status
-              of 0 (zero), otherwise it returns a non-zero exit
-              status.
-
-$$            the process number of this shell - useful for
-              including in filenames, to make them unique.
-
-$!            the process id of the last command run in
-              the background.
-
-$-            the current options supplied to this invocation
-              of the shell.
-
-$*            a string containing all the arguments to the
-              shell, starting at $1.
-
-$@            same as above, except when quoted.
-
-
 .Sh THE COMMAND-LINE EDITOR
 .Nm
 commands are build to be easy to use:
-.It Fl p
-down
-\fIdown-history\fR
 
 .It Fl p
-up
-\fIup-history\fR
+\fIdown\fR
+go forward in the command history if you're not on the active command.
 
 .It Fl p
-left
-\fIbackward-char\fR
+\fIup\fR
+go back in the command history to the previous commands typed.
 
 .It Fl p
-right
-\fIforward-char\fR
+\fIleft\fR
+move backward one char in the command string.
 
 .It Fl p
-delete
-\fIdelete backward-char\fR
+\fIright\fR
+move forward one char in the command string.
 
 .It Fl p
-tab
-\fIcommand-line completion\fR
+\fIdelete\fR
+delete the char just after the cursor.
 
-.PD
+.It Fl p
+\fIbackspace\fR
+delete the char just before the cursor.
 
+.It Fl p
+\fItab\fR
+try to make an autocompletion on the command you're typing.
+
+.It Fl p
+\fISHIFT+[left/right]\fR
+move one word in the command string you're typing.
+
+.It Fl p
+\fISHIFT+[up/down]\fR
+move one line in the command string you're typing.
+
+.It Fl p
+\fIhome/CRTL+A\fR
+go back to the beginning of the command you're typing.
+
+.It Fl p
+\fIend/CTRL+E\fR
+go to the end of the command you're typing.
 .Sh COMPLETION AND LISTING
 
-.PD
-
-.Sh COMMANDS SUBSTITUTION
-
-.PD
-
+.Sh COMMAND SUBSTITUTION
+Text inside a backward quote will be interpreted as a command and executed inside a sub-shell before the active command. The result of the substitution command will not be seen and the only the result of the primary command will be prompted on the standard output.
 .Sh LOCAL VARIABLES
+The  shell maintains a list of variables, each of which has as value a list of zero or more words.  The values of shell variables can be displayed and changed with the \fIset\fR and \fIunset\fR 
+commands.   The  system  maintains its own list of ``environment'' variables.  These can be displayed and changed with \fIprintenv\fR, \fIsetenv\fR and \fIunsetenv\fR.
 
-.PD
+.It Fl p
+\fI$?\fR                the exit status of the last command executed is
+                  given as a decimal string.  When a command
+                  completes successfully, it returns the exit status
+                  of 0 (zero), otherwise it returns a non-zero exit
+                  status.
 
+\fIexport/setenv\fR     create an environment variable containing the
+                  argument string.
+
+\fIunset/unsetenv\fR    delete the environment variable given as argument.
+.Sh ALIASES
+The  shell maintains a list of aliases which can be set, unset and printed by the alias and unalias commands.  After a command line is parsed into simple commands (see  Commands)  the first  word  of  each command, left-to-right, is checked to see if it has an alias.  If so, the first word is replaced by the alias.
+
+Thus  if  the  alias for `ls' were `ls -l' the command `ls /usr' would become `ls -l /usr', the argument list here being  undisturbed.   If  the  alias  for  `lookup'  were  `grep  !^ /etc/passwd'  then `lookup bill' would become `grep bill /etc/passwd'.
+
+.It Fl p
+\fIalias\fR             print all the active aliases
+
+\fIalias{argument}\fR   print the alias of the given argument
+
+\fIunalias\fR           remove the alias of the given argument, can remove
+                  all aliases with option -a.
 .Sh HISTORY OF COMMAND
-
-.PD
-
+Each command, or ``event'', input from the terminal is saved in the history list. Saved commands are numbered sequentially from 1 and stamped with the time. It is not  usually necessary  to use event numbers, but the current event number can be made part of the prompt by placing an `!' in the prompt shell variable.
 .Sh JOBS
-
-.PD
-
 .Sh FILES
 .Bl -tag -width includes/shell.h -compact
 .It Pa includes/shell.h
+.It Pa libft/libft.h
+.It Pa libft/*.c
 .It Pa src/*.c
-.El
-
-
+.It Pa MAN/*
 .Sh SEE ALSO
 .Xr csh 1 ,
 .Xr sh 1 ,
-
-
-
-
 .Sh STANDARDS
 The
 .Nm
 is able to troll his user. It can be launch only in 42's School.
-.Pp
-
-
-
-
 .Sh HISTORY
 The
 .Nm
-was created by cobrecht, tibernar, rmasse and rda-cost in order to honor the Heart of Code.
-
-
-
-
-
+was created by cobrecht, tibernar, rmasse, rda-cost and gleger in order to honor the Heart of Code.
 .Sh BUGS
 .Nm
 let cd beetween backquotes change the actual dir, instead of having the same behavior than the others shell.
-
-
-
-.Nm
-is able to support a few option :
-.Ar utility .
-After the
-.Ar utility
-finishes,
-.Nm
-writes the total time elapsed,
-the time consumed by system overhead,
-and the time used to execute
-.Ar utility
-to the standard error stream.
-Times are reported in seconds.
-.Pp
-The options are as follows:
-.Bl -tag -width Ds
-.It Fl l
-The contents of the
-.Em rusage
-structure are printed.
-.It Fl p
-The output is formatted as specified by
-.St -p1003.2-92 .
-.El
-.Pp
-The
-.Nm
-utility exists as a built-in to most shells,
-although they may be syntactically different.
-The utility described here is available as
-.Pa /usr/bin/time .
-.Pp
-The
-.Nm
-utility shall exit with one of the following values:
-.Pp
-.Bl -tag -width indent -compact
-.It 1\-125
-An error occurred in the
-.Nm
-utility.
-.It 126
-The
-.Ar utility
-was found but could not be invoked.
-.It 127
-The
-.Ar utility
-could not be found.
-.El
-.Pp
-Otherwise, the exit status of
-.Nm
-shall be that of
-.Ar utility .
-
