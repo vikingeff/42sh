@@ -79,7 +79,8 @@ SRC = 	main.c\
 		edit_erase_display.c\
 		edit_line_display.c\
 		hist.c\
-		hist_utils.c
+		hist_utils.c\
+		hist_navigation.c\
 
 OBJ = $(SRC:.c=.o)
 

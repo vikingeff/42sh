@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_ini.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmasse <rmasse@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 16:04:28 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/22 11:32:24 by rmasse           ###   ########.fr       */
+/*   Updated: 2014/02/22 19:46:15 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int		shell_ini(t_cmd *cmd, t_dir *dir, t_env *env)
 	cmd->alias = NULL;
 	cmd->ret = 0;
 	cmd->hist = NULL;
+	cmd->nav = NULL;
 	env->term = (t_term *)malloc(sizeof(t_term));
 	if (term_ini(env))
 		return (-1);

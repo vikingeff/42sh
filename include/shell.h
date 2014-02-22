@@ -6,7 +6,7 @@
 /*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 14:44:57 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/22 15:36:56 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/02/22 19:46:07 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ struct		s_cmd
 	char	**paths;
 	t_list	*alias;
 	t_hist	*hist;
+	t_hist	*nav;
 	int		ret;
 	int		cmd_end;
 	int		len;
@@ -203,6 +204,7 @@ t_char	*edit_char_add(t_char *list, long chr, t_cur *cursor, t_cmd *cmd);
 t_char	*edit_char_del(t_char *list, t_cmd *cmd, t_cur *cursor);
 void	edit_erase_display(t_cur *cursor);
 void	edit_line_display(t_char *list, t_cur *cursor, t_cmd *cmd, t_env *env);
+char	*edit_list_to_str(t_char *list, t_cmd *cmd, t_cur *cursor);
 
 void	k_esc(t_cmd *cmd);
 void	k_left(t_cur *cursor, t_char **list);
@@ -266,8 +268,9 @@ t_list		*ft_pipe(t_list *arg, t_dir *dir, t_env *env, t_cmd *cmd);
 void		ft_close_pipe(int *fdpipe, int pipenb);
 
 /*
-**HIST
+** history
 */
+
 t_hist		*create_list(void);
 void		add_ahead(t_hist *elem, char *data, char *time, int index);
 t_hist		*list_filling(t_hist *hist, char *av);
@@ -276,6 +279,9 @@ char		*time_padding(char *src);
 char		*ft_strjoin_free(char *res, char *str);
 char		*ft_strjoin_double_free(char *res, char *str);
 void		del_hist(t_cmd *cmd);
+int			hist_is_valid(t_cmd *cmd);
+void		hist_navigation_up(t_cmd *cmd, t_cur *cursor, t_char **list);
+void		hist_navigation_down(t_cmd *cmd, t_cur *cursor, t_char **list);
 
 /*
 ** BONUS : inib, local var, backquote, alias
@@ -289,6 +295,5 @@ void		ft_delete_char(t_cmd *cmd, int index);
 void		sh_cmd(void);
 void		ft_get_alias(t_cmd *cmd);
 t_list		*ft_find_list(t_list *list, char *str);
-int			hist_is_valid(t_cmd *cmd);
 
 #endif /*LEM_H*/

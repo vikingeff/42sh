@@ -6,16 +6,16 @@
 /*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 20:45:37 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/22 15:28:58 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/02/22 19:44:43 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
 static void		edit_ini(t_cur *cursor, t_env *env, t_cmd *cmd, t_char **list);
-static void		edit_update(t_env *env, t_cur *cursor, t_cmd *cmd, t_char *list);
+static void		edit_update(t_env *env, t_cur *cursor, t_cmd *cmd, t_char **list);
 static int		is_edit_key(long key[], t_cmd *cmd, t_cur *cursor, t_char **list);
-static char		*edit_list_to_str(t_char *list, t_cmd *cmd, t_cur *cursor);
+char			*edit_list_to_str(t_char *list, t_cmd *cmd, t_cur *cursor);
 
 void			command_get(t_env *env, t_cmd *cmd)
 {
@@ -28,7 +28,7 @@ void			command_get(t_env *env, t_cmd *cmd)
 	{
 		env->key[0] = 0;
 		read(0, env->key, 10);
-		edit_update(env, &cursor, cmd, list);
+		edit_update(env, &cursor, cmd, &list);
 		if (!is_edit_key(env->key, cmd, &cursor, &list))
 			list = edit_char_add(list, env->key[0], &cursor, cmd);
 		if (list && cursor.x > 0)
@@ -60,12 +60,14 @@ static void		edit_ini(t_cur *cursor, t_env *env, t_cmd *cmd, t_char **list)
 	cmd->cmd_end = 0;
 	cmd->len = 0;
 	*list = NULL;
+	cmd->nav = cmd->hist;
 	ft_putstr("\033[7m \033[m");
 }
 
-static void		edit_update(t_env *env, t_cur *cursor, t_cmd *cmd, t_char *list)
+static void		edit_update(t_env *env, t_cur *cursor, t_cmd *cmd, t_char **list)
 {
 	char	*n_term;
+	char	*trash;
 
 	n_term = env_get_value("TERM", env);
 	tgetent(NULL, n_term);
@@ -75,6 +77,13 @@ static void		edit_update(t_env *env, t_cur *cursor, t_cmd *cmd, t_char *list)
 	cursor->line_x = (cursor->x + cursor->prompt_len) % cursor->term_len;
 	cursor->y = ((cursor->x + cursor->prompt_len) / cursor->term_len) + 1;
 	cursor->nb_line = ((cursor->prompt_len + cmd->len) / (cursor->term_len)) + 1;
+	/*if (cmd->nav_move)
+	{
+		trash = edit_list_to_str(*list, cmd, cursor);
+		free(trash);
+		*list = NULL;
+		cmd->nav_move = 0;
+	}*/
 }
 
 static int		is_edit_key(long key[], t_cmd *cmd, t_cur *cursor, t_char **list)
@@ -92,9 +101,9 @@ static int		is_edit_key(long key[], t_cmd *cmd, t_cur *cursor, t_char **list)
 	else if (DEL)
 		k_del(cmd, cursor, list);
 	else if (UP)
-		ft_putendl_fd("\nHISTORIC UP\n", 1);
+		hist_navigation_up(cmd, cursor, list);
 	else if (DOWN)
-		ft_putendl_fd("\nHISTORIC DOWN\n", 1);
+		hist_navigation_down(cmd, cursor, list);
 	else if (JUMP_FIRST)
 		k_jump_first(cursor, list);
 	else if (JUMP_LAST)
@@ -112,7 +121,7 @@ static int		is_edit_key(long key[], t_cmd *cmd, t_cur *cursor, t_char **list)
 	return (1);
 }
 
-static char		*edit_list_to_str(t_char *list, t_cmd *cmd, t_cur *cursor)
+char		*edit_list_to_str(t_char *list, t_cmd *cmd, t_cur *cursor)
 {
 	char		*str;
 	char		*temp;
