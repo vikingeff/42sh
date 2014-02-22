@@ -6,7 +6,7 @@
 /*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 14:44:57 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/22 00:48:48 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/02/22 01:00:10 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,7 @@ int			sh_echo(t_cmd *cmd, t_env *env, t_dir *dir);
 int			sh_alias(t_cmd *cmd);
 int			sh_unalias(t_cmd *cmd);
 
-int			command_get(t_env *env, t_cmd *cmd);
+void		command_get(t_env *env, t_cmd *cmd);
 int			command_parse(t_cmd *cmd, t_env *env, t_dir *dir);
 int			command_get_env(t_cmd *cmd, t_env *env, t_dir *dir);
 int			command_shell(t_cmd *cmd, t_env *env, t_dir *dir);

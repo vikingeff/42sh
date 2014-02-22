@@ -6,7 +6,7 @@
 /*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 14:46:47 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/22 00:53:38 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/02/22 00:59:25 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,23 +58,17 @@ int		main(int ac, char **environ)
 		env.prompt = prompt_display(&dir);
 		env.prompt_len = ft_strlen(env.prompt);
 		term_edit_set(&env);
-		if (command_get(&env, &cmd))
-		{
-			term_std_set(&env);
-			if (!cmd.raw)
-				continue ;
-			if (ft_inib_starter(&cmd))
-				continue ;
-			ft_get_alias(&cmd);
-			if (arg)
-				ft_free_arg(arg);
-			arg = ft_parser(cmd.raw);
-			ft_print_arg(arg);
-			if (ft_launcher(arg, &cmd, &env, &dir) == -1)
-				return (0);
-		}
-		else
-			cmd.exit = 1;
+		command_get(&env, &cmd);
+		term_std_set(&env);
+		if (!cmd.raw || ft_inib_starter(&cmd))
+			continue ;
+		ft_get_alias(&cmd);
+		if (arg)
+			ft_free_arg(arg);
+		arg = ft_parser(cmd.raw);
+		ft_print_arg(arg);
+		if (ft_launcher(arg, &cmd, &env, &dir) == -1)
+			return (0);
 	}
 	term_close(&env);
 	delete_temp_free(arg, &cmd, &env, &dir);

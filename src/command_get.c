@@ -6,7 +6,7 @@
 /*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 20:45:37 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/22 00:55:00 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/02/22 00:59:56 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void		edit_update(t_env *env, t_cur *cursor, t_cmd *cmd, t_char *list);
 static int		is_edit_key(long key[], t_cmd *cmd, t_cur *cursor, t_char **list);
 static char		*edit_list_to_str(t_char *list, t_cmd *cmd, t_cur *cursor);
 
-int				command_get(t_env *env, t_cmd *cmd)
+void			command_get(t_env *env, t_cmd *cmd)
 {
 	t_char		*list;
 	t_cur		cursor;
@@ -41,7 +41,6 @@ int				command_get(t_env *env, t_cmd *cmd)
 		ft_putstr("\n");
 	free(env->prompt);
 	env->prompt = NULL;
-	return (1);
 }
 
 static void		edit_ini(t_cur *cursor, t_env *env, t_cmd *cmd, t_char **list)
@@ -107,10 +106,6 @@ static int		is_edit_key(long key[], t_cmd *cmd, t_cur *cursor, t_char **list)
 		k_jump_up(list, cursor, cmd);
 	else if (JUMP_DOWN)
 		k_jump_down(list, cursor, cmd);
-	else if (key[0] == 26)
-	{
-		printf("TEST\n");
-	}
 	else
 		return (0);
 	return (1);
