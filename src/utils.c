@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   command_get.c                                      :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmasse <rmasse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/02/03 20:03:30 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/22 10:55:51 by rmasse           ###   ########.fr       */
+/*   Created: 2014/01/05 15:52:41 by rmasse            #+#    #+#             */
+/*   Updated: 2014/01/12 18:26:41 by rmasse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <stdlib.h>
+#include <unistd.h>
+#include <stdio.h>
+#include "utils.h"
 
-int				command_get(t_cmd *cmd)
+void		clear_key(char *key)
 {
-	char		*line;
-	int			rtn;
+	key[1] = 0;
+	key[2] = 0;
+	read(0, key, 3);
+}
 
-	line = NULL;
-	if (cmd->raw)
-		free(cmd->raw);
-	if ((rtn = get_next_line(0, &line)) == -1)
-		return (error(16, NULL));
-	cmd->hist = list_filling(cmd->hist, ft_strdup(line));
-	print_hist(cmd);
-	cmd->raw = line;
-	return (rtn);
+void		set_esc_key(char *key)
+{
+	key[0] = 27;
+	key[1] = 0;
+	key[2] = 0;
+}
+
+int			tputs_putchar(int c)
+{
+	write(1, &c, 1);
+	return (1);
 }

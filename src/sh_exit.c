@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 16:11:00 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/17 12:50:23 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/12 15:10:03 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,6 @@
 void		sh_exit(t_cmd *cmd)
 {
 	cmd->exit = 1;
-	ft_putendl_fd("\033[1;34mMinishell : exit\033[037m", 2);
+	ft_putendl("\033[1;34mMinishell : exit\033[037m");
+	exit(0);
 }

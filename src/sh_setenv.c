@@ -6,14 +6,13 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/09 17:53:36 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/15 19:17:29 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/12 18:25:58 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
 static int		setenv_isvalid(t_cmd *cmd, t_env *env);
-static int		sh_setenv_var(t_var *p_var, t_cmd *cmd, t_env *env);
 
 /*
 ** setenv <name> <value>
@@ -34,7 +33,15 @@ int				sh_setenv(t_cmd *cmd, t_env *env)
 	while (p_var)
 	{
 		if (ft_strcmp(cmd->split[1], p_var->name) == 0)
-			return (sh_setenv_var(p_var, cmd, env));
+		{
+			free(p_var->value);
+			p_var->value = (cmd->split[2]) ?
+			ft_strdup(cmd->split[2]) : NULL;
+			if (cmd->env)
+				array2d_free(cmd->env);
+			cmd->env = env_list_to_array(env->var, env->nb);
+			return (0);
+		}
 		temp = p_var;
 		p_var = p_var->next;
 	}
@@ -46,16 +53,6 @@ int				sh_setenv(t_cmd *cmd, t_env *env)
 		array2d_free(cmd->env);
 	if (env->var == NULL)
 		env->var = temp;
-	cmd->env = env_list_to_array(env->var, env->nb);
-	return (0);
-}
-
-static int		sh_setenv_var(t_var *p_var, t_cmd *cmd, t_env *env)
-{
-	free(p_var->value);
-	p_var->value = (cmd->split[2]) ? ft_strdup(cmd->split[2]) : NULL;
-	if (cmd->env)
-		array2d_free(cmd->env);
 	cmd->env = env_list_to_array(env->var, env->nb);
 	return (0);
 }

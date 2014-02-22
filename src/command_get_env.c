@@ -6,7 +6,7 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 21:16:23 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/14 19:47:47 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/12 16:30:48 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,11 @@ int		command_get_env(t_cmd *cmd, t_env *env, t_dir *dir)
 	if (cmd->paths)
 		array2d_free(cmd->paths);
 	cmd->paths = ft_strsplit(env_get_value("PATH", env), ':');
-	if (env_get_value("HOME", env))
-	{
-		if (dir->home)
-			free(dir->home);
-		dir->home = ft_strdup(env_get_value("HOME", env));
-	}
-	if (env_get_value("USER", env))
-	{
-		if (dir->user)
-			free(dir->user);
-		dir->user = ft_strdup(env_get_value("USER", env));
-	}
+	if (dir->home)
+		free(dir->home);
+	if (dir->user)
+		free(dir->user);
+	dir->home = ft_strdup(env_get_value("HOME", env));
+	dir->user = ft_strdup(env_get_value("USER", env));
 	return (0);
 }

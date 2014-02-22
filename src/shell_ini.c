@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_ini.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 16:04:28 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/22 00:34:45 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/02/12 16:37:23 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,6 @@ int		shell_ini(t_cmd *cmd, t_dir *dir, t_env *env)
 	cmd->split = NULL;
 	cmd->env = NULL;
 	cmd->raw = NULL;
-	cmd->alias = NULL;
-	cmd->ret = 0;
-	env->term = (t_term *)malloc(sizeof(t_term));
-	if (term_ini(env))
-		return (-1);
 	if (!(cmd->paths = ft_strsplit(env_get_value("PATH", env), ':')))
 		return (-1);
 	if (!(dir->pwd = ft_strdup(getcwd(buff, 2048)))
