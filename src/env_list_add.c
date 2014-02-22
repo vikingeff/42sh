@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_list_add.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmasse <rmasse@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 17:29:27 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/12 17:49:45 by rmasse           ###   ########.fr       */
+/*   Updated: 2014/02/07 19:46:15 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /*
 ** add a node to env list.
-**
+** 
 */
 
 int		env_list_add(t_var **list, t_var **start)

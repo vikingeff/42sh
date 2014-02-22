@@ -6,13 +6,13 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/23 18:47:02 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/02/12 16:16:49 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/18 18:23:33 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-char	*ft_get_result(char *str)
+static char	*ft_get_result(char *str)
 {
 	int	index;
 
@@ -24,10 +24,23 @@ char	*ft_get_result(char *str)
 			return (ft_strsub(str, 0, index));
 		index++;
 	}
-	return (str);
+	return (ft_strdup(str));
 }
 
-char	*ft_modify_arg(t_list *arg, int index, int mode)
+static void	ft_modify_word(t_list *arg, char *begin, char *str, char **tmp)
+{
+	char	*clone;
+
+	clone = ft_strdup(str);
+	if (arg->mot)
+		free(arg->mot);
+	arg->mot = str_join_chr(begin, clone, ' ');
+	free(begin);
+	free(clone);
+	array2d_free(tmp);
+}
+
+char		*ft_modify_arg(t_list *arg, int index, int mode)
 {
 	char	**tmp;
 	char	*str;
@@ -42,7 +55,9 @@ char	*ft_modify_arg(t_list *arg, int index, int mode)
 	while (index-- != -1)
 		str++;
 	tmp = ft_strsplit_all(str);
-	if (tmp[0][1] != '\0')
+	if (!tmp[0])
+		result = ft_strdup("\0");
+	else if (tmp[0][1] != '\0')
 		result = ft_get_result(tmp[0]);
 	else
 		result = ft_get_result(tmp[1]);
@@ -50,7 +65,6 @@ char	*ft_modify_arg(t_list *arg, int index, int mode)
 		str++;
 	while (++index < (int)ft_strlen(result) - 1)
 		str++;
-	arg->mot = str_join_chr(begin, str, ' ');
-	free(begin);
+	ft_modify_word(arg, begin, str, tmp);
 	return (result);
 }

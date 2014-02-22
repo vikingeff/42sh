@@ -6,43 +6,29 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/23 18:26:37 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/01/23 18:29:10 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/19 14:36:46 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-void	ft_free_tab(char **tab)
+void	ft_free_tab(char **table)
 {
 	int	index;
 
 	index = 0;
-	while (tab[index])
+	while (table[index])
 	{
-		free(tab[index]);
+		free(table[index]);
 		index++;
 	}
-	free(tab);
+	free(table);
 }
 
 void	ft_dup2(int newfd, int oldfd)
 {
 	if (dup2(newfd, oldfd) == -1)
-	{
 		ft_putstr("Dup2 Error\n");
-		exit(0);
-	}
-}
-
-void	ft_wait(pid_t pid)
-{
-	int	status;
-	int	ret;
-
-	pid = 0;
-	ret = waitpid(-1, &status, 0);
-	if (ret < 0)
-		exit(status);
 }
 
 t_list	*ft_add_arg(char *str, char *type, t_list *list)
@@ -64,4 +50,23 @@ void	ft_close(int fd[2])
 		close(fd[0]);
 	if (fd[1] != 1 && fd[1] != 0)
 		close(fd[1]);
+}
+
+char	**ft_tab_dup(char **table)
+{
+	char	**newtab;
+	int		index;
+	int		size;
+
+	size = ft_tablen(table);
+	index = 0;
+	if (!(newtab = (char**)malloc(sizeof(char*) * size)))
+		return (NULL);
+	while (index < size)
+	{
+		newtab[index] = ft_strdup(table[index]);
+		index++;
+	}
+	newtab[index] = NULL;
+	return (newtab);
 }

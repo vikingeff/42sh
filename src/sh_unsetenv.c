@@ -6,14 +6,14 @@
 /*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/04 16:29:36 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/12 19:03:36 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/02/15 19:17:42 by rda-cost         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-static void			cell_delete(t_var *var, t_var *prev);
-static t_var		*cell_first_delete(t_var *p_var, t_var **prev);
+static void		cell_delete(t_var *var, t_var *prev);
+static t_var	*cell_first_delete(t_var *p_var, t_var **prev);
 
 /*
 ** erase minishell env variables given as arguments
@@ -46,7 +46,8 @@ int				sh_unsetenv(t_cmd *cmd, t_env *env)
 		prev = p_var;
 		p_var = p_var->next;
 	}
-	return (error(30, cmd->split[1]));
+	error(30, cmd->split[1]);
+	return (256);
 }
 
 static void		cell_delete(t_var *p_var, t_var *prev)

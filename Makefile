@@ -27,7 +27,6 @@ SRC = 	main.c\
 		str_join_chr.c\
 		prompt_display.c\
 		get_next_line.c\
-		command_get.c\
 		command_parse.c\
 		command_get_env.c\
 		array2d_free.c\
@@ -40,8 +39,47 @@ SRC = 	main.c\
 		ft_parser_direct.c\
 		ft_lstnew.c\
 		ft_utility.c\
-		list.c\
-		list_utils.c
+		ft_signal.c\
+		ft_free_arg.c\
+		ft_open.c\
+		ft_pipe.c\
+		ft_execute.c\
+		ft_close_count_pipe.c\
+		sh_echo.c\
+		ft_inib.c\
+		ft_parser.c\
+		sh_env_utility.c\
+		local_var.c\
+		command_execute_simple.c\
+		sh_cd_goto.c\
+		ft_execute_backquote.c\
+		ft_delete_char.c\
+		sh_cmd.c\
+		sh_alias.c\
+		ft_get_alias.c\
+		sh_unalias.c\
+		command_get.c\
+		term_ini.c\
+		term_canonical_mode.c\
+		term_put.c\
+		term_set_attr.c\
+		term_edit_set.c\
+		term_std_set.c\
+		term_close.c\
+		key_ESC.c\
+		key_ENTER.c\
+		key_LEFT.c\
+		key_RIGHT.c\
+		key_BCKSPC.c\
+		key_DEL.c\
+		key_JUMP.c\
+		key_JUMP_LINE.c\
+		edit_char_add.c\
+		edit_char_del.c\
+		edit_erase_display.c\
+		edit_line_display.c\
+		hist.c\
+		hist_utils.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -52,7 +90,7 @@ LIBFT = libft/libft.a
 all: $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT)
-	@cc $(FLAG) $(OBJ) $(LIBFT) -o $(NAME) -g
+	@cc $(FLAG) $(OBJ) $(LIBFT) -L /usr/lib -ltermcap -o $(NAME) -g
 	@echo "compilation done."
 
 $(LIBFT):
