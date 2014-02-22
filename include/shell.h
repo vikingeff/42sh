@@ -6,7 +6,7 @@
 /*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 14:44:57 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/22 19:46:07 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/02/22 20:43:51 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ struct		s_cmd
 	int		cmd_end;
 	int		len;
 	int		exit;
+	char	*save_cmd;
 };
 
 struct		s_dir
@@ -280,8 +281,7 @@ char		*ft_strjoin_free(char *res, char *str);
 char		*ft_strjoin_double_free(char *res, char *str);
 void		del_hist(t_cmd *cmd);
 int			hist_is_valid(t_cmd *cmd);
-void		hist_navigation_up(t_cmd *cmd, t_cur *cursor, t_char **list);
-void		hist_navigation_down(t_cmd *cmd, t_cur *cursor, t_char **list);
+void		hist_navigation(long key[], t_cmd *cmd, t_cur *cursor, t_char **list);
 
 /*
 ** BONUS : inib, local var, backquote, alias

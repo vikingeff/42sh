@@ -6,7 +6,7 @@
 /*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 20:45:37 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/22 19:44:43 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/02/22 20:43:38 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,6 @@ static void		edit_update(t_env *env, t_cur *cursor, t_cmd *cmd, t_char **list)
 	cursor->line_x = (cursor->x + cursor->prompt_len) % cursor->term_len;
 	cursor->y = ((cursor->x + cursor->prompt_len) / cursor->term_len) + 1;
 	cursor->nb_line = ((cursor->prompt_len + cmd->len) / (cursor->term_len)) + 1;
-	/*if (cmd->nav_move)
-	{
-		trash = edit_list_to_str(*list, cmd, cursor);
-		free(trash);
-		*list = NULL;
-		cmd->nav_move = 0;
-	}*/
 }
 
 static int		is_edit_key(long key[], t_cmd *cmd, t_cur *cursor, t_char **list)
@@ -100,10 +93,8 @@ static int		is_edit_key(long key[], t_cmd *cmd, t_cur *cursor, t_char **list)
 		k_bckspc(cmd, cursor, list);
 	else if (DEL)
 		k_del(cmd, cursor, list);
-	else if (UP)
-		hist_navigation_up(cmd, cursor, list);
-	else if (DOWN)
-		hist_navigation_down(cmd, cursor, list);
+	else if (UP || DOWN)
+		hist_navigation(key, cmd, cursor, list);
 	else if (JUMP_FIRST)
 		k_jump_first(cursor, list);
 	else if (JUMP_LAST)
