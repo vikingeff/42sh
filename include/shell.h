@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmasse <rmasse@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 14:44:57 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/22 11:59:57 by rmasse           ###   ########.fr       */
+/*   Updated: 2014/02/22 15:36:56 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -274,6 +274,7 @@ t_hist		*list_filling(t_hist *hist, char *av);
 void		print_hist(t_cmd *cmd);
 char		*time_padding(char *src);
 char		*ft_strjoin_free(char *res, char *str);
+char		*ft_strjoin_double_free(char *res, char *str);
 void		del_hist(t_cmd *cmd);
 
 /*

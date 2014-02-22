@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_get.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmasse <rmasse@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 20:45:37 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/22 13:50:21 by rmasse           ###   ########.fr       */
+/*   Updated: 2014/02/22 15:28:58 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void			command_get(t_env *env, t_cmd *cmd)
 		cmd->raw = edit_list_to_str(list, cmd, &cursor);
 	else
 		ft_putstr("\n");
-	cmd->hist = list_filling(cmd->hist, ft_strdup(cmd->raw));
+	cmd->hist = list_filling(cmd->hist, cmd->raw);
 	free(env->prompt);
 	env->prompt = NULL;
 }

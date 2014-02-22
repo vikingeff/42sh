@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmasse <rmasse@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 14:46:47 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/22 13:56:53 by rmasse           ###   ########.fr       */
+/*   Updated: 2014/02/22 15:40:07 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ int		main(int ac, char **environ)
 		if (!cmd.raw || ft_inib_starter(&cmd))
 			continue ;
 		ft_get_alias(&cmd);
-		//if (arg)
-			//ft_free_arg(arg);
+		if (arg)
+			ft_free_arg(arg);
 		arg = ft_parser(cmd.raw);
 		ft_print_arg(arg);
 		if (ft_launcher(arg, &cmd, &env, &dir) == -1)

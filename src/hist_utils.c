@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hist_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmasse <rmasse@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 15:47:53 by rmasse            #+#    #+#             */
-/*   Updated: 2014/02/22 14:05:23 by rmasse           ###   ########.fr       */
+/*   Updated: 2014/02/22 15:45:36 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,18 @@ char		*ft_strjoin_free(char *res, char *str)
 	free(res);
 	res = ft_strjoin(tmp, str);
 	free(tmp);
+	return (res);
+}
+
+char		*ft_strjoin_double_free(char *res, char *str)
+{
+	char		*tmp;
+
+	tmp = ft_strdup(res);
+	free(res);
+	res = ft_strjoin(tmp, str);
+	free(tmp);
+	free(str);
 	return (res);
 }
 
@@ -46,25 +58,20 @@ char		*time_padding(char *src)
 
 void			del_hist(t_cmd *cmd)
 {
-	t_hist 		*save;
 	t_hist 		*tmp;
 
-	save = cmd->hist;
-	while (save->prev)
-		save = save->prev;
-	while (save)
+	while (cmd->hist)
 	{
-		free(save->time);
-		free(save->data);
-		save->data = NULL;
-		save->time = NULL;
-		tmp = save->next;
-		save->next = NULL;
-		save->prev = NULL;
-		free(save);
-		save = NULL;
-		save = tmp;
+		free(cmd->hist->time);
+		free(cmd->hist->data);
+		cmd->hist->data = NULL;
+		cmd->hist->time = NULL;
+		tmp = cmd->hist->prev;
+		free(cmd->hist);
+		cmd->hist = NULL;
+		cmd->hist = tmp;
 	}
+	cmd->hist = NULL;
 }
 
 int		hist_is_valid(t_cmd *cmd)

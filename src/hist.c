@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hist.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmasse <rmasse@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/03 10:16:45 by rmasse            #+#    #+#             */
-/*   Updated: 2014/02/22 14:17:18 by rmasse           ###   ########.fr       */
+/*   Updated: 2014/02/22 15:48:04 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,17 @@
 {
 	int			sz;
 	int			max;
+	char		*tmp;
 
-	sz = ft_strlen(ft_itoa(index));
+	tmp = ft_itoa(index);
+	sz = ft_strlen(tmp);
 	max = 5;
 	while (max > sz)
 	{
 		ft_putchar(' ');
 		max--;
 	}
+	free(tmp);
 }
 
 void			print_hist(t_cmd *cmd)
@@ -58,18 +61,19 @@ void			print_hist(t_cmd *cmd)
 char			*time_to_char(const struct tm *time)
 {
 	char		*res;
+	char		*tmp;
 
-	res = ft_strdup(ft_itoa(time->tm_year + 1900));
+	res = ft_itoa(time->tm_year + 1900);
 	res = ft_strjoin_free(res, "/");
-	res = ft_strjoin_free(res, time_padding(ft_itoa(time->tm_mon)));
+	res = ft_strjoin_double_free(res, time_padding(ft_itoa(time->tm_mon)));
 	res = ft_strjoin_free(res, "/");
-	res = ft_strjoin_free(res, time_padding(ft_itoa(time->tm_mday)));
+	res = ft_strjoin_double_free(res, time_padding(ft_itoa(time->tm_mday)));
 	res = ft_strjoin_free(res, " ");
-	res = ft_strjoin_free(res, time_padding(ft_itoa(time->tm_hour)));
+	res = ft_strjoin_double_free(res, time_padding(ft_itoa(time->tm_hour)));
 	res = ft_strjoin_free(res, ":");
-	res = ft_strjoin_free(res, time_padding(ft_itoa(time->tm_min)));
+	res = ft_strjoin_double_free(res, time_padding(ft_itoa(time->tm_min)));
 	res = ft_strjoin_free(res, ":");
-	res = ft_strjoin_free(res, time_padding(ft_itoa(time->tm_sec)));
+	res = ft_strjoin_double_free(res, time_padding(ft_itoa(time->tm_sec)));
 	res = ft_strjoin_free(res, " ");
 	return (res);
 }
@@ -98,17 +102,22 @@ t_hist			*list_filling(t_hist *hist, char *data)
 	static int	index = 0;
 	time_t		rawtime;
 	struct tm	*timeinfo;
+	char		*tmp;
 
 	index++;
 	time(&rawtime);
 	timeinfo = localtime(&rawtime);
 	if (hist)
-		hist = add_elem(hist, data, time_to_char(timeinfo), index);
+	{
+		tmp = time_to_char(timeinfo);
+		hist = add_elem(hist, data, tmp, index);
+		free(tmp);
+	}
 	else
 	{
 		hist = (t_hist*)malloc(sizeof(t_hist));
 		hist->data = ft_strdup(data);
-		hist->time = ft_strdup(time_to_char(timeinfo));
+		hist->time = time_to_char(timeinfo);
 		hist->index = index;
 		hist->size = ft_strlen(data);
 		hist->prev = NULL;
