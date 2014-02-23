@@ -6,7 +6,7 @@
 /*   By: rmasse <rmasse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/14 13:53:09 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/22 11:52:07 by rmasse           ###   ########.fr       */
+/*   Updated: 2014/02/23 18:24:06 by rmasse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@ int				error(int err, char *detail)
 		err_system(err, detail);
 	else if (err < 45)
 		warning(err, detail);
+	else if (err == 666)
+	{
+		ft_putstr_fd(detail, 2);
+		ft_putstr_fd(": Event not found.", 2);
+	}
 	ft_putendl_fd("\033[m", 2);
 	return (-1);
 }
@@ -111,6 +116,11 @@ static void		warning(int err, char *detail)
 	else if (err == 33)
 	{
 		ft_putstr_fd("cd: no such file or directory: ", 2);
+		ft_putstr_fd(detail, 2);
+	}
+	else if (err == 34)
+	{
+		ft_putstr_fd("no such event: ", 2);
 		ft_putstr_fd(detail, 2);
 	}
 }

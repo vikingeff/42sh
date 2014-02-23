@@ -6,7 +6,7 @@
 /*   By: rmasse <rmasse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 20:53:59 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/22 11:14:50 by rmasse           ###   ########.fr       */
+/*   Updated: 2014/02/23 18:25:32 by rmasse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int			command_shell(t_cmd *cmd, t_env *env, t_dir *dir)
 	ret = 0;
 	if (ft_strcmp(cmd->split[0], "exit") == 0)
 		sh_exit(cmd);
+	else if (cmd->split[0][0] == '!')
+		ret = hist_chr(cmd);
 	else if (ft_strcmp(cmd->split[0], "env") == 0)
 		ret = sh_env(cmd, env, dir);
 	else if (ft_strcmp(cmd->split[0], "unsetenv") == 0
@@ -44,10 +46,7 @@ int			command_shell(t_cmd *cmd, t_env *env, t_dir *dir)
 	else if (ft_strcmp(cmd->split[0], "unalias") == 0)
 		ret = sh_unalias(cmd);
 	else if (ft_strcmp(cmd->split[0], "history") == 0)
-	{
-		print_hist(cmd);
-		ret = 0;
-	}
+		ret = print_hist(cmd);
 	else
 		return (-1);
 	cmd->ret = ret;

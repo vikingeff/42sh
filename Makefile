@@ -81,6 +81,7 @@ SRC = 	main.c\
 		hist.c\
 		hist_utils.c\
 		hist_navigation.c\
+		hist_chr.c
 
 OBJ = $(SRC:.c=.o)
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmasse <rmasse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 14:44:57 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/22 20:43:51 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/02/23 18:29:22 by rmasse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -275,13 +275,15 @@ void		ft_close_pipe(int *fdpipe, int pipenb);
 t_hist		*create_list(void);
 void		add_ahead(t_hist *elem, char *data, char *time, int index);
 t_hist		*list_filling(t_hist *hist, char *av);
-void		print_hist(t_cmd *cmd);
+int			print_hist(t_cmd *cmd);
 char		*time_padding(char *src);
 char		*ft_strjoin_free(char *res, char *str);
 char		*ft_strjoin_double_free(char *res, char *str);
 void		del_hist(t_cmd *cmd);
 int			hist_is_valid(t_cmd *cmd);
 void		hist_navigation(long key[], t_cmd *cmd, t_cur *cursor, t_char **list);
+int			hist_chr(t_cmd *cmd);
+int			filling_checking(t_cmd *cmd);
 
 /*
 ** BONUS : inib, local var, backquote, alias

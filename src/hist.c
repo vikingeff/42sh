@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hist.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmasse <rmasse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/03 10:16:45 by rmasse            #+#    #+#             */
-/*   Updated: 2014/02/22 15:48:04 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/02/23 18:32:30 by rmasse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 	free(tmp);
 }
 
-void			print_hist(t_cmd *cmd)
+int			print_hist(t_cmd *cmd)
 {
 	t_hist 		*save;
 	int			nb;
@@ -40,7 +40,7 @@ void			print_hist(t_cmd *cmd)
 	save = cmd->hist;
 	nb = hist_is_valid(cmd);
 	if (!save || nb <= 0)
-		return ;
+		return (1);
 	while (save->prev && nb > 1)
 	{
 		save = save->prev;
@@ -51,11 +51,14 @@ void			print_hist(t_cmd *cmd)
 		space_padding(save->index);
 		ft_putnbr(save->index);
 		ft_putstr("  ");
-		ft_putstr(save->time);
+		if (cmd->split[1])
+			if (!(ft_strcmp(cmd->split[1], "-t")))
+				ft_putstr(save->time);
 		ft_putstr(save->data);
 		ft_putchar('\n');
 		save = save->next;
 	}
+	return (0);
 }
 
 char			*time_to_char(const struct tm *time)

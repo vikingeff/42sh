@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hist_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmasse <rmasse@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 15:47:53 by rmasse            #+#    #+#             */
-/*   Updated: 2014/02/22 15:45:36 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/02/23 18:21:47 by rmasse           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,17 @@ int		hist_is_valid(t_cmd *cmd)
 			del_hist(cmd);
 			return (-1);
 		}
+		else if (!(ft_strcmp(cmd->split[1], "-t")))
+		{
+			if (cmd->split[2] && (ft_isdigit(cmd->split[2][0])))
+				return (ft_atoi(cmd->split[2]));
+			else
+				return (17);
+		}
 		else if (ft_isdigit(cmd->split[1][0]))
 			return (ft_atoi(cmd->split[1]));
 		else
 			return(error(7, NULL));
 	}
-	return (5000);
+	return (17);
 }
