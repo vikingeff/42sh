@@ -6,7 +6,7 @@
 #    By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/19 14:34:47 by cobrecht          #+#    #+#              #
-#    Updated: 2013/11/25 20:31:26 by cobrecht         ###   ########.fr        #
+#    Updated: 2014/02/25 10:01:48 by gleger           ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -39,16 +39,18 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
+	@mkdir obj
+	@mv $(OBJ) ./obj
 
 %.o: %.c
 	@gcc -c -Wall -Wextra -Werror $(SRC) -I.
 
 clean:
-	@rm -f $(OBJ)
+	@rm -rf ./obj
 
 fclean: clean
 	@rm -f $(NAME)
 
 re: fclean all
 
-.PHONY: all c clean fclean re 
+.PHONY: all clean fclean re 

@@ -6,11 +6,11 @@
 #    By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/03 14:29:03 by cobrecht          #+#    #+#              #
-#    Updated: 2014/02/03 14:43:19 by cobrecht         ###   ########.fr        #
+#    Updated: 2014/02/25 09:58:53 by gleger           ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
-NAME = minishell3
+NAME = 42sh
 
 SRC = 	main.c\
 		error.c\
@@ -85,24 +85,26 @@ SRC = 	main.c\
 
 OBJ = $(SRC:.c=.o)
 
-FLAG = -Wall -Wextra -Werror
+FLAG = -Wall -Wextra -Werror -O3 -g
 
 LIBFT = libft/libft.a
 
 all: $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT)
-	@cc $(FLAG) $(OBJ) $(LIBFT) -L /usr/lib -ltermcap -o $(NAME) -g
+	@cc $(FLAG) $(OBJ) $(LIBFT) -L /usr/lib -ltermcap -o $(NAME)
+	@mkdir ./obj
+	@mv $(OBJ) ./obj
 	@echo "compilation done."
 
 $(LIBFT):
 	@make -C libft
 
 %.o: src/%.c
-	@cc -c $(FLAGS) $< -I include/ -g
+	@cc -c $(FLAGS) $< -I include/
 
 clean:
-	@rm -f $(OBJ)
+	@rm -rf obj
 	@make -C libft clean
 
 fclean: clean
