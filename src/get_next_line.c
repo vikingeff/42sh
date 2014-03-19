@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/18 10:56:26 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/12 18:12:30 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/03/19 16:29:17 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <sys/types.h>
 #include <sys/uio.h>
-#include <unistd.h>
-#include <stdlib.h>
 #include "shell.h"
 
 #define BUFF_SIZE 2

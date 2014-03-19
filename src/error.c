@@ -3,42 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/14 13:53:09 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/28 16:56:35 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/03/19 16:23:13 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
-
-static void		usage(int err, char *detail);
-static void		err_system(int err, char *detail);
-static void		warning(int err, char *detail);
-int				term_error(int err);
 
 /*
 ** Display an error message with potential details.
 ** if ext option is set to 0 : return -1, else exit minishell.
 */
 
-int				error(int err, char *detail)
-{
-	ft_putstr_fd("\033[033m", 2);
-	if (err < 15)
-		usage(err, detail);
-	else if (err < 30)
-		err_system(err, detail);
-	else if (err < 45)
-		warning(err, detail);
-	else if (err == 666)
-	{
-		ft_putstr_fd(detail, 2);
-		ft_putstr_fd(": Event not found.", 2);
-	}
-	ft_putendl_fd("\033[m", 2);
-	return (-1);
-}
 
 /*
 ** error 0 - 15 : usage errors
@@ -143,5 +121,23 @@ int		term_error(int err)
 	else if (err == 4)
 		ft_putendl_fd("Can't make a copy of termios", 2);
 	ft_putstr_fd("\033[m", 2);
+	return (-1);
+}
+
+int				error(int err, char *detail)
+{
+	ft_putstr_fd("\033[033m", 2);
+	if (err < 15)
+		usage(err, detail);
+	else if (err < 30)
+		err_system(err, detail);
+	else if (err < 45)
+		warning(err, detail);
+	else if (err == 666)
+	{
+		ft_putstr_fd(detail, 2);
+		ft_putstr_fd(": Event not found.", 2);
+	}
+	ft_putendl_fd("\033[m", 2);
 	return (-1);
 }
