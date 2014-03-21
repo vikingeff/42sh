@@ -81,21 +81,21 @@ SRC = 	main.c\
 
 OBJ = $(SRC:.c=.o)
 
-FLAG = -Wall -Wextra -Werror
+FLAG = -Wall -Wextra -Werror -g
 
 LIBFT = libft/libft.a
 
 all: $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT)
-	@cc $(FLAG) $(OBJ) $(LIBFT) -L /usr/lib -ltermcap -o $(NAME) -g
+	@cc $(FLAG) $(OBJ) $(LIBFT) -L /usr/lib -ltermcap -o $(NAME)
 	@echo "compilation done."
 
 $(LIBFT):
 	@make -C libft
 
 %.o: src/%.c
-	@cc -c $(FLAGS) $< -I include/ -g
+	@cc -c $(FLAGS) $< -I include/
 
 clean:
 	@rm -f $(OBJ)
