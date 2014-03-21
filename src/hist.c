@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   hist.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/03 10:16:45 by rmasse            #+#    #+#             */
-/*   Updated: 2014/02/28 16:49:38 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/03/21 00:36:50 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
 #include "shell.h"
