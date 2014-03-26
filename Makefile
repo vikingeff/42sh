@@ -20,7 +20,9 @@ SRC = 	main.c\
 		sh_setenv.c\
 		sh_cd.c\
 		env_array_to_list.c\
-		env_tools.c\
+		env_list_to_array.c\
+		env_get_value.c\
+		env_list_add.c\
 		str_join_chr.c\
 		prompt_display.c\
 		get_next_line.c\
@@ -53,8 +55,12 @@ SRC = 	main.c\
 		ft_get_alias.c\
 		sh_unalias.c\
 		command_get.c\
-		term_modes.c\
+		term_ini.c\
+		term_edit_set.c\
+		term_canonical_mode.c\
 		term_put.c\
+		term_set_attr.c\
+		term_std_set.c\
 		keys.c\
 		key_jump.c\
 		key_jump_line.c\
@@ -119,5 +125,3 @@ git:
 	git push
 
 .PHONY: all clean fclean re git rtfm
-
-

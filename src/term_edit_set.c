@@ -1,32 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   term_put.c                                         :+:      :+:    :+:   */
+/*   term_edit_set.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/02/14 18:47:13 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/28 17:06:11 by cobrecht         ###   ########.fr       */
+/*   Created: 2014/02/22 00:47:42 by cobrecht          #+#    #+#             */
+/*   Updated: 2014/02/22 00:50:19 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int				puts_write(int c);
-
-/*
-**	apply the termcap id argument
-*/
-
-int				term_put(char *opt_id)
+void	term_edit_set(t_env *env)
 {
-	if (tputs(tgetstr(opt_id, NULL), 1, puts_write) == ERR)
-		return (-1);
-	return (0);
-}
-
-int				puts_write(int c)
-{
-	write(1, &c, 1);
-	return (1);
+	env->term_len = tgetnum("co");
+	term_put("vi");
+	term_put("im");
+	term_canonical_mode(env, 0);
 }

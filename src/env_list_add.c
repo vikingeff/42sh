@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   term_put.c                                         :+:      :+:    :+:   */
+/*   env_list_add.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/02/14 18:47:13 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/28 17:06:11 by cobrecht         ###   ########.fr       */
+/*   Created: 2014/02/03 17:29:27 by cobrecht          #+#    #+#             */
+/*   Updated: 2014/02/07 19:46:15 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int				puts_write(int c);
-
 /*
-**	apply the termcap id argument
+** add a node to env list.
+** 
 */
 
-int				term_put(char *opt_id)
+int		env_list_add(t_var **list, t_var **start)
 {
-	if (tputs(tgetstr(opt_id, NULL), 1, puts_write) == ERR)
-		return (-1);
-	return (0);
-}
+	t_var		*node;
 
-int				puts_write(int c)
-{
-	write(1, &c, 1);
-	return (1);
+	if ((node = (t_var*)malloc(sizeof(t_var))) == NULL)
+		return (error(15, "env_list_add ()"));
+	node->next = NULL;
+	if (*list == NULL)
+		*start = *list = node;
+	else
+	{
+		(*list)->next = node;
+		*list = node;
+	}
+	return (0);
 }

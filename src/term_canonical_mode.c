@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   term_put.c                                         :+:      :+:    :+:   */
+/*   term_canonical_mode.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/02/14 18:47:13 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/28 17:06:11 by cobrecht         ###   ########.fr       */
+/*   Created: 2014/02/14 18:42:16 by cobrecht          #+#    #+#             */
+/*   Updated: 2014/02/22 00:32:36 by cobrecht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int				puts_write(int c);
-
-/*
-**	apply the termcap id argument
-*/
-
-int				term_put(char *opt_id)
+/*turn on(1)/off(0) the terminal canonical mode*/
+int		term_canonical_mode(t_env *env, int mode)
 {
-	if (tputs(tgetstr(opt_id, NULL), 1, puts_write) == ERR)
+	if (mode == 0)
+		env->term->c_lflag &= ~(ICANON | ECHO);
+	else
+		env->term->c_lflag = env->canon_save;
+	if (term_set_attr(env->term))
 		return (-1);
 	return (0);
-}
-
-int				puts_write(int c)
-{
-	write(1, &c, 1);
-	return (1);
 }

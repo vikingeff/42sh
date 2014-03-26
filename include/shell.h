@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 14:44:57 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/28 18:02:40 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/03/26 11:20:07 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@
 # define JUMP_UP key[0] == 71683997260571
 # define JUMP_DOWN key[0] == 72783508888347
 
-
 extern pid_t		process_id;
 
 typedef struct s_env	t_env;
@@ -54,13 +53,8 @@ typedef struct s_dir	t_dir;
 typedef struct s_var	t_var;
 typedef struct s_cmd	t_cmd;
 typedef struct s_bar	t_bar;
-
-/*
-** term
-*/
-
 typedef struct termios	t_term;
-typedef struct s_char 	t_char;
+typedef struct s_char	t_char;
 typedef struct s_cur	t_cur;
 typedef struct s_comp	t_comp;
 
@@ -73,7 +67,7 @@ struct		s_comp
 	char	*end;
 	char	*final;
 	int		f_len;
-	int 	i;
+	int		i;
 };
 
 struct		s_cur
@@ -182,7 +176,6 @@ int		ft_tablen(char **table);
 char	**copy_table_i(char **table, int index);
 void	*ft_remember(t_cmd *cmd, t_dir *dir, t_env *env, int flag);
 int		wait_process(pid_t pid);
-
 void	sh_exit(t_cmd *cmd);
 int		sh_env(t_cmd *cmd, t_env *env, t_dir *dir);
 int		sh_unsetenv(t_cmd *cmd, t_env *env);
@@ -197,7 +190,6 @@ char	*get_newpath(char **modif, t_dir *dir, char *curpath);
 int		sh_echo(t_cmd *cmd, t_env *env, t_dir *dir);
 int		sh_alias(t_cmd *cmd);
 int		sh_unalias(t_cmd *cmd);
-
 void	command_get(t_env *env, t_cmd *cmd);
 int		command_parse(t_cmd *cmd, t_env *env, t_dir *dir);
 int		command_get_env(t_cmd *cmd, t_env *env, t_dir *dir);
@@ -207,28 +199,18 @@ int		command_execute_no_wait(t_cmd *cmd, t_env *env, t_dir *dir);
 int		command_execute_simple(t_list *arg,
 	t_cmd *cmd, t_env *env, t_dir *dir);
 int		ft_main_loop(t_cmd *cmd, t_dir *dir, t_env *env, t_list **arg);
-/*
-** terminal
-*/
-
 int		term_canonical_mode(t_env *env, int mode);
 int		term_ini(t_env *env);
 int		term_put(char *opt_id);
 int		term_set_attr(t_term *term);
 void	term_edit_set(t_env *env);
 void	term_std_set(t_env *env);
-
-/*
-** line edition
-*/
-
 int		edit_key(long key[], t_cmd *cmd, t_cur *cursor, t_char **list);
 t_char	*edit_char_add(t_char *list, long chr, t_cur *cursor, t_cmd *cmd);
 t_char	*edit_char_del(t_char *list, t_cmd *cmd, t_cur *cursor);
 void	edit_erase_display(t_cur *cursor);
 void	edit_line_display(t_char *list, t_cur *cursor, t_cmd *cmd, t_env *env);
 char	*edit_list_to_str(t_char *list, t_cmd *cmd, t_cur *cursor);
-
 void	k_esc(t_cmd *cmd);
 void	k_left(t_cur *cursor, t_char **list);
 void	k_right(t_cmd *cmd, t_cur *cursor, t_char **list);
@@ -241,24 +223,9 @@ void	k_jump_word_prev(t_cur *cursor, t_char **list);
 void	k_jump_word_next(t_cmd *cmd, t_cur *cursor, t_char **list);
 void	k_jump_up(t_char **list, t_cur *cursor, t_cmd *cmd);
 void	k_jump_down(t_char **list, t_cur *cursor, t_cmd *cmd);
-
-/*
-** signal
-*/
-
 void	ft_signal(void);
-
-/*
-** utility
-*/
-
 char	**ft_strsplit_all(char const *s);
 char	**ft_tab_dup(char **table);
-
-/*
-** sh2
-*/
-
 t_var	*env_lst_copy(t_env *env);
 t_list	*ft_add_arg(char *str, char *type, t_list *list);
 t_list	*ft_parser(char *str);
@@ -273,27 +240,14 @@ void	ft_dup2(int newfd, int oldfd);
 int		ft_execute(t_list *arg, t_cmd *cmd, t_env *env, t_dir *dir);
 int		ft_execute_no_wait(t_list *arg, t_cmd *cmd, t_env *env, t_dir *dir);
 void	ft_close(int fd[2]);
-
-/*
-** free arg
-*/
-
+t_list	*ft_close_arg(int fd[2], t_list *arg);
+int		ft_init_pipe(int pipenb, int *pipeval);
 void	ft_free_arg(t_list **arg);
 t_list	*ft_free_one(t_list *list);
 void	delete_temp_free(t_list **arg, t_cmd *cmd, t_env *env, t_dir *dir);
-
-/*
-** pipe
-*/
-
 int		ft_count_pipe(t_list *arg);
 t_list	*ft_pipe(t_list *arg, t_dir *dir, t_env *env, t_cmd *cmd);
 void	ft_close_pipe(int *fdpipe, int pipenb);
-
-/*
-** history
-*/
-
 t_hist	*create_list(void);
 void	add_ahead(t_hist *elem, char *data, char *time, int index);
 t_hist	*list_filling(t_hist *hist, char *av);
@@ -307,11 +261,6 @@ void	hist_navig(long key[], t_cmd *cmd, t_cur *cursor, t_char **list);
 int		hist_chr(t_cmd *cmd, t_dir *dir, t_env *env);
 int		filling_checking(t_cmd *cmd);
 void	ft_lauch_history(t_cmd *cmd, t_dir *dir, t_env *env, char *newcmd);
-
-/*
-** BONUS : inib, local var, backquote, alias
-*/
-
 int		ft_inib_starter(t_cmd *cmd);
 void	ft_get_var(t_cmd *cmd, t_env *env);
 void	ft_open_close(void);
@@ -327,4 +276,4 @@ char	*fill_completion(t_cmd *cmd, char *str, int status, int flag);
 int		ft_find_status(char *str, int begin);
 void	ft_globing(t_cmd *cmd);
 
-#endif /*SHELL_H*/
+#endif

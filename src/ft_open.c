@@ -6,7 +6,7 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 12:02:54 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/03/26 00:19:14 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/26 11:19:46 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int		ft_fd_tmp(char *str)
 	char	*line;
 	int		fd;
 
-	fd = open("/tmp/sh.heredoc", O_RDWR | O_TRUNC | O_CREAT, 0666);
+	fd = open("/tmp/sh.heredoc", O_RDWR| O_TRUNC | O_CREAT, 0666);
 	ft_putstr("? ");
 	while (get_next_line(0, &line) && ft_strcmp(str, line))
 	{
@@ -67,4 +67,16 @@ int				ft_get_fd(t_list *dir)
 		select = 3;
 	fd = ft_open(dir->valeure, select);
 	return (fd);
+}
+
+t_list		*ft_close_arg(int fd[2], t_list *arg)
+{
+	ft_close(fd);
+	return (arg);
+}
+
+int			ft_init_pipe(int pipenb, int *pipeval)
+{
+	*pipeval = pipenb;
+	return (1);
 }
