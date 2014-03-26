@@ -6,7 +6,7 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/09 17:53:36 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/03/26 13:46:07 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/26 16:51:55 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,12 @@ static int		setenv_isvalid(t_cmd *cmd, t_env *env)
 	return (0);
 }
 
+static t_var	*init_strings(t_var *src, t_var **p_var)
+{
+	*p_var = src;
+	return (*p_var);
+}
+
 int				sh_setenv(t_cmd *cmd, t_env *env)
 {
 	t_var		*temp;
@@ -47,7 +53,8 @@ int				sh_setenv(t_cmd *cmd, t_env *env)
 	start = NULL;
 	if (setenv_isvalid(cmd, env))
 		return (1);
-	temp = p_var = env->var;
+	temp = init_strings(env->var, &p_var);
+	//temp = p_var = env->var;
 	while (p_var)
 	{
 		if (ft_strcmp(cmd->split[1], p_var->name) == 0)

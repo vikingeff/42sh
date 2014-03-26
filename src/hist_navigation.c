@@ -6,17 +6,18 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/22 17:00:00 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/03/26 13:54:40 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/26 16:21:55 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-static void cursor_reset(t_cur *cursor)
+static int	cursor_reset(t_cur *cursor)
 {
 	cursor->x = 0;
 	cursor->y = 1;
 	cursor->line_x = cursor->prompt_len;
+	return (-1);
 }
 
 static void	restore_current(t_cmd *cmd, t_cur *cursor, t_char **list)
@@ -63,7 +64,6 @@ static void	nav_down(t_cmd *cmd, t_cur *cursor, t_char **list)
 	int		i;
 	char	*trash;
 
-	i = -1;
 	if (!cmd->nav)
 		return ;
 	if (*list)
@@ -72,7 +72,7 @@ static void	nav_down(t_cmd *cmd, t_cur *cursor, t_char **list)
 		free(trash);
 		*list = NULL;
 	}
-	cursor_reset(cursor);
+	i = cursor_reset(cursor);
 	if (cmd->nav->next)
 	{
 		cmd->nav = cmd->nav->next;

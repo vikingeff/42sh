@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   completion.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/25 17:45:19 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/02/28 17:25:36 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/03/26 14:35:09 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ static int		get_begin(char *str, int cur)
 	return (0);
 }
 
-static void		free_comp(t_comp *comp, t_cmd *cmd, t_cur *cur, t_char **list)
+static void		free_comp(t_comp *comp, t_cmd *cmd, t_cur *cur,\
+	t_char **list)
 {
 	comp->i = -1;
 	*list = NULL;

@@ -90,7 +90,7 @@ LIBFT = libft/libft.a
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(LIBFT)
+$(NAME): $(OBJ) $(LIBFT) ./include/shell.h
 	@cc $(FLAG) $(OBJ) $(LIBFT) -L /usr/lib -ltermcap -o $(NAME)
 	@echo "\033[1;32;m[Compilation done]\033[0m"
 

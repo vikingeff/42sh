@@ -6,7 +6,7 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 20:45:37 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/03/19 15:20:17 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/26 14:34:57 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ static void		edit_ini(t_cur *cur, t_env *env, t_cmd *cmd, t_char **list)
 	ft_putstr("\033[7m \033[m");
 }
 
-static void		edit_update(t_env *env, t_cur *cur, t_cmd *cmd, t_char **list)
+static void		edit_update(t_env *env, t_cur *cur, t_cmd *cmd,\
+	t_char **list)
 {
 	char	*n_term;
 	char	*trash;
@@ -64,7 +65,8 @@ static int		edit_signal(t_cur *cur, t_env *env, t_cmd *cmd, t_char **list)
 	return (1);
 }
 
-static void		command_set(t_cur *cur, t_env *env, t_cmd *cmd, t_char **list)
+static void		command_set(t_cur *cur, t_env *env, t_cmd *cmd,\
+	t_char **list)
 {
 	if (*list)
 	{
