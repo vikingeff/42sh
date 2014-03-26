@@ -6,13 +6,12 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 18:42:16 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/03/19 14:49:17 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/26 01:14:22 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-/*turn on(1)/off(0) the terminal canonical mode*/
 int		term_canonical_mode(t_env *env, int mode)
 {
 	if (mode == 0)
@@ -46,7 +45,6 @@ int		term_ini(t_env *env)
 	return (0);
 }
 
-/*apply the new set of attributs in the terminal*/
 int		term_set_attr(t_term *term)
 {
 	if (tcsetattr(0, TCSADRAIN, term) == -1)

@@ -6,7 +6,7 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/17 17:57:50 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/03/25 21:05:31 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/25 21:41:54 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ static int		stop_display(t_cmd *cmd)
 	return (1);
 }
 
-void			edit_line_display(t_char *list, t_cur *cur, t_cmd *cmd, t_env *env)
+void			edit_line_display(t_char *list, t_cur *cur, t_cmd *cmd,\
+	t_env *env)
 {
 	int		cur_diff;
 	t_char	*start;

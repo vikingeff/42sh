@@ -6,13 +6,11 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 20:48:30 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/03/25 21:24:19 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/25 21:35:10 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
-
-extern pid_t		process_id;
 
 static int		command_execve(t_cmd *cmd)
 {
@@ -39,6 +37,7 @@ static int		process_fork(t_cmd *cmd)
 {
 	int			i;
 	int			ret;
+	pid_t		process_id;
 
 	process_id = fork();
 	if (process_id > 0)

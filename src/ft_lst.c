@@ -6,7 +6,7 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/11 15:21:51 by rda               #+#    #+#             */
-/*   Updated: 2014/03/19 16:29:48 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/26 00:18:06 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ t_list	*ft_lstadd_first(t_list *lst, t_list *new)
 		return (new);
 	save = lst;
 	while (lst->next)
-	lst = lst->next;
+		lst = lst->next;
 	lst->next = new;
 	new->prev = lst;
 	return (save);

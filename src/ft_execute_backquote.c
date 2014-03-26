@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_execute_backquote.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/16 18:39:10 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/02/28 14:49:28 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/03/26 00:14:01 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ static void	lauch_execute_backquote(t_cmd *cmd,
 	array2d_free(c_cmd.split);
 	ft_open_close();
 }
-
 
 static char	*ft_find_quote(t_cmd *cmd, t_env *env, int index, int count)
 {

@@ -6,10 +6,9 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 19:35:16 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/03/19 15:09:33 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/26 00:42:23 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "shell.h"
 
@@ -33,7 +32,7 @@ static char		*put_path(int *home, int *i, t_dir *dir, char **pwd)
 
 	str = NULL;
 	if (*home == 1)
-			str = ft_strjoin("/", pwd[*i]);
+		str = ft_strjoin("/", pwd[*i]);
 	else if (ft_strcmp(pwd[*i], dir->user) == 0)
 	{
 		str = ft_strdup("~");
@@ -70,10 +69,6 @@ static char		*put_prompt(t_dir *dir, char *str, char *tmp, char *tmp2)
 	array2d_free(pwd);
 	return (str);
 }
-
-/*
-** display the user path from his home to his current directory
-*/
 
 char			*prompt_display(t_dir *dir)
 {

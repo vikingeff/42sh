@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_alias.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/17 19:51:45 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/02/18 15:57:25 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/03/26 00:15:58 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-t_list			*ft_find_list(t_list *list, char *str)
+t_list		*ft_find_list(t_list *list, char *str)
 {
 	t_list	*find;
 
@@ -26,7 +26,7 @@ t_list			*ft_find_list(t_list *list, char *str)
 	return (NULL);
 }
 
-int		ft_find_rule(char *str, int index)
+int			ft_find_rule(char *str, int index)
 {
 	if ((index - 1) > 0 && (str[index - 1] == '|'
 		|| str[index - 1] == ';' || str[index - 1] == '`'))
@@ -34,13 +34,13 @@ int		ft_find_rule(char *str, int index)
 	if ((index - 2) > 0)
 		if ((str[index - 1] == '&' && str[index - 2] == '&')
 			|| (str[index - 1] == '|' && str[index - 2] == '|'))
-		return (1);
+			return (1);
 	if ((index - 1) > 0 && str[index - 1] == '|')
 		return (1);
 	return (0);
 }
 
-void	ft_init_alias(t_cmd *cmd, char **tmp, t_list *alias, int index)
+void		ft_init_alias(t_cmd *cmd, char **tmp, t_list *alias, int index)
 {
 	char	*end;
 
@@ -52,7 +52,7 @@ void	ft_init_alias(t_cmd *cmd, char **tmp, t_list *alias, int index)
 	free(end);
 }
 
-int		ft_find_alias(t_cmd *cmd, int index)
+int			ft_find_alias(t_cmd *cmd, int index)
 {
 	char	**tmp;
 	char	*end;
@@ -80,7 +80,7 @@ int		ft_find_alias(t_cmd *cmd, int index)
 	return (0);
 }
 
-void	ft_get_alias(t_cmd *cmd)
+void		ft_get_alias(t_cmd *cmd)
 {
 	int	index;
 	int	rule;

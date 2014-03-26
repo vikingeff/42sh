@@ -6,7 +6,7 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/04 16:29:36 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/03/19 15:16:49 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/26 01:13:49 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,6 @@ static t_var	*cell_first_delete(t_var *p_var, t_var **prev)
 	p_var = NULL;
 	return (p_var);
 }
-
-/*
-** erase minishell env variables given as arguments
-** return 0 if no error or -1 if the variable doesn't exist or cannot be unset
-** because it is used by minishell.
-*/
 
 int				sh_unsetenv(t_cmd *cmd, t_env *env)
 {

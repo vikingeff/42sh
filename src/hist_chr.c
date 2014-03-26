@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hist_chr.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/22 17:47:36 by rmasse            #+#    #+#             */
-/*   Updated: 2014/02/28 19:30:06 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/03/26 00:27:06 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	hist_chr_is_valid(t_cmd *cmd, t_hist *save)
 			i++;
 		if (ft_strlen(cmd->split[0]) == i)
 		{
-			str = ft_strsub(cmd->split[0], 1 , ft_strlen(cmd->split[0]));
+			str = ft_strsub(cmd->split[0], 1, ft_strlen(cmd->split[0]));
 			i = ft_atoi(str);
 			if (i > save->index)
 				return (error(34, cmd->split[0]));
@@ -100,7 +100,7 @@ int			hist_chr(t_cmd *cmd, t_dir *dir, t_env *env)
 		return (error(34, cmd->split[0]));
 	cmd_i = hist_chr_is_valid(cmd, save);
 	if (cmd_i == 0)
-		str = ft_strsub(cmd->split[0], 1 , ft_strlen(cmd->split[0]));
+		str = ft_strsub(cmd->split[0], 1, ft_strlen(cmd->split[0]));
 	while (save)
 	{
 		if (cmd_i == 0)

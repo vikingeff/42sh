@@ -6,7 +6,7 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 17:24:21 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/03/19 15:27:32 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/25 22:03:50 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,31 +45,25 @@ static char		*str_parse_value(char *var)
 	int			start;
 	int			i;
 
-	i = start = 0;
+	i = 0;
+	start = 0;
 	value = NULL;
 	var_len = ft_strlen(var);
 	while (var[start - 1] != '=' && i < var_len)
 		start++;
 	while (var[start + i])
 		i++;
-	if (!(value = (char*)malloc(sizeof(char) * (i + 1))))
+	if (!(value = (char *)malloc(sizeof(char) * (i + 1))))
 	{
 		error(15, "env_get_value()");
 		return (NULL);
 	}
-	i = 0;
-	while (var[start + i])
-	{
+	i = -1;
+	while (var[start + ++i])
 		value[i] = var[start + i];
-		i++;
-	}
 	value[i] = '\0';
 	return (value);
 }
-
-/*
-** make a list from the env array
-*/
 
 t_var			*env_array_to_list(t_env *env)
 {

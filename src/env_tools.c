@@ -6,16 +6,11 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 17:53:04 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/03/19 16:18:27 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/26 00:11:19 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
-
-/*
-** convert env *list into env **array for excve() use
-** if var->temp !NULL, the variable will be set to temp
-*/
 
 char			**env_list_to_array(t_var *var, int size)
 {
@@ -40,11 +35,7 @@ char			**env_list_to_array(t_var *var, int size)
 	return (array);
 }
 
-/*
-** add a node to env list.
-*/
-
-int		env_list_add(t_var **list, t_var **start)
+int				env_list_add(t_var **list, t_var **start)
 {
 	t_var		*node;
 
@@ -52,7 +43,10 @@ int		env_list_add(t_var **list, t_var **start)
 		return (error(15, "env_list_add ()"));
 	node->next = NULL;
 	if (*list == NULL)
-		*start = *list = node;
+	{
+		*start = *list;
+		*list = node;
+	}
 	else
 	{
 		(*list)->next = node;

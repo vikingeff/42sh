@@ -3,25 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   sh_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/04 18:04:13 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/25 17:10:41 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/03/26 00:43:16 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "shell.h"
-
-/*
-** change the current directory according to the given argument path and
-** change the env variables PWD and OLDPWD according to it.
-** ----- OPTIONS -----
-** if no path or '~' : the new dir will be the home path.
-** if '-' : the new dir will be the last known path.
-** if starts with '/' : the new dir will be an absolute path.
-** if starts with '..' : the new dir will be step back on the path branch
-*/
 
 static void		change_dir(char *n_dir, t_dir *dir, t_cmd *cmd, t_env *env)
 {

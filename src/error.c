@@ -6,21 +6,11 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/14 13:53:09 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/03/19 16:23:13 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/26 00:12:49 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
-
-/*
-** Display an error message with potential details.
-** if ext option is set to 0 : return -1, else exit minishell.
-*/
-
-
-/*
-** error 0 - 15 : usage errors
-*/
 
 static void		usage(int err, char *detail)
 {
@@ -51,10 +41,6 @@ static void		usage(int err, char *detail)
 		ft_putstr_fd("History [-c] | [n]", 2);
 }
 
-/*
-** error 15 - 30 : system errors
-*/
-
 static void		err_system(int err, char *detail)
 {
 	ft_putstr_fd("System error : ", 2);
@@ -68,10 +54,6 @@ static void		err_system(int err, char *detail)
 		ft_putstr_fd("failure on get_next_line(user's command)", 2);
 	}
 }
-
-/*
-** error 30 - 45 : warnings
-*/
 
 static void		warning(int err, char *detail)
 {
@@ -102,11 +84,7 @@ static void		warning(int err, char *detail)
 	}
 }
 
-/*
-** term
-*/
-
-int		term_error(int err)
+int				term_error(int err)
 {
 	ft_putstr_fd("\033[033m", 2);
 	ft_putstr("Error termios: ");

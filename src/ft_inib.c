@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_inib.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/15 16:18:03 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/02/26 16:36:37 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/03/26 00:20:42 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,17 @@ static int		ft_inib(t_cmd *cmd, int index, int rule)
 				rule = 0;
 			ft_delete_char(cmd, index);
 		}
-		if (cmd->raw[index] == '\\'&& (!rule
+		if (cmd->raw[index] == '\\' && (!rule
 			|| (rule == '\"' && special_char(cmd->raw[index + 1]))))
 		{
 			ft_delete_char(cmd, index);
 			if (cmd->raw[index] != '\n')
-				cmd->raw[index] = - 1 * cmd->raw[index];
+				cmd->raw[index] = -1 * cmd->raw[index];
 			else
 				ft_delete_char(cmd, index);
 		}
 		if (rule == '\'' || (rule == '\"' && !ft_avoid_char(cmd->raw[index])))
-			cmd->raw[index] = - 1 * cmd->raw[index];
+			cmd->raw[index] = -1 * cmd->raw[index];
 		index++;
 	}
 	return (rule);
@@ -69,11 +69,10 @@ int				ft_get_backquote(t_cmd *cmd, int index, int rule)
 			index++;
 		}
 		if (rule)
-			cmd->raw[index] = - 1 * cmd->raw[index];
+			cmd->raw[index] = -1 * cmd->raw[index];
 		index++;
 	}
 	return (rule);
-
 }
 
 int				ft_inib_starter(t_cmd *cmd)

@@ -6,7 +6,7 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/18 10:56:26 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/03/19 16:29:17 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/26 00:23:41 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ static char		*string_join(char const *s1, char const *s2)
 	return (r);
 }
 
-/*use fct: strnew, strsub, strlen, strchr*/
 int				get_next_line(const int fd, char **line)
 {
 	ssize_t		sz;

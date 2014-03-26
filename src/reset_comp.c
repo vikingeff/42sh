@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   reset_comp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/27 12:08:41 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/02/27 12:09:40 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/03/26 00:42:53 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-void			reset_comp(t_cmd *cmd)
+void		reset_comp(t_cmd *cmd)
 {
 	free(cmd->actual);
 	cmd->actual = NULL;

@@ -6,7 +6,7 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/09 17:53:36 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/03/19 15:15:59 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/26 01:12:44 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,6 @@ static int		sh_setenv_var(t_var *p_var, t_cmd *cmd, t_env *env)
 	cmd->env = env_list_to_array(env->var, env->nb);
 	return (0);
 }
-
-/*
-** if no arguments, print the env variables
-*/
 
 static int		setenv_isvalid(t_cmd *cmd, t_env *env)
 {
@@ -41,12 +37,6 @@ static int		setenv_isvalid(t_cmd *cmd, t_env *env)
 			return (error(2, NULL));
 	return (0);
 }
-
-/*
-** setenv <name> <value>
-** erase the named env variable value, and replace it with the argument 2
-** creates a new variable if it doesn't already exists
-*/
 
 int				sh_setenv(t_cmd *cmd, t_env *env)
 {

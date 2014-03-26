@@ -6,13 +6,13 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/27 12:15:31 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/03/19 15:23:30 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/26 01:16:31 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-static int		ft_find_rule(char *str, int index)
+static int	ft_find_rule(char *str, int index)
 {
 	if ((index - 1) > 0 && (str[index - 1] == '|'
 		|| str[index - 1] == ';' || str[index - 1] == '`'))
@@ -20,16 +20,16 @@ static int		ft_find_rule(char *str, int index)
 	if ((index - 2) > 0)
 		if ((str[index - 1] == '&' && str[index - 2] == '&')
 			|| (str[index - 1] == '|' && str[index - 2] == '|'))
-		return (1);
+			return (1);
 	if ((index - 1) > 0 && str[index - 1] == '|')
 		return (1);
 	return (0);
 }
 
-int				ft_find_status(char *str, int begin)
+int			ft_find_status(char *str, int begin)
 {
-	int			rule;
-	int			index;
+	int		rule;
+	int		index;
 
 	index = 0;
 	rule = 1;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_open.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 12:02:54 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/03/03 19:13:00 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/03/26 00:19:14 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int		ft_fd_tmp(char *str)
 	char	*line;
 	int		fd;
 
-	fd = open("/tmp/sh.heredoc", O_RDWR| O_TRUNC | O_CREAT, 0666);
+	fd = open("/tmp/sh.heredoc", O_RDWR | O_TRUNC | O_CREAT, 0666);
 	ft_putstr("? ");
 	while (get_next_line(0, &line) && ft_strcmp(str, line))
 	{

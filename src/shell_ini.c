@@ -6,7 +6,7 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 16:04:28 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/03/19 15:18:16 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/26 01:14:02 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,6 @@ static void		command_ini(t_cmd *cmd)
 	cmd->s_cursor = -1;
 	cmd->sig = 0;
 }
-
-/*
-** initialise shell data
-*/
 
 int				shell_ini(t_cmd *cmd, t_dir *dir, t_env *env, char **environ)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_modify_arg.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/23 18:47:02 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/02/18 18:23:33 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/03/26 00:18:25 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static char	*ft_get_result(char *str)
 	int	index;
 
 	if (str[0] == '>' || str[0] == '<')
-	str++;
+		str++;
 	while (str[index])
 	{
 		if (str[index] == '>' || str[index] == '<' || str[index] == '|')

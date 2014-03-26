@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser_direct.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/23 18:33:26 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/02/18 18:25:26 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/03/26 00:19:54 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,17 @@ static int	ft_wood(t_list *arg, int in, int out)
 	if (ft_strcmp(arg->valeure, ";") == 0 && (arg->prev == NULL ||
 		(arg->prev != NULL && ft_strcmp(arg->prev->valeure, ";") == 0))
 		&& (in > 1 || out > 1))
-			return (1);
+		return (1);
 	else if (ft_strcmp(arg->valeure, "|") == 0 && arg->prev != NULL &&
 		ft_strcmp(arg->prev->valeure, "|") == 0 && (in > 0 || out > 0))
-			return (1);
+		return (1);
 	else if (ft_strcmp(arg->valeure, ";") == 0 && arg->prev != NULL &&
 		ft_strcmp(arg->prev->valeure, "|") == 0 && (in > 0 || out > 1))
-			return (1);
+		return (1);
 	else if (ft_strcmp(arg->valeure, "|") == 0 && (arg->prev == NULL ||
 		(arg->prev != NULL && ft_strcmp(arg->prev->valeure, ";") == 0))
 		&& (in > 1 || out > 0))
-			return (1);
+		return (1);
 	return (0);
 }
 

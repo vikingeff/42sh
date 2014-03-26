@@ -10,13 +10,11 @@
 #                                                                              #
 #******************************************************************************#
 
-
 NAME = 42sh
 
 SRC = 	main.c\
 		error.c\
 		shell_ini.c\
-		sh_exit.c\
 		sh_env.c\
 		sh_unsetenv.c\
 		sh_setenv.c\
@@ -42,7 +40,7 @@ SRC = 	main.c\
 		ft_pipe.c\
 		ft_execute.c\
 		ft_close_count_pipe.c\
-		sh_echo.c\
+		sh_tool.c\
 		ft_inib.c\
 		ft_parser.c\
 		sh_env_utility.c\
@@ -51,7 +49,6 @@ SRC = 	main.c\
 		sh_cd_goto.c\
 		ft_execute_backquote.c\
 		ft_delete_char.c\
-		sh_cmd.c\
 		sh_alias.c\
 		ft_get_alias.c\
 		sh_unalias.c\
@@ -59,8 +56,8 @@ SRC = 	main.c\
 		term_modes.c\
 		term_put.c\
 		keys.c\
-		key_JUMP.c\
-		key_JUMP_LINE.c\
+		key_jump.c\
+		key_jump_line.c\
 		edit_key.c\
 		edit_char_add.c\
 		edit_char_del.c\
@@ -81,7 +78,7 @@ SRC = 	main.c\
 
 OBJ = $(SRC:.c=.o)
 
-FLAG = -Wall -Wextra -Werror -g
+FLAG = -Wall -Wextra -Werror -g -O3
 
 LIBFT = libft/libft.a
 
@@ -89,19 +86,22 @@ all: $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT)
 	@cc $(FLAG) $(OBJ) $(LIBFT) -L /usr/lib -ltermcap -o $(NAME)
-	@echo "compilation done."
+	@echo "\033[1;32;m[Compilation done]\033[0m"
 
 $(LIBFT):
+	@echo "\033[1;36;m[Compiling Libft]\033[0m"
 	@make -C libft
 
 %.o: src/%.c
 	@cc -c $(FLAGS) $< -I include/
 
 clean:
+	@echo "\033[0;33;m[Cleaning objects]\033[0m"
 	@rm -f $(OBJ)
 	@make -C libft clean
 
 fclean: clean
+	@echo "\033[0;31;m[Deleting $(NAME)]\033[0m"
 	@rm -f $(NAME)
 	@make -C libft fclean
 
