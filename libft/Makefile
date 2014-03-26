@@ -36,19 +36,20 @@ OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) libft.h
+	@echo "\033[1;36;m[Compiling Libft]\033[0m"
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
-	@mkdir obj
-	@mv $(OBJ) ./obj
 
 %.o: %.c
-	@gcc -c -Wall -Wextra -Werror $(SRC) -I.
+	@gcc -c -Wall -Wextra -Werror $(SRC) -g -O3 -I.
 
 clean:
-	@rm -rf ./obj
+	@echo "\033[0;33;m[Cleaning libft objects]\033[0m"
+	@rm -f $(OBJ)
 
 fclean: clean
+	@echo "\033[0;31;m[Deleting $(NAME)]\033[0m"
 	@rm -f $(NAME)
 
 re: fclean all

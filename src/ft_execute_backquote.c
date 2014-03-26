@@ -6,7 +6,7 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/16 18:39:10 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/03/26 00:14:01 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/26 17:48:44 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ static void	lauch_execute_backquote(t_cmd *cmd,
 	if (arg)
 		ft_free_arg(&arg);
 	ft_free_c_env(&c_env, &c_cmd, &c_dir);
-	array2d_free(c_cmd.split);
 	ft_open_close();
 }
 

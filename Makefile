@@ -10,7 +10,7 @@
 #                                                                              #
 #******************************************************************************#
 
-NAME = 42sh
+NAME = pouetcsh
 
 SRC = 	main.c\
 		error.c\
@@ -90,29 +90,28 @@ LIBFT = libft/libft.a
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(LIBFT) ./include/shell.h
+$(NAME): $(OBJ) ./include/shell.h $(LIBFT) 
 	@cc $(FLAG) $(OBJ) $(LIBFT) -L /usr/lib -ltermcap -o $(NAME)
 	@echo "\033[1;32;m[Compilation done]\033[0m"
 
 $(LIBFT):
-	@echo "\033[1;36;m[Compiling Libft]\033[0m"
 	@make -C libft
+	@echo "\033[1;35;m[Linking Libft]\033[0m"
 
 %.o: src/%.c
 	@cc -c $(FLAGS) $< -I include/
 
 clean:
+	@make -C libft clean
 	@echo "\033[0;33;m[Cleaning objects]\033[0m"
 	@rm -f $(OBJ)
-	@make -C libft clean
 
 fclean: clean
+	@make -C libft fclean
 	@echo "\033[0;31;m[Deleting $(NAME)]\033[0m"
 	@rm -f $(NAME)
-	@make -C libft fclean
 
 re: fclean all
-	@make -C libft re
 
 rtfm:
 	cd ./MAN
