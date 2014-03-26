@@ -6,13 +6,13 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 14:46:47 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/03/26 00:37:08 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/26 13:54:26 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-pid_t		process_id;
+pid_t		g_process_id;
 
 int		ft_main_loop(t_cmd *cmd, t_dir *dir, t_env *env, t_list **arg)
 {
@@ -36,7 +36,7 @@ int		main(int ac, char **environ)
 	t_list	*arg;
 
 	arg = NULL;
-	process_id = -2;
+	g_process_id = -2;
 	ft_signal();
 	if (ac > 1)
 		return (error(0, NULL));

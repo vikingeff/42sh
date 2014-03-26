@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   term_set_attr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 18:44:48 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/19 14:40:10 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/03/26 13:45:05 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-/*apply the new set of attributs in the terminal*/
 int		term_set_attr(t_term *term)
 {
 	if (tcsetattr(0, TCSADRAIN, term) == -1)

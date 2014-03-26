@@ -6,7 +6,7 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 14:44:57 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/03/26 11:20:07 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/26 13:54:12 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@
 # define JUMP_UP key[0] == 71683997260571
 # define JUMP_DOWN key[0] == 72783508888347
 
-extern pid_t		process_id;
+extern pid_t		g_process_id;
 
 typedef struct s_env	t_env;
 typedef struct s_dir	t_dir;

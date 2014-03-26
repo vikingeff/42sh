@@ -6,7 +6,7 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/12 19:07:35 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/03/26 00:36:51 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/26 13:55:03 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	ft_get_signal(int n)
 
 	if (n == SIGINT)
 	{
-		if (kill(process_id, SIGINT) == -1)
+		if (kill(g_process_id, SIGINT) == -1)
 		{
 			cmd = ft_remember(NULL, NULL, NULL, 1);
 			cmd->sig = 1;

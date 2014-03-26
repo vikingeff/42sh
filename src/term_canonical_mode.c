@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   term_canonical_mode.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 18:42:16 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/22 00:32:36 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/03/26 13:47:08 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-/*turn on(1)/off(0) the terminal canonical mode*/
 int		term_canonical_mode(t_env *env, int mode)
 {
 	if (mode == 0)

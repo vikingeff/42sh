@@ -3,19 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   env_list_to_array.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 17:53:04 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/05 16:44:45 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/03/26 13:48:11 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
-
-/*
-** convert env *list into env **array for excve() use
-** if var->temp !NULL, the variable will be set to temp
-*/
 
 char			**env_list_to_array(t_var *var, int size)
 {

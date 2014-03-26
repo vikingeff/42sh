@@ -6,18 +6,18 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 12:02:54 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/03/26 11:19:46 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/26 13:53:24 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-static int		ft_fd_tmp(char *str)
+static int	ft_fd_tmp(char *str)
 {
 	char	*line;
 	int		fd;
 
-	fd = open("/tmp/sh.heredoc", O_RDWR| O_TRUNC | O_CREAT, 0666);
+	fd = open("/tmp/sh.heredoc", O_RDWR | O_TRUNC | O_CREAT, 0666);
 	ft_putstr("? ");
 	while (get_next_line(0, &line) && ft_strcmp(str, line))
 	{
@@ -30,7 +30,7 @@ static int		ft_fd_tmp(char *str)
 	return (fd);
 }
 
-static int		ft_open(char *str, int select)
+static int	ft_open(char *str, int select)
 {
 	int	fd;
 
@@ -51,7 +51,7 @@ static int		ft_open(char *str, int select)
 	return (fd);
 }
 
-int				ft_get_fd(t_list *dir)
+int			ft_get_fd(t_list *dir)
 {
 	int	fd;
 	int	select;
