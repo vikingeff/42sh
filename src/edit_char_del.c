@@ -6,7 +6,7 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/16 16:22:36 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/03/25 21:03:05 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/26 09:10:50 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_char			*edit_char_del(t_char *list, t_cmd *cmd, t_cur *cursor)
 		connection_next(&list, &list_tmp);
 	if (list->prev)
 		connection_prev(&list, &list_tmp);
-	free (list);
+	free(list);
 	list = NULL;
 	cmd->len--;
 	cursor->x -= 1;

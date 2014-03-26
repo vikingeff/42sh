@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pipe.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/23 19:03:38 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/03/03 19:20:18 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/03/26 10:22:59 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ t_list		*ft_pipe(t_list *arg, t_dir *dir, t_env *env, t_cmd *cmd)
 			fd[1] = ft_pipe1(fd, arg, fdpipe, count);
 			fd[0] = ft_pipe0(fd, arg, fdpipe, count);
 			ft_close_pipe(fdpipe, pipenb);
-			if (fd[1] != -1 && fd[0] == -1)
+			//if (fd[1] != -1 && fd[0] == -1)
 				ft_execute_no_wait(arg, cmd, env, dir);
 			exit(0);
 		}

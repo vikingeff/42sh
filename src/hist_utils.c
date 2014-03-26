@@ -6,11 +6,10 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 15:47:53 by rmasse            #+#    #+#             */
-/*   Updated: 2014/03/21 00:36:47 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/26 09:11:37 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <time.h>
 #include "shell.h"
 
