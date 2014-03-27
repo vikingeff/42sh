@@ -6,11 +6,11 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 22:59:48 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/03/26 01:12:26 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/27 09:20:53 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 t_var			*env_lst_copy(t_env *env)
 {

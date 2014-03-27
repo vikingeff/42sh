@@ -6,11 +6,11 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/09 17:53:36 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/03/26 16:56:16 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/27 09:21:06 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 static int		sh_setenv_var(t_var *p_var, t_cmd *cmd, t_env *env)
 {
@@ -54,7 +54,6 @@ int				sh_setenv(t_cmd *cmd, t_env *env)
 	if (setenv_isvalid(cmd, env))
 		return (1);
 	temp = init_strings(env->var, &p_var);
-	//temp = p_var = env->var;
 	while (p_var)
 	{
 		if (ft_strcmp(cmd->split[1], p_var->name) == 0)

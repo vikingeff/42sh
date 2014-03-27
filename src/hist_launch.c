@@ -6,11 +6,11 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 17:53:14 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/03/26 00:27:19 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/27 09:19:13 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 int			filling_checking(t_cmd *cmd)
 {

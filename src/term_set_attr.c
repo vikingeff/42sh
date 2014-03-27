@@ -6,11 +6,11 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 18:44:48 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/03/26 13:45:05 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/27 09:22:20 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 int		term_set_attr(t_term *term)
 {

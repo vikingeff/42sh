@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tablen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 19:10:20 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/02/19 14:35:43 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/03/27 09:16:51 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 int		ft_tablen(char **table)
 {

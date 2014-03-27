@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_delete_char.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/16 18:45:04 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/02/16 18:45:19 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/03/27 09:14:59 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 void		ft_delete_char(t_cmd *cmd, int index)
 {

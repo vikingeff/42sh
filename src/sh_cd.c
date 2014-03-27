@@ -6,11 +6,11 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/04 18:04:13 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/03/26 00:43:16 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/27 09:20:32 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 static void		change_dir(char *n_dir, t_dir *dir, t_cmd *cmd, t_env *env)
 {

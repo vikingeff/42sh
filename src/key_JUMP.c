@@ -6,11 +6,11 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/16 17:45:21 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/03/26 00:33:26 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/27 09:19:37 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 int			ft_special_char(char c)
 {

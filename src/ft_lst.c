@@ -6,11 +6,11 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/11 15:21:51 by rda               #+#    #+#             */
-/*   Updated: 2014/03/26 00:18:06 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/27 09:15:46 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 void	ft_to_null(t_list *list)
 {

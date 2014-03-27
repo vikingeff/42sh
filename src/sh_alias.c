@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   sh_alias.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/17 14:17:47 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/02/18 16:02:25 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/03/27 09:20:25 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 static void			ft_put_alias(t_cmd *cmd)
 {

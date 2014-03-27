@@ -6,11 +6,11 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 20:45:37 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/03/26 14:34:57 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/27 09:11:54 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 static void		edit_ini(t_cur *cur, t_env *env, t_cmd *cmd, t_char **list)
 {

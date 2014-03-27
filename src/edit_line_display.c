@@ -6,11 +6,11 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/17 17:57:50 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/03/25 21:41:54 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/27 09:13:37 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 static void		refresh_line(t_env *env, t_cur *cur)
 {

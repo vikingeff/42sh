@@ -6,11 +6,11 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/16 15:58:46 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/03/26 00:34:31 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/27 09:19:49 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 void		k_enter(t_cmd *cmd)
 {

@@ -6,11 +6,11 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/15 16:54:45 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/03/26 00:34:51 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/27 09:19:56 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 static char		*ft_get_tmp_var(char *str)
 {

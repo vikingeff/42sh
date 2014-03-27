@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/22 10:02:41 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/01/12 22:10:28 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/03/26 18:13:23 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*renvoi le nombre de chiffre que contient n*/
 static int		ft_nbrlen(int n, int *divide)
 {
 	int	len;
@@ -27,7 +26,6 @@ static int		ft_nbrlen(int n, int *divide)
 	return (len);
 }
 
-/* tanscrit n en string*/
 static char		*ft_transcription(int n, int divide, int len, int neg)
 {
 	int		i;

@@ -6,11 +6,11 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 12:02:54 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/03/26 13:53:24 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/27 12:51:57 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 static int	ft_fd_tmp(char *str)
 {
@@ -27,6 +27,7 @@ static int	ft_fd_tmp(char *str)
 	}
 	close(fd);
 	fd = open("/tmp/sh.heredoc", O_RDONLY);
+	free(line);
 	return (fd);
 }
 
@@ -55,6 +56,7 @@ int			ft_get_fd(t_list *dir)
 {
 	int	fd;
 	int	select;
+	int	index;
 
 	select = 0;
 	if (dir == NULL)
@@ -65,6 +67,15 @@ int			ft_get_fd(t_list *dir)
 		select = 2;
 	else if (ft_strcmp(dir->mot, "<<") == 0)
 		select = 3;
+	if (dir->valeure[0] < 0)
+	{
+		index = 0;
+		while (dir->valeure[index])
+		{
+			dir->valeure[index] = -dir->valeure[index];
+			index++;
+		}
+	}
 	fd = ft_open(dir->valeure, select);
 	return (fd);
 }

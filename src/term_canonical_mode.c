@@ -6,11 +6,11 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 18:42:16 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/03/26 13:47:08 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/27 09:24:01 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 int		term_canonical_mode(t_env *env, int mode)
 {

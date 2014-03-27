@@ -6,11 +6,11 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 20:48:30 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/03/25 21:35:10 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/27 09:11:33 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 static int		command_execve(t_cmd *cmd)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   command_execute_simple.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/15 17:35:48 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/03/03 19:15:29 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/03/27 09:11:47 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 static int	*ft_init_fd(t_list *arg)
 {

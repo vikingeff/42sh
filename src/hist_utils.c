@@ -6,12 +6,12 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 15:47:53 by rmasse            #+#    #+#             */
-/*   Updated: 2014/03/26 09:11:37 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/27 09:19:29 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <time.h>
-#include "shell.h"
+#include <shell.h>
 
 char	*ft_strjoin_free(char *res, char *str)
 {

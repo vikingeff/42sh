@@ -6,11 +6,11 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/27 12:08:41 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/03/26 00:42:53 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/27 09:20:17 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 void		reset_comp(t_cmd *cmd)
 {

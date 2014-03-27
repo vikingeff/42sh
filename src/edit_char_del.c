@@ -6,11 +6,11 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/16 16:22:36 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/03/26 09:10:50 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/27 09:13:09 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 static void		connection_next(t_char **list, t_char **list_tmp)
 {

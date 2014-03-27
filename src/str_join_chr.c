@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   str_join_chr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/22 09:49:35 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/02/03 18:14:27 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/03/27 09:21:44 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 char		*str_join_chr(char const *s1, char const *s2, char c)
 {

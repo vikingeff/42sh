@@ -6,11 +6,11 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/16 18:39:10 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/03/26 17:48:44 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/27 12:42:24 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 static void	lauch_execute_backquote(t_cmd *cmd,
 	t_env *env, t_dir *dir, char *newcmd)

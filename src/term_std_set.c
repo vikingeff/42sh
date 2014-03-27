@@ -6,11 +6,11 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/21 23:57:02 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/03/26 13:44:56 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/27 09:22:26 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 void	term_std_set(t_env *env)
 {

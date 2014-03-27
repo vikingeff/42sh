@@ -6,11 +6,11 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/19 08:09:51 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/03/26 00:34:05 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/27 09:19:43 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 void		k_jump_up(t_char **list, t_cur *cursor, t_cmd *cmd)
 {

@@ -6,11 +6,11 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 20:53:59 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/03/25 20:59:20 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/27 09:12:34 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 int			command_shell_next(t_cmd *cmd, t_env *env, t_dir *dir, int *ret)
 {

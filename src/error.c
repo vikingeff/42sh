@@ -6,11 +6,11 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/14 13:53:09 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/03/26 00:12:49 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/27 09:14:37 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 static void		usage(int err, char *detail)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utility.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/23 18:26:37 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/02/19 14:36:46 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/03/27 09:16:57 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 void	ft_free_tab(char **table)
 {

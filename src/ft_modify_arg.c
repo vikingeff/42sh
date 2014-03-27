@@ -6,7 +6,7 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/23 18:47:02 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/03/26 00:18:25 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/27 11:57:26 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@ static char	*ft_get_result(char *str)
 {
 	int	index;
 
+	index = 0;
+	if (!str)
+		return (NULL);
 	if (str[0] == '>' || str[0] == '<')
 		str++;
 	while (str[index])
@@ -57,7 +60,7 @@ char		*ft_modify_arg(t_list *arg, int index, int mode)
 	tmp = ft_strsplit_all(str);
 	if (!tmp[0])
 		result = ft_strdup("\0");
-	else if (tmp[0][1] != '\0')
+	else if (tmp[0][1] != '\0' || !tmp[1])
 		result = ft_get_result(tmp[0]);
 	else
 		result = ft_get_result(tmp[1]);

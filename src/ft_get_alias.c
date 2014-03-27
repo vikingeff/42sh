@@ -6,11 +6,11 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/17 19:51:45 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/03/26 00:15:58 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/27 09:15:27 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 t_list		*ft_find_list(t_list *list, char *str)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/15 16:34:51 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/02/28 18:01:26 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/03/27 09:16:04 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 static t_list	*ft_fill_arg_logical(char *str, t_list *arg,
 	int index, int start)

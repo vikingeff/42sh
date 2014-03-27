@@ -6,11 +6,11 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 11:55:48 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/03/26 00:13:30 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/27 09:14:53 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 void		ft_close_pipe(int *fdpipe, int pipenb)
 {

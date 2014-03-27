@@ -6,15 +6,11 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/16 16:17:05 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/03/19 15:24:07 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/27 09:12:56 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
-
-/*
-** add a new char to the front of the existing list
-*/
+#include <shell.h>
 
 static t_char	*to_front(t_char **nchr, t_char **lst, t_cmd *cmd, t_cur *cur)
 {

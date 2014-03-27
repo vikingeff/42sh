@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_execute.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 11:58:45 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/02/28 17:28:50 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/03/27 09:15:09 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 int		ft_execute(t_list *arg, t_cmd *cmd, t_env *env, t_dir *dir)
 {

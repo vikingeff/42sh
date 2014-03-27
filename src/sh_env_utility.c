@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   sh_env_utility.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cobrecht <cobrecht@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/15 16:39:00 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/02/28 19:08:07 by cobrecht         ###   ########.fr       */
+/*   Updated: 2014/03/27 09:21:00 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 void			ft_free_c_env(t_env *c_env, t_cmd *c_cmd, t_dir *dir)
 {

@@ -6,11 +6,11 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 17:24:21 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/03/25 22:03:50 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/27 09:14:02 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 static char		*str_parse_name(char *var)
 {

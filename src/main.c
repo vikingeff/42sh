@@ -6,11 +6,11 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 14:46:47 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/03/26 13:54:26 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/27 09:20:03 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 pid_t		g_process_id;
 

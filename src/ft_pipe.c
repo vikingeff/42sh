@@ -6,11 +6,11 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/23 19:03:38 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/03/26 14:33:38 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/27 09:16:32 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 static int	ft_create_pipe(int *fdpipe, int pipenb, int *count)
 {

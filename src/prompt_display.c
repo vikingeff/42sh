@@ -6,11 +6,11 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 19:35:16 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/03/26 00:42:23 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/27 09:20:09 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 static void		set_tild(int *home, char **pwd, t_dir *dir)
 {

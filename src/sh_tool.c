@@ -6,11 +6,11 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/17 13:41:19 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/03/26 01:13:31 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/27 09:21:13 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 void	sh_cmd(void)
 {

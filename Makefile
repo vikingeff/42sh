@@ -25,7 +25,6 @@ SRC = 	main.c\
 		env_list_add.c\
 		str_join_chr.c\
 		prompt_display.c\
-		get_next_line.c\
 		command_parse.c\
 		command_get_env.c\
 		command_execute.c\
@@ -81,6 +80,7 @@ SRC = 	main.c\
 		utils.c\
 		ft_globing.c\
 		ft_parser_next.c\
+		gnl.c\
 
 OBJ = $(SRC:.c=.o)
 

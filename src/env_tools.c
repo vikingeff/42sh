@@ -6,11 +6,11 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 17:53:04 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/03/26 00:11:19 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/27 09:14:30 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 char			**env_list_to_array(t_var *var, int size)
 {

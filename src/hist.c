@@ -6,12 +6,12 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/03 10:16:45 by rmasse            #+#    #+#             */
-/*   Updated: 2014/03/26 14:33:48 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/27 09:18:43 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <time.h>
-#include "shell.h"
+#include <shell.h>
 
 void			space_padding(int index)
 {

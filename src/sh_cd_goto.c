@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   sh_cd_goto.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cost <rda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/15 18:18:11 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/02/18 19:18:16 by rda-cost         ###   ########.fr       */
+/*   Updated: 2014/03/27 09:20:41 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 char		*get_newpath(char **modif, t_dir *dir, char *curpath)
 {

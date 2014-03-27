@@ -6,11 +6,11 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 16:15:27 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/03/26 00:16:09 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/27 09:15:34 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 char	*ft_get_globing(char *str)
 {

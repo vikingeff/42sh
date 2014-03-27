@@ -6,11 +6,11 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 20:56:08 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/03/25 20:57:26 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/27 09:12:29 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 void			ft_open_close(void)
 {

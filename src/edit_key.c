@@ -6,17 +6,11 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 15:42:25 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/03/19 15:26:22 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/27 09:13:28 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
-
-/*
-** Welcome to the secret IF forest !
-** check if the given key is an "edition key" and execute the associate action.
-** Return 1 if the key is a edition key and 0 in the opposite case.
-*/
+#include <shell.h>
 
 static int	e_completion(long key[], t_cmd *cmd, t_cur *cursor, t_char **list)
 {

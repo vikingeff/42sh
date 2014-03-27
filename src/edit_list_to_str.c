@@ -6,11 +6,11 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/27 09:15:42 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/03/25 21:16:16 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/27 09:13:45 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 static char		*to_str(t_char *list)
 {

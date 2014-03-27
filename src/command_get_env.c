@@ -6,11 +6,11 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 21:16:23 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/03/25 20:56:46 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/27 09:12:01 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 int		command_get_env(t_cmd *cmd, t_env *env, t_dir *dir)
 {

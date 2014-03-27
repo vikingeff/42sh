@@ -6,11 +6,11 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/22 17:47:36 by rmasse            #+#    #+#             */
-/*   Updated: 2014/03/26 00:27:06 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/27 09:19:05 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 static int	hist_chr_is_valid(t_cmd *cmd, t_hist *save)
 {

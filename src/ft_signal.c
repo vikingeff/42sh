@@ -6,11 +6,11 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/12 19:07:35 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/03/26 13:55:03 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/27 09:16:37 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 static void	ft_get_signal(int n)
 {

@@ -6,11 +6,11 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 17:29:27 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/03/26 13:57:13 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/27 09:14:16 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 int		env_list_add(t_var **list, t_var **start)
 {

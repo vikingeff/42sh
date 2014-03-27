@@ -6,11 +6,11 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/27 12:15:31 by rda-cost          #+#    #+#             */
-/*   Updated: 2014/03/26 01:16:31 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/27 09:22:31 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 static int	ft_find_rule(char *str, int index)
 {

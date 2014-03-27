@@ -6,11 +6,11 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/22 17:00:00 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/03/26 16:21:55 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/27 09:19:21 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 static int	cursor_reset(t_cur *cursor)
 {

@@ -6,11 +6,11 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/04 16:29:36 by cobrecht          #+#    #+#             */
-/*   Updated: 2014/03/26 01:13:49 by gleger           ###   ########.fr       */
+/*   Updated: 2014/03/27 09:21:28 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include <shell.h>
 
 static void		cell_delete(t_var *p_var, t_var *prev)
 {
