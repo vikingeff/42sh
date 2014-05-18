@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gleger   <gleger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/22 08:38:48 by gleger            #+#    #+#             */
 /*   Updated: 2014/05/13 12:14:55 by gleger           ###   ########.fr       */

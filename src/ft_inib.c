@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_inib.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gleger   <gleger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/15 16:18:03 by gleger            #+#    #+#             */
 /*   Updated: 2014/03/27 09:15:40 by gleger           ###   ########.fr       */

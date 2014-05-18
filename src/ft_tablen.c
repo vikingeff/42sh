@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tablen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gleger   <gleger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 19:10:20 by gleger            #+#    #+#             */
 /*   Updated: 2014/03/27 09:16:51 by gleger           ###   ########.fr       */

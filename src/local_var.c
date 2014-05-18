@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   local_var.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gleger   <gleger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/15 16:54:45 by gleger            #+#    #+#             */
 /*   Updated: 2014/03/27 09:19:56 by gleger           ###   ########.fr       */

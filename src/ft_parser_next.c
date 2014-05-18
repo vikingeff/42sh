@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser_next.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gleger   <gleger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 18:01:39 by gleger            #+#    #+#             */
 /*   Updated: 2014/03/27 09:16:23 by gleger           ###   ########.fr       */

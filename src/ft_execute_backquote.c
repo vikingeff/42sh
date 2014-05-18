@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_execute_backquote.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gleger   <gleger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/16 18:39:10 by gleger            #+#    #+#             */
 /*   Updated: 2014/05/13 13:29:27 by gleger           ###   ########.fr       */

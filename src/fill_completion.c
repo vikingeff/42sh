@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   fill_completion.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gleger   <gleger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/27 12:13:42 by gleger            #+#    #+#             */
 /*   Updated: 2014/05/13 13:35:37 by gleger           ###   ########.fr       */

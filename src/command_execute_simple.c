@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   command_execute_simple.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gleger   <gleger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/15 17:35:48 by gleger            #+#    #+#             */
 /*   Updated: 2014/03/27 09:11:47 by gleger           ###   ########.fr       */

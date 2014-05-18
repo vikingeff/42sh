@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   edit_erase_display.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gleger   <gleger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/18 14:00:26 by gleger            #+#    #+#             */
 /*   Updated: 2014/05/13 13:32:44 by gleger           ###   ########.fr       */

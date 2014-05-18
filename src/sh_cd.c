@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   sh_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gleger   <gleger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/04 18:04:13 by gleger            #+#    #+#             */
 /*   Updated: 2014/05/13 13:06:02 by gleger           ###   ########.fr       */

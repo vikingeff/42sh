@@ -3,7 +3,7 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gleger   <gleger@student.42.fr>            +#+  +:+       +#+         #
+#    By: gleger <gleger@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/19 14:34:47 by gleger            #+#    #+#              #
 #    Updated: 2014/02/25 10:01:48 by gleger          ###   ########.fr        #

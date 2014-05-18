@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_alias.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gleger   <gleger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/17 19:51:45 by gleger            #+#    #+#             */
 /*   Updated: 2014/03/27 09:15:27 by gleger           ###   ########.fr       */

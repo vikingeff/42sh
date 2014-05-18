@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   edit_list_to_str.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gleger   <gleger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/27 09:15:42 by gleger            #+#    #+#             */
 /*   Updated: 2014/05/13 12:14:17 by gleger           ###   ########.fr       */

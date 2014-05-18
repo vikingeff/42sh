@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   sh_unalias.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gleger   <gleger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/18 15:58:15 by gleger            #+#    #+#             */
 /*   Updated: 2014/03/27 09:21:21 by gleger           ###   ########.fr       */

@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   key_jump.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gleger   <gleger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/16 17:45:21 by gleger            #+#    #+#             */
 /*   Updated: 2014/05/13 12:14:01 by gleger           ###   ########.fr       */

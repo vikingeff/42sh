@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free_arg.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gleger   <gleger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/12 19:44:49 by gleger            #+#    #+#             */
 /*   Updated: 2014/03/27 09:15:21 by gleger           ###   ########.fr       */

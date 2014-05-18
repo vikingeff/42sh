@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   env_list_add.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gleger   <gleger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 17:29:27 by gleger            #+#    #+#             */
 /*   Updated: 2014/05/13 12:14:13 by gleger           ###   ########.fr       */

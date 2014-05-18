@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   command_get_env.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gleger   <gleger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 21:16:23 by gleger            #+#    #+#             */
 /*   Updated: 2014/05/13 12:14:24 by gleger           ###   ########.fr       */

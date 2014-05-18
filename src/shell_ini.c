@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   shell_ini.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gleger   <gleger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 16:04:28 by gleger            #+#    #+#             */
 /*   Updated: 2014/05/13 12:13:49 by gleger           ###   ########.fr       */

@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   sh_env_utility.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gleger   <gleger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/15 16:39:00 by gleger            #+#    #+#             */
 /*   Updated: 2014/03/27 09:21:00 by gleger           ###   ########.fr       */

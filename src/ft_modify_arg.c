@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_modify_arg.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gleger   <gleger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/23 18:47:02 by gleger            #+#    #+#             */
 /*   Updated: 2014/03/27 11:57:26 by gleger           ###   ########.fr       */

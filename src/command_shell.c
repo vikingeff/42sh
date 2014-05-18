@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   command_shell.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gleger   <gleger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 20:53:59 by gleger            #+#    #+#             */
 /*   Updated: 2014/05/13 14:15:18 by gleger           ###   ########.fr       */

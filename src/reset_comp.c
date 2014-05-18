@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   reset_comp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gleger   <gleger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/27 12:08:41 by gleger            #+#    #+#             */
 /*   Updated: 2014/03/27 09:20:17 by gleger           ###   ########.fr       */

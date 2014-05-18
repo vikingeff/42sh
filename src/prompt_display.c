@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   prompt_display.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gleger   <gleger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 19:35:16 by gleger            #+#    #+#             */
 /*   Updated: 2014/05/13 12:13:58 by gleger           ###   ########.fr       */

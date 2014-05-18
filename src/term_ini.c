@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   term_ini.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gleger   <gleger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 18:37:37 by gleger            #+#    #+#             */
 /*   Updated: 2014/05/13 12:13:43 by gleger           ###   ########.fr       */

@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   edit_key.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gleger   <gleger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/28 15:42:25 by gleger            #+#    #+#             */
 /*   Updated: 2014/05/13 12:14:19 by gleger           ###   ########.fr       */

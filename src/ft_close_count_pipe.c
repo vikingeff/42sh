@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_close_count_pipe.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gleger   <gleger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 11:55:48 by gleger            #+#    #+#             */
 /*   Updated: 2014/03/27 09:14:53 by gleger           ###   ########.fr       */

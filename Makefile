@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gleger   <gleger@student.42.fr>            +#+  +:+       +#+         #
+#    By: gleger <gleger@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/03 14:29:03 by gleger            #+#    #+#              #
-#    Updated: 2014/03/13 12:49:10 by gleger           ###   ########.fr        #
+#    Updated: 2014/05/18 12:26:36 by gleger           ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -88,6 +88,8 @@ FLAG = -Wall -Wextra -Werror -g -O3
 
 LIBFT = libft/libft.a
 
+MANPATH := ${PWD}/MAN
+
 all: $(NAME)
 
 $(NAME): $(OBJ) ./include/shell.h $(LIBFT) 
@@ -114,10 +116,9 @@ fclean: clean
 re: fclean all
 
 rtfm:
-	cd ./MAN
-	source ./expman.sh
-	cd..
-
+	set -e; \
+    . ./MAN/expman.sh;
+    
 git:
 	git add src include/shell.h Makefile MAN
 	git commit -m "auto push"

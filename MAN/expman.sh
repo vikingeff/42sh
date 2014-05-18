@@ -1,5 +1,5 @@
-MANPATH=$MANPATH:$PWD
-export MANPATH ;
+MANPATH=$PWD/MAN
+export MANPATH;
 echo '
 8888888b.    88888888888   8888888888   888b     d888 
 888   Y88b       888       888          8888b   d8888 
@@ -11,6 +11,4 @@ echo '
 888   T88b       888       888          888       888 
 
 =================>   man 42sh   <====================
-
-
 '

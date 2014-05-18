@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   edit_line_display.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gleger   <gleger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/17 17:57:50 by gleger            #+#    #+#             */
 /*   Updated: 2014/05/13 13:33:19 by gleger           ###   ########.fr       */

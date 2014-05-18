@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   term_edit_set.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gleger   <gleger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/22 00:47:42 by gleger            #+#    #+#             */
 /*   Updated: 2014/05/13 12:13:44 by gleger           ###   ########.fr       */

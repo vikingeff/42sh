@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   hist_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gleger   <gleger@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 15:47:53 by gleger            #+#    #+#             */
 /*   Updated: 2014/03/27 09:19:29 by gleger           ###   ########.fr       */
