@@ -99,7 +99,8 @@ MANPATH := ${PWD}/MAN
 all: $(NAME)
 
 $(NAME): $(OBJ) ./include/shell.h 
-	@cc $(FLAG) $(OBJ) -L /usr/lib -ltermcap -o $(NAME)
+	@echo "\033[1;35;m[Linking] \t\t\033[0m: " | tr -d '\n'
+	gcc $(FLAG) $(OBJ) -L /usr/lib -ltermcap -o $(NAME)
 	@echo "\033[1;32;m[Compilation done]\033[0m"
 
 $(LIBFT):
