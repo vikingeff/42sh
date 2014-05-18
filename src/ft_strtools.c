@@ -6,16 +6,16 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/21 13:00:11 by gleger            #+#    #+#             */
-/*   Updated: 2014/05/18 17:15:41 by gleger           ###   ########.fr       */
+/*   Updated: 2014/05/18 17:46:40 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <shell.h>
 
-char		*ft_strsub(char const *s, unsigned int start, size_t len)
+char			*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	char	*r;
-	size_t	i;
+	char		*r;
+	size_t		i;
 
 	if (!s)
 		return (NULL);

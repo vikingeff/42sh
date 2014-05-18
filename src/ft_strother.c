@@ -6,7 +6,7 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/21 13:00:11 by gleger            #+#    #+#             */
-/*   Updated: 2014/05/18 17:19:56 by gleger           ###   ########.fr       */
+/*   Updated: 2014/05/18 17:46:13 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char		*ft_strdup(const char *s1)
 	return (new_str);
 }
 
-char	*ft_strcpy(char *s1, const char *s2)
+char		*ft_strcpy(char *s1, const char *s2)
 {
 	int	i;
 
@@ -73,7 +73,7 @@ char	*ft_strcpy(char *s1, const char *s2)
 	return (s1);
 }
 
-char	*ft_strchr(const char *s, int c)
+char		*ft_strchr(const char *s, int c)
 {
 	while (*s)
 	{
@@ -86,7 +86,7 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-int		ft_strcmp(const char *s1, const char *s2)
+int			ft_strcmp(const char *s1, const char *s2)
 {
 	int	i;
 	int	diff;

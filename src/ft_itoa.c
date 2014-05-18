@@ -6,13 +6,13 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/22 10:02:41 by gleger            #+#    #+#             */
-/*   Updated: 2014/05/18 17:33:34 by gleger           ###   ########.fr       */
+/*   Updated: 2014/05/18 17:44:51 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <shell.h>
 
-void	*ft_memalloc(size_t size)
+void		*ft_memalloc(size_t size)
 {
 	void	*mem;
 
@@ -24,7 +24,7 @@ void	*ft_memalloc(size_t size)
 	return (NULL);
 }
 
-char	*ft_strnew(size_t size)
+char		*ft_strnew(size_t size)
 {
 	char	*str;
 
@@ -41,7 +41,7 @@ char	*ft_strnew(size_t size)
 	return (str);
 }
 
-static int		ft_nbrlen(int n, int *divide)
+int			ft_nbrlen(int n, int *divide)
 {
 	int	len;
 
@@ -55,7 +55,7 @@ static int		ft_nbrlen(int n, int *divide)
 	return (len);
 }
 
-static char		*ft_transcription(int n, int divide, int len, int neg)
+char		*ft_transcription(int n, int divide, int len, int neg)
 {
 	int		i;
 	int		ntmp;
@@ -81,7 +81,7 @@ static char		*ft_transcription(int n, int divide, int len, int neg)
 	return (str);
 }
 
-char			*ft_itoa(int n)
+char		*ft_itoa(int n)
 {
 	int		len;
 	int		neg;

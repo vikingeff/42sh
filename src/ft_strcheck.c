@@ -6,20 +6,20 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/21 13:00:11 by gleger            #+#    #+#             */
-/*   Updated: 2014/05/18 17:19:56 by gleger           ###   ########.fr       */
+/*   Updated: 2014/05/18 17:45:41 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <shell.h>
 
-int		ft_isdigit(int c)
+int			ft_isdigit(int c)
 {
 	if (c > 47 && c < 58)
 		return (1);
 	return (0);
 }
 
-void	ft_bzero(void *s, size_t n)
+void		ft_bzero(void *s, size_t n)
 {
 	unsigned char	*st;
 
@@ -44,7 +44,7 @@ size_t		ft_strlen(const char *s)
 	return (len);
 }
 
-static int		ft_isspace(int c)
+int			ft_isspace(int c)
 {
 	if (c == ' ' || c == '\f' || c == '\n' || c == '\r'
 		|| c == '\t' || c == '\v')
@@ -52,7 +52,7 @@ static int		ft_isspace(int c)
 	return (0);
 }
 
-int				ft_atoi(const char *str)
+int			ft_atoi(const char *str)
 {
 	int	nb;
 	int	i;

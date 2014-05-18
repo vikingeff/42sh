@@ -6,7 +6,7 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 14:44:57 by gleger            #+#    #+#             */
-/*   Updated: 2014/05/18 17:35:26 by gleger           ###   ########.fr       */
+/*   Updated: 2014/05/18 17:48:31 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -306,7 +306,8 @@ void					ft_globing(t_cmd *cmd);
 char					*ft_get_begin(t_cmd *cmd, int index, int count);
 char					**ft_get_end(t_cmd *cmd, int index, int count,
 	char *start);
-char					*ft_strsub(char const *s, unsigned int start, size_t len);
+char					*ft_strsub(char const *s, unsigned int start, \
+	size_t len);
 char					**ft_strsplit(char const *s, char c);
 size_t					ft_strlen(const char *s);
 char					*ft_strjoin(char const *s1, char const *s2);
