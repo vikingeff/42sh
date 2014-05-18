@@ -1,16 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strcheck.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/19 19:10:10 by gleger            #+#    #+#             */
-/*   Updated: 2014/05/13 12:15:35 by gleger           ###   ########.fr       */
+/*   Created: 2013/11/21 13:00:11 by gleger            #+#    #+#             */
+/*   Updated: 2014/05/18 17:19:56 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <shell.h>
+
+int		ft_isdigit(int c)
+{
+	if (c > 47 && c < 58)
+		return (1);
+	return (0);
+}
+
+void	ft_bzero(void *s, size_t n)
+{
+	unsigned char	*st;
+
+	st = s;
+	while (n > 0)
+	{
+		st[n - 1] = '\0';
+		n--;
+	}
+}
+
+size_t		ft_strlen(const char *s)
+{
+	size_t	len;
+
+	len = 0;
+	if (s != NULL)
+	{
+		while (s[len])
+			len++;
+	}
+	return (len);
+}
 
 static int		ft_isspace(int c)
 {

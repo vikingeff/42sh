@@ -6,11 +6,40 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/22 10:02:41 by gleger            #+#    #+#             */
-/*   Updated: 2014/05/13 12:15:30 by gleger           ###   ########.fr       */
+/*   Updated: 2014/05/18 17:33:34 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <shell.h>
+
+void	*ft_memalloc(size_t size)
+{
+	void	*mem;
+
+	mem = NULL;
+	if ((mem = (void*)malloc(size)))
+	{
+		return (mem);
+	}
+	return (NULL);
+}
+
+char	*ft_strnew(size_t size)
+{
+	char	*str;
+
+	str = NULL;
+	if ((str = (char*)malloc(sizeof(*str) * size)))
+	{
+		while (size)
+		{
+			str[size] = '\0';
+			size--;
+		}
+		str[size] = '\0';
+	}
+	return (str);
+}
 
 static int		ft_nbrlen(int n, int *divide)
 {

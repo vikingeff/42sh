@@ -6,7 +6,7 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 14:44:57 by gleger            #+#    #+#             */
-/*   Updated: 2014/05/18 11:17:00 by gleger           ###   ########.fr       */
+/*   Updated: 2014/05/18 17:35:26 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 # include <stdlib.h>
 # include <sys/wait.h>
 # include <signal.h>
+# include <string.h>
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
-# include "../libft/libft.h"
 # include <termios.h>
 # include <signal.h>
 # include <curses.h>
@@ -306,5 +306,26 @@ void					ft_globing(t_cmd *cmd);
 char					*ft_get_begin(t_cmd *cmd, int index, int count);
 char					**ft_get_end(t_cmd *cmd, int index, int count,
 	char *start);
+char					*ft_strsub(char const *s, unsigned int start, size_t len);
+char					**ft_strsplit(char const *s, char c);
+size_t					ft_strlen(const char *s);
+char					*ft_strjoin(char const *s1, char const *s2);
+char					*ft_strdup(const char *s1);
+char					*ft_strcpy(char *s1, const char *s2);
+char					*ft_strchr(const char *s, int c);
+int						ft_strcmp(const char *s1, const char *s2);
+int						ft_isdigit(int c);
+void					ft_bzero(void *s, size_t n);
+int						ft_atoi(const char *str);
+char					*ft_itoa(int n);
+void					ft_putchar(char c);
+void					ft_putstr(char const *s);
+void					ft_putnbr(int n);
+char					*ft_strnew(size_t size);
+void					ft_putendl(char const *s);
+void					ft_putchar_fd(char c, int fd);
+void					ft_putstr_fd(char const *s, int fd);
+void					ft_putendl_fd(char const *s, int fd);
+void					*ft_memalloc(size_t size);
 
 #endif

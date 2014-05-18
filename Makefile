@@ -81,6 +81,12 @@ SRC = 	main.c\
 		ft_globing.c\
 		ft_parser_next.c\
 		gnl.c\
+		ft_strtools.c\
+		ft_strother.c\
+		ft_strcheck.c\
+		ft_itoa.c\
+		ft_putsome.c\
+		ft_putmore.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -92,24 +98,22 @@ MANPATH := ${PWD}/MAN
 
 all: $(NAME)
 
-$(NAME): $(OBJ) ./include/shell.h $(LIBFT) 
-	@cc $(FLAG) $(OBJ) $(LIBFT) -L /usr/lib -ltermcap -o $(NAME)
+$(NAME): $(OBJ) ./include/shell.h 
+	@cc $(FLAG) $(OBJ) -L /usr/lib -ltermcap -o $(NAME)
 	@echo "\033[1;32;m[Compilation done]\033[0m"
 
 $(LIBFT):
-	@make -C libft
 	@echo "\033[1;35;m[Linking Libft]\033[0m"
 
 %.o: src/%.c
-	@cc -c $(FLAG) $< -I include/
+	@echo "\033[1;36;m[Compiling $<]\t\033[0m: " | tr -d '\n'
+	gcc -c $(FLAG) $< -I include/
 
 clean:
-	@make -C libft clean
 	@echo "\033[0;33;m[Cleaning objects]\033[0m"
 	@rm -f $(OBJ)
 
 fclean: clean
-	@make -C libft fclean
 	@echo "\033[0;31;m[Deleting $(NAME)]\033[0m"
 	@rm -f $(NAME)
 

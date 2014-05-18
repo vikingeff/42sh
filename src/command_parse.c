@@ -6,7 +6,7 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 20:56:08 by gleger            #+#    #+#             */
-/*   Updated: 2014/05/13 12:14:23 by gleger           ###   ########.fr       */
+/*   Updated: 2014/05/18 16:10:58 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,9 @@ int				command_parse(t_cmd *cmd, t_env *env, t_dir *dir)
 	index = 0;
 	if (cmd->split)
 		array2d_free(cmd->split);
-	if (!(cmd->split = ft_strsplit_all(cmd->raw)))
-		return (-1);
+	cmd->split = ft_strsplit_all(cmd->raw);
+	if (!(cmd->split[0]))
+		return (0);
 	ft_get_var(cmd, env);
 	ft_globing(cmd);
 	while (cmd->split[index])
